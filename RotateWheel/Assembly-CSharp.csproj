@@ -51,12 +51,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\CircleController.cs" />
+     <Compile Include="Assets\Script\Constant.cs" />
      <Compile Include="Assets\Script\Explode.cs" />
+     <Compile Include="Assets\Script\PlayerController.cs" />
      <Compile Include="Assets\Script\Rotate.cs" />
      <Compile Include="Assets\Script\SampleScript.cs" />
      <Compile Include="Assets\Script\SingleRotate.cs" />
      <Compile Include="Assets\Spinning.cs" />
-     <None Include="Assets\Scifi Art Demo Pack\Demo Readme.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
