@@ -48,7 +48,11 @@ public class CircleController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		float direction = Input.GetAxis ("Horizontal");
-		gameObject.transform.Rotate (Vector3.forward * direction * m_Speed * Time.deltaTime);
+//		if (direction < 0)
+//			Debug.Log ("Left: " + direction);
+//		else if (direction > 0)
+//			Debug.Log ("Right: " + direction);
+		gameObject.transform.Rotate (Vector3.forward * direction * (-1) * m_Speed * Time.deltaTime);
 //		if (direction != 0)
 //			m_Body.AddTorque (m_Torque, ForceMode2D.Impulse);
 //		else

@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4296418287372874}
   - component: {fileID: 212317279720473506}
-  - component: {fileID: 50313272057946064}
   - component: {fileID: 58159100088088920}
   m_Layer: 9
   m_Name: red_ball
@@ -42,26 +41,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50313272057946064
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1072215650823384}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.8
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!58 &58159100088088920
 CircleCollider2D:
   m_ObjectHideFlags: 1
