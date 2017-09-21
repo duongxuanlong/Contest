@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class CircleController : MonoBehaviour {
 
+	#region reference
 	public GameObject m_Left;
 	public GameObject m_Right;
+	//public GameObject m_Player;
+	#endregion
 
 	#region param
 	public float m_Speed;

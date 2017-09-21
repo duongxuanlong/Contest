@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -13,6 +14,13 @@ public class PlayerController : MonoBehaviour {
 	#region reference
 	public GameObject m_Left;
 	public GameObject m_Right;
+	public Button m_Reset;
+	//public GameObject m_Player;
+	#endregion
+
+	#region Reset param
+	private Vector3 m_LeftAngular;
+	private Vector3 m_RightAngular;
 	#endregion
 
 	private Vector2 m_Direction;
@@ -24,10 +32,33 @@ public class PlayerController : MonoBehaviour {
 		m_MaxSpeed = 8f;
 
 		m_Direction = Vector2.up * -1;
+
+		if (m_Reset != null)
+			m_Reset.GetComponent<Button> ().onClick.AddListener (Reset);
+
+		m_LeftAngular = m_Left.transform.eulerAngles;
+		m_RightAngular = m_Right.transform.eulerAngles;
 	}
 	// Use this for initialization
 	void Start () {
 		
+	}
+
+	void Reset (){
+		if (m_Left != null) {
+			m_Left.transform.position = new Vector3 (0, 4f, 0);
+			m_Left.transform.eulerAngles = m_LeftAngular;
+		}
+
+		if (m_Right != null) {
+			m_Right.transform.position = new Vector3 (0, -4f, 0);
+			m_Right.transform.eulerAngles = m_RightAngular;
+		}
+
+		gameObject.transform.position = new Vector3 (0, 3.5f, 0);
+
+		m_Speed = 0;
+		m_Direction = new Vector2 (0, -1);
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
@@ -89,7 +120,7 @@ public class PlayerController : MonoBehaviour {
 		if (speed >= m_MaxSpeed)
 			speed = m_MaxSpeed;
 		
-		gameObject.transform.Translate (m_Direction * speed * Time.deltaTime);
+		gameObject.transform.Translate (m_Direction.normalized * speed * Time.deltaTime);
 
 		m_Speed = speed;
 	}
