@@ -12,19 +12,7 @@ public class PlayerController : MonoBehaviour {
 	#endregion
 
 	#region reference
-	public GameObject m_Left;
-	public GameObject m_Right;
-	public Button m_Reset;
-	//public GameObject m_Player;
-	public Text m_Score;
-	public GameObject m_Obstacle;
-
 	public AnimationCurve m_Curve;
-	#endregion
-
-	#region Reset param
-	private Vector3 m_LeftAngular;
-	private Vector3 m_RightAngular;
 	#endregion
 
 	#region range
@@ -32,29 +20,23 @@ public class PlayerController : MonoBehaviour {
 	public float m_Max;
 	#endregion
 
-	int m_Points;
-
 	private Vector2 m_Direction;
 
 	void Awake()
 	{
-		/*m_Acceleration = 3f;
+		m_Acceleration = 2f;
 		m_Speed = 0f;
-		m_MaxSpeed = 8f;*/
+		m_MaxSpeed = 5f;
 		//m_Curve = new AnimationCurve ();
 		m_Curve.Evaluate(0.5f);
 
-		m_Points = 0;
-		m_Direction = Vector2.up * -1;
+		//m_Direction = Vector2.up * -1;
 
 		m_Min = -2f;
 		m_Max = 2f;
 
-		if (m_Reset != null)
-			m_Reset.GetComponent<Button> ().onClick.AddListener (Reset);
-
-		m_LeftAngular = m_Left.transform.eulerAngles;
-		m_RightAngular = m_Right.transform.eulerAngles;
+		m_Direction = Random.insideUnitCircle;
+		m_Direction.Normalize ();
 	}
 	// Use this for initialization
 	void Start () {
@@ -62,24 +44,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void Reset (){
-		if (m_Left != null) {
-			m_Left.transform.position = new Vector3 (-4f, 0, 0);
-			m_Left.transform.eulerAngles = m_LeftAngular;
-		}
-
-		if (m_Right != null) {
-			m_Right.transform.position = new Vector3 (4f, 0, 0);
-			m_Right.transform.eulerAngles = m_RightAngular;
-		}
-
-		if (m_Score != null)
-			m_Score.text = "Score: 0";
-		m_Points = 0;
-		
-		gameObject.transform.position = new Vector3 (0, 3.5f, 0);
-
-		m_Speed = 0;
-		m_Direction = new Vector2 (0, -1);
+		Destroy (gameObject);
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
@@ -114,9 +79,6 @@ public class PlayerController : MonoBehaviour {
 
 			m_Direction.Normalize ();
 
-			if (m_Score != null)
-				m_Score.text = "Score: " + ++m_Points;
-
 			//Debug.Log ("Direction: " + m_Direction.ToString ());
 
 			//m_Speed = 0f;
@@ -131,11 +93,8 @@ public class PlayerController : MonoBehaviour {
 			Debug.Log ("Direction: " + m_Direction.ToString ());
 
 			m_Direction.Normalize ();
-
-			if (m_Score != null)
-				m_Score.text = "Score: " + ++m_Points;
-
-			Destroy (other.gameObject);
+			if (obj.tag == Constant.TAG_OBSTACLE)
+				Destroy (gameObject);
 		}
 	}
 	

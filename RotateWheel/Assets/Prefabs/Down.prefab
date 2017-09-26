@@ -9,44 +9,44 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1373775707271726}
+  m_RootGameObject: {fileID: 1158010809497698}
   m_IsPrefabParent: 1
---- !u!1 &1373775707271726
+--- !u!1 &1158010809497698
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4062299616776880}
-  - component: {fileID: 212535090759360408}
-  - component: {fileID: 68605388798570038}
+  - component: {fileID: 4493858537435376}
+  - component: {fileID: 212677666380698776}
+  - component: {fileID: 68493869930513772}
   m_Layer: 8
-  m_Name: Right
+  m_Name: Down
   m_TagString: Wheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4062299616776880
+--- !u!4 &4493858537435376
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1373775707271726}
-  m_LocalRotation: {x: 0, y: 0, z: -0.5436052, w: 0.83934104}
-  m_LocalPosition: {x: 1.5718971, y: -3.6781998, z: 0}
+  m_GameObject: {fileID: 1158010809497698}
+  m_LocalRotation: {x: 0, y: 0, z: -0.9792689, w: 0.20256476}
+  m_LocalPosition: {x: -3.6781998, y: -1.5718971, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.0020001}
---- !u!68 &68605388798570038
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.76601}
+--- !u!68 &68493869930513772
 EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1373775707271726}
+  m_GameObject: {fileID: 1158010809497698}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -73,12 +73,12 @@ EdgeCollider2D:
   - {x: 0.0939126, y: -0.4606891}
   - {x: 0.12985384, y: -0.035496257}
   - {x: 0.08703244, y: 0.40006265}
---- !u!212 &212535090759360408
+--- !u!212 &212677666380698776
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1373775707271726}
+  m_GameObject: {fileID: 1158010809497698}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
