@@ -7,6 +7,10 @@ public class CircleController : MonoBehaviour {
 	#region reference
 	public GameObject m_Left;
 	public GameObject m_Right;
+
+	//Add top down
+	public GameObject m_Top;
+	public GameObject m_Down;
 	//public GameObject m_Player;
 	#endregion
 
@@ -20,17 +24,12 @@ public class CircleController : MonoBehaviour {
 
 	void Awake()
 	{
-		
+		gameObject.SetActive (true);
 	}
 
 	// Use this for initialization
 	void Start () {
 		m_Euler = gameObject.transform.eulerAngles;	
-	}
-
-	void FixedUpdate ()
-	{
-		
 	}
 
 	private void RotateObject (ref GameObject obj, Vector3 position, Vector3 rotation)
@@ -70,6 +69,12 @@ public class CircleController : MonoBehaviour {
 			if (m_Right != null) {
 				RotateObject (ref m_Right, position, delta);
 			}
+
+			if (m_Top != null)
+				RotateObject (ref m_Top, position, delta);
+
+			if (m_Down != null)
+				RotateObject (ref m_Down, position, delta);
 		}
 
 		m_Euler = next;
