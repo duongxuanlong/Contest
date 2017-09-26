@@ -16,12 +16,17 @@ public class PlayerController : MonoBehaviour {
 	public GameObject m_Right;
 	public Button m_Reset;
 	//public GameObject m_Player;
+	public Text m_Score;
+
+	public AnimationCurve m_Curve;
 	#endregion
 
 	#region Reset param
 	private Vector3 m_LeftAngular;
 	private Vector3 m_RightAngular;
 	#endregion
+
+	int m_Points;
 
 	private Vector2 m_Direction;
 
@@ -30,7 +35,9 @@ public class PlayerController : MonoBehaviour {
 		/*m_Acceleration = 3f;
 		m_Speed = 0f;
 		m_MaxSpeed = 8f;*/
-
+		//m_Curve = new AnimationCurve ();
+		m_Points = 0;
+		m_Curve.Evaluate(0.5f);
 		m_Direction = Vector2.up * -1;
 
 		if (m_Reset != null)
@@ -55,6 +62,10 @@ public class PlayerController : MonoBehaviour {
 			m_Right.transform.eulerAngles = m_RightAngular;
 		}
 
+		if (m_Score != null)
+			m_Score.text = "Score: 0";
+		m_Points = 0;
+		
 		gameObject.transform.position = new Vector3 (0, 3.5f, 0);
 
 		m_Speed = 0;
@@ -92,7 +103,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.tag == Constant.TAG_WHEEL) {
 			Vector2 opPos = Vector2.zero - (Vector2)other.gameObject.transform.position;
 			int random = Random.Range (0, 2);
-			Debug.Log ("random: " + random);
+			//Debug.Log ("random: " + random);
 			float new_x;
 			float new_y;
 			if (random == 0) {
@@ -108,7 +119,11 @@ public class PlayerController : MonoBehaviour {
 			}
 			m_Direction.x = new_x;
 			m_Direction.y = new_y;
+			//Debug.Log ("Direction: " + m_Direction.ToString ());
 			m_Direction.Normalize ();
+
+			if (m_Score != null)
+				m_Score.text = "Score: " + ++m_Points;
 
 			//Debug.Log ("Direction: " + m_Direction.ToString ());
 
@@ -120,7 +135,11 @@ public class PlayerController : MonoBehaviour {
 			float y = Random.Range (0, m_Direction.y);
 			m_Direction.x = -x;
 			m_Direction.y = -y;
+			//Debug.Log ("Direction: " + m_Direction.ToString ());
 			m_Direction.Normalize ();
+
+			if (m_Score != null)
+				m_Score.text = "Score: " + ++m_Points;
 		}
 	}
 	
@@ -131,6 +150,7 @@ public class PlayerController : MonoBehaviour {
 			speed = m_MaxSpeed;
 		
 		gameObject.transform.Translate (m_Direction * speed * Time.deltaTime);
+		//GetComponent<Rigidbody2D>().MovePosition(m_Direction * speed * Time.deltaTime);
 
 		m_Speed = speed;
 	}
