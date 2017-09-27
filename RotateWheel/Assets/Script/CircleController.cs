@@ -22,6 +22,9 @@ public class CircleController : MonoBehaviour {
 
 	private Vector3 m_Euler;
 
+	//Son added: pad HP
+	public static int hp = 40;
+
 	void Awake()
 	{
 		gameObject.SetActive (true);
@@ -30,6 +33,7 @@ public class CircleController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		m_Euler = gameObject.transform.eulerAngles;	
+		Debug.Log (hp);
 	}
 
 	private void RotateObject (ref GameObject obj, Vector3 position, Vector3 rotation)
@@ -79,4 +83,6 @@ public class CircleController : MonoBehaviour {
 
 		m_Euler = next;
 	}
+
+
 }

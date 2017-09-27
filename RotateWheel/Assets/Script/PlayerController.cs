@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour {
 
 	private Vector2 m_Direction;
 
+	public int ballHP;
+
 	void Awake()
 	{
 		m_Acceleration = 2f;
@@ -39,8 +41,10 @@ public class PlayerController : MonoBehaviour {
 		m_Direction.Normalize ();
 	}
 	// Use this for initialization
+	//Son added: init ball HP
 	void Start () {
-		
+		ballHP = Random.Range (1, 15);
+		Debug.Log (ballHP);
 	}
 
 	public void Reset (){
@@ -51,6 +55,13 @@ public class PlayerController : MonoBehaviour {
 		GameObject obj = other.gameObject;
 
 		if (obj.tag == Constant.TAG_WHEEL) {
+
+			int hp = CircleController.hp;
+			hp = hp - ballHP;
+			CircleController.hp = hp;
+			Debug.Log(hp);
+			//int hp = obj.GetComponent<CircleController> ().hp;
+
 			Vector2 opPos = Vector2.zero - (Vector2)obj.transform.position;
 			int random = Random.Range (0, 2);
 			//Debug.Log ("random: " + random);
@@ -85,6 +96,9 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (obj.tag == Constant.TAG_OBSTACLE || obj.tag == Constant.TAG_PLAYER) {
+
+
+
 			float x = Random.Range (0, m_Direction.x);
 			float y = Random.Range (0, m_Direction.y);
 			m_Direction.x = -x;
