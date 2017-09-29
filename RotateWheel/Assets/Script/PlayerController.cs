@@ -23,10 +23,10 @@ public class PlayerController : MonoBehaviour {
 	SpriteRenderer m_Renderer;
 	#endregion
 
-	#region range
-	public float m_Min;
-	public float m_Max;
-	#endregion
+//	#region range
+//	public float m_Min;
+//	public float m_Max;
+//	#endregion
 
 	float m_CurrentAmount;
 	Vector2 m_Direction;
@@ -34,9 +34,9 @@ public class PlayerController : MonoBehaviour {
 	void Awake()
 	{
 		if (m_Acceleration == 0)
-			m_Acceleration = 2f;
+			m_Acceleration = 3f;
 		if (m_MaxSpeed == 0)
-			m_MaxSpeed = 5f;
+			m_MaxSpeed = 8f;
 		m_Speed = 0f;
 		
 		if (m_MaxDamage == 0)
@@ -44,10 +44,10 @@ public class PlayerController : MonoBehaviour {
 		if (m_MaxHeal == 0)
 			m_MaxHeal = 5;
 		if (m_PercentDamage == 0)
-			m_PercentDamage = 0.3f;
+			m_PercentDamage = 0.4f;
 
-		m_Min = -2f;
-		m_Max = 2f;
+//		m_Min = -2f;
+//		m_Max = 2f;
 		
 		//m_Curve.Evaluate(0.5f);
 
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour {
 		Destroy (gameObject);
 	}
 
-	public void SetObjectType (int type)
+	private void SetObjectType (int type)
 	{
 		switch (type) {
 		case 0: // damage blue ball
@@ -100,26 +100,17 @@ public class PlayerController : MonoBehaviour {
 		GameObject obj = other.gameObject;
 
 		if (obj.tag == Constant.TAG_WHEEL) {
-			Vector2 opPos = Vector2.zero - (Vector2)obj.transform.position;
-			//int random = Random.Range (0, 2);
-			//Debug.Log ("random: " + random);
+			EventManager.SendHPCallback (other.transform, this.m_CurrentAmount);
+			Destroy (gameObject);
+		}
+
+		if (obj.tag == Constant.TAG_OBSTACLE || obj.tag == Constant.TAG_PLAYER) {
+
+			//Vector2 opPos = Vector2.zero - (Vector2)obj.transform.position;
 			float new_x;
 			float new_y;
-
-			new_x = Random.Range (m_Min, m_Max) + opPos.x;
-			new_y = Random.Range (m_Min, m_Max) + opPos.y;
-
-//			if (random == 0) {
-//				new_x = opPos.x;
-//				new_y = Random.Range (0, opPos.y == 0 ? new_x + Mathf.Abs(opPos.y) : Mathf.Abs(opPos.y));
-//				if (opPos.y <= 0)
-//					new_y = 0 - new_y;
-//			} else {
-//				new_y = opPos.y;
-//				new_x = Random.Range (0, opPos.x == 0 ? new_y + Mathf.Abs (opPos.x) : Mathf.Abs(opPos.x));
-//				if (opPos.x <= 0)
-//					new_x = 0 - new_x;
-//			}
+			new_x = Random.value /*+ opPos.x*/;
+			new_y = Random.value /*+ opPos.y*/;
 
 			m_Direction.x = new_x;
 			m_Direction.y = new_y;
@@ -128,23 +119,6 @@ public class PlayerController : MonoBehaviour {
 
 			m_Direction.Normalize ();
 
-			//Debug.Log ("Direction: " + m_Direction.ToString ());
-
-			//m_Speed = 0f;
-		}
-
-		if (obj.tag == Constant.TAG_OBSTACLE || obj.tag == Constant.TAG_PLAYER) {
-
-			float x = Random.Range (0, m_Direction.x);
-			float y = Random.Range (0, m_Direction.y);
-			m_Direction.x = -x;
-			m_Direction.y = -y;
-
-			//Debug.Log ("Direction: " + m_Direction.ToString ());
-
-			m_Direction.Normalize ();
-			if (obj.tag == Constant.TAG_OBSTACLE)
-				Destroy (gameObject);
 		}
 	}
 	

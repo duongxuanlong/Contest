@@ -1,8 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WheelController : MonoBehaviour {
+
+	#region param
+	public float m_HP = 50f;
+	#endregion
+
+	private Text m_HPText;
+	private float m_CurrentHP;
+
+	void Awake()
+	{
+		m_HPText = gameObject.GetComponentInChildren<Text> ();
+		m_CurrentHP = m_HP;
+		m_HPText.text = "" + m_CurrentHP;
+	}
+
+	void OnEnable()
+	{
+		EventManager.ReceiveHPCallback += OnUpdateHP;
+	}
+
+	void OnDisable()
+	{
+		EventManager.ReceiveHPCallback -= OnUpdateHP;
+	}
+
+	void OnUpdateHP(Transform identity, float amount)
+	{
+		if (gameObject.transform == identity) {
+			float newhp = m_CurrentHP + amount;
+			if (newhp <= 0) {
+				Destroy (gameObject);
+				return;
+			}
+			
+			if (newhp <= m_HP) {
+				m_CurrentHP = newhp;
+			} else {
+				m_CurrentHP = m_HP;
+			}
+			m_HPText.text = "" + m_CurrentHP;
+		}
+	}
 
 	public void UpdateWheel(Vector3 position, Vector3 rotation)
 	{

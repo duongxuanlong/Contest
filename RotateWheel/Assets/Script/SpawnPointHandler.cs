@@ -28,7 +28,7 @@ public class SpawnPointHandler : MonoBehaviour {
 			m_SpawnPoints = new List<GameObject> ();
 
 		if (m_TimeForSpawn == 0)
-			m_TimeForSpawn = 2f;
+			m_TimeForSpawn = 0.5f;
 
 		if (m_TotalSpawnPoints == 0)
 			m_TotalSpawnPoints = 7;
