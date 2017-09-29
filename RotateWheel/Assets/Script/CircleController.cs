@@ -27,6 +27,8 @@ public class CircleController : MonoBehaviour {
 	#endregion
 
 	private Vector3 m_Euler;
+	private int m_TotalParts;
+	bool m_CanRun;
 
 	void Awake()
 	{
@@ -39,6 +41,9 @@ public class CircleController : MonoBehaviour {
 			m_Right = Instantiate (m_RightPreb, m_RightPreb.transform.position, m_RightPreb.transform.rotation);
 			m_RightController = m_Right.GetComponent<WheelController> ();
 		}
+
+		m_TotalParts = 2;
+		m_CanRun = true;
 	}
 
 	// Use this for initialization
@@ -46,28 +51,57 @@ public class CircleController : MonoBehaviour {
 		m_Euler = gameObject.transform.eulerAngles;	
 	}
 
+	void OnEnable()
+	{
+		EventManager.ReducePartCallback += ReduceWheelPart;
+		EventManager.CanRunCallback += CanRun;
+	}
+
+	void OnDisable()
+	{
+		EventManager.ReducePartCallback -= ReduceWheelPart;
+		EventManager.CanRunCallback -= CanRun;
+	}
+
+	void CanRun (bool run)
+	{
+		m_CanRun = run;
+	}
+
+	void ReduceWheelPart ()
+	{
+		m_TotalParts--;
+
+		if (m_TotalParts <= 0)
+			EventManager.TriggerEndGame ();
+		else
+			EventManager.IncreaseDiff ();
+	}
+
 	// Update is called once per frame
 	void Update () {
-		float direction = Input.GetAxis ("Horizontal");
-		gameObject.transform.Rotate (Vector3.forward * direction * (-1) * m_Speed * Time.deltaTime);
+		if (m_CanRun) {
+			float direction = Input.GetAxis ("Horizontal");
+			gameObject.transform.Rotate (Vector3.forward * direction * (-1) * m_Speed * Time.deltaTime);
 
-		Vector3 next = gameObject.transform.eulerAngles;
-		Vector3 delta = next - m_Euler;
+			Vector3 next = gameObject.transform.eulerAngles;
+			Vector3 delta = next - m_Euler;
 
-		if (delta != Vector3.zero) {
-			Vector3 position = gameObject.transform.position;
-			if (m_LeftController != null) {
-				//RotateObject (ref m_Left, position, delta);
-				m_LeftController.UpdateWheel(position, delta);
+			if (delta != Vector3.zero) {
+				Vector3 position = gameObject.transform.position;
+				if (m_LeftController != null) {
+					//RotateObject (ref m_Left, position, delta);
+					m_LeftController.UpdateWheel (position, delta);
+				}
+
+				if (m_RightController != null) {
+					//RotateObject (ref m_Right, position, delta);
+					m_RightController.UpdateWheel (position, delta);
+				}
 			}
 
-			if (m_RightController != null) {
-				//RotateObject (ref m_Right, position, delta);
-				m_RightController.UpdateWheel(position, delta);
-			}
+			m_Euler = next;
 		}
-
-		m_Euler = next;
 	}
 
 	//	private void RotateObject (ref GameObject obj, Vector3 position, Vector3 rotation)

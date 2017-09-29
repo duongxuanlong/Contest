@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class CanvasController : MonoBehaviour {
 
 	public Text m_Score;
+	public Text m_EndGame;
 	private float m_CurrentPoints;
 
 	void Awake()
@@ -16,16 +17,21 @@ public class CanvasController : MonoBehaviour {
 			m_Score.color = Constant.GREEN;
 			m_Score.text = "" + m_CurrentPoints;
 		}
+
+		if (m_EndGame != null)
+			m_EndGame.enabled = false;
 	}
 
 	void OnEnable()
 	{
-		EventManager.UpdateUICallback += UpdateUI;
+		EventManager.UpdatePointsCallback += UpdateUI;
+		EventManager.EndGameCallback += EndGame;
 	}
 
 	void OnDisable()
 	{
-		EventManager.UpdateUICallback -= UpdateUI;
+		EventManager.UpdatePointsCallback -= UpdateUI;
+		EventManager.EndGameCallback -= EndGame;
 	}
 
 	void UpdateUI (float amount)
@@ -33,6 +39,11 @@ public class CanvasController : MonoBehaviour {
 		m_CurrentPoints += amount;
 		if (m_Score != null)
 			m_Score.text = "" + m_CurrentPoints;
+	}
+
+	void EndGame ()
+	{
+		m_EndGame.enabled = true;
 	}
 
 	public void Reset()

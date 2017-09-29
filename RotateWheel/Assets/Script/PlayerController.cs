@@ -23,13 +23,9 @@ public class PlayerController : MonoBehaviour {
 	SpriteRenderer m_Renderer;
 	#endregion
 
-//	#region range
-//	public float m_Min;
-//	public float m_Max;
-//	#endregion
-
 	float m_CurrentAmount;
 	Vector2 m_Direction;
+	bool m_CanRun;
 
 	void Awake()
 	{
@@ -45,9 +41,7 @@ public class PlayerController : MonoBehaviour {
 			m_MaxHeal = 5;
 		if (m_PercentDamage == 0)
 			m_PercentDamage = 0.4f;
-
-//		m_Min = -2f;
-//		m_Max = 2f;
+		m_CanRun = true;
 		
 		//m_Curve.Evaluate(0.5f);
 
@@ -70,6 +64,21 @@ public class PlayerController : MonoBehaviour {
 	void OnBecameInvisible ()
 	{
 		Destroy (gameObject);
+	}
+
+	void OnEnable()
+	{
+		EventManager.CanRunCallback += CanRun;	
+	}
+
+	void OnDisable()
+	{
+		EventManager.CanRunCallback -= CanRun;
+	}
+
+	void CanRun (bool run)
+	{
+		m_CanRun = run;
 	}
 
 	private void SetObjectType (int type)
@@ -124,14 +133,16 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float speed = m_Acceleration * Time.deltaTime + m_Speed;
-		if (speed >= m_MaxSpeed)
-			speed = m_MaxSpeed;
+		if (m_CanRun) {
+			float speed = m_Acceleration * Time.deltaTime + m_Speed;
+			if (speed >= m_MaxSpeed)
+				speed = m_MaxSpeed;
 		
-		gameObject.transform.Translate (m_Direction * speed * Time.deltaTime);
-		//GetComponent<Rigidbody2D>().MovePosition(m_Direction * speed * Time.deltaTime);
+			gameObject.transform.Translate (m_Direction * speed * Time.deltaTime);
+			//GetComponent<Rigidbody2D>().MovePosition(m_Direction * speed * Time.deltaTime);
 
-		m_Speed = speed;
+			m_Speed = speed;
+		}
 	}
 
 

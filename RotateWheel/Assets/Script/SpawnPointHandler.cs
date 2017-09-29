@@ -21,6 +21,7 @@ public class SpawnPointHandler : MonoBehaviour {
 
 	List<GameObject> m_SpawnPoints;
 	float m_RunningTime;
+	bool m_CanRun;
 
 	void Awake()
 	{
@@ -40,6 +41,7 @@ public class SpawnPointHandler : MonoBehaviour {
 			m_Probability = 0.5f;
 
 		m_RunningTime = 0f;
+		m_CanRun = true;
 
 		for (int i = 0; i < m_TotalSpawnPoints; i++) {
 			Vector2 pos = Vector2.zero;
@@ -50,6 +52,21 @@ public class SpawnPointHandler : MonoBehaviour {
 			GameObject obj = (GameObject)Instantiate (m_SpawnPoint,new Vector3 (pos.x, pos.y, 0), Quaternion.identity) as GameObject;
 			m_SpawnPoints.Add (obj);
 		}
+	}
+
+	void OnEnable()
+	{
+		EventManager.CanRunCallback += CanRun;
+	}
+
+	void OnDisable()
+	{
+		EventManager.CanRunCallback -= CanRun;
+	}
+
+	void CanRun (bool run)
+	{
+		m_CanRun = run;	
 	}
 
 	public void Reset()
@@ -76,10 +93,12 @@ public class SpawnPointHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (m_RunningTime >= m_TimeForSpawn) {
-			SpawnObject ();
-			m_RunningTime = 0f;
-		} else
-			m_RunningTime += Time.deltaTime;
+		if (m_CanRun) {
+			if (m_RunningTime >= m_TimeForSpawn) {
+				SpawnObject ();
+				m_RunningTime = 0f;
+			} else
+				m_RunningTime += Time.deltaTime;
+		}
 	}
 }
