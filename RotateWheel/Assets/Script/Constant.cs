@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Constant {
-	public const string DAMAGE = "blue_ball";
+	public const string DAMAGE = "red_ball";
 
-	public const string HEAL = "red_ball";
+	public const string HEAL = "green_ball";
 
 	public const float HOUR_PER_SECONDS = 3600f;
 

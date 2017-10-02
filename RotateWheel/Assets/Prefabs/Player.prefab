@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212817603379084886}
   - component: {fileID: 58918451252480188}
   - component: {fileID: 50382364270570560}
-  - component: {fileID: 331578535241003242}
   - component: {fileID: 114268557605860166}
   m_Layer: 10
   m_Name: Player
@@ -96,9 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d60bd52adf4a5df4ea99d10385c4c1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Acceleration: 5
+  m_Acceleration: 2
   m_Speed: 0
-  m_MaxSpeed: 8
+  m_MaxSpeed: 3
   m_MaxDamage: 0
   m_MaxHeal: 0
   m_PercentDamage: 0
@@ -220,7 +219,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: bb4f1dbb415a07e4b95d96ecda44fb2a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1948a48af3f5301489700934378537f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -228,8 +227,6 @@ SpriteRenderer:
   m_Size: {x: 0.3, y: 0.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
 --- !u!222 &222283804836146580
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -271,7 +268,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.37}
+  m_AnchoredPosition: {x: 0, y: -0.000000059605}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224523171068043210
@@ -293,44 +290,3 @@ RectTransform:
   m_AnchoredPosition: {x: 0.25, y: -1.64}
   m_SizeDelta: {x: 0.3, y: 0.3}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!331 &331578535241003242
-SpriteMask:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1187217852543888}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 10758, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300018, guid: ef3944badad8fdb4c962bc73dd51e364, type: 3}
-  m_MaskAlphaCutoff: 0.2
-  m_FrontSortingLayerID: 0
-  m_BackSortingLayerID: 0
-  m_FrontSortingLayer: 0
-  m_BackSortingLayer: 0
-  m_FrontSortingOrder: 0
-  m_BackSortingOrder: 0
-  m_IsCustomRangeActive: 0
