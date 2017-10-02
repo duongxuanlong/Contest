@@ -29,7 +29,7 @@ public class SpawnPointHandler : MonoBehaviour {
 			m_SpawnPoints = new List<GameObject> ();
 
 		if (m_TimeForSpawn == 0)
-			m_TimeForSpawn = 0.5f;
+			m_TimeForSpawn = 0.2f;
 
 		if (m_TotalSpawnPoints == 0)
 			m_TotalSpawnPoints = 7;
@@ -38,7 +38,7 @@ public class SpawnPointHandler : MonoBehaviour {
 			m_Radius = 2.5f;
 
 		if (m_Probability == 0)
-			m_Probability = 0.5f;
+			m_Probability = 1f / m_TotalSpawnPoints;
 
 		m_RunningTime = 0f;
 		m_CanRun = true;
@@ -57,11 +57,13 @@ public class SpawnPointHandler : MonoBehaviour {
 	void OnEnable()
 	{
 		EventManager.CanRunCallback += CanRun;
+		EventManager.IncreaaseDiffCallback += OnDifferentLevel;
 	}
 
 	void OnDisable()
 	{
 		EventManager.CanRunCallback -= CanRun;
+		EventManager.IncreaaseDiffCallback -= OnDifferentLevel;
 	}
 
 	void CanRun (bool run)
@@ -74,14 +76,22 @@ public class SpawnPointHandler : MonoBehaviour {
 		m_SpawnPoints.Clear ();
 	}
 
+	void OnDifferentLevel()
+	{
+		//m_Probability = 0.7f;
+		m_TimeForSpawn = 0.1f;
+	}
+
 	void SpawnObject()
 	{
+		int i = 1;
 		foreach (GameObject obj in m_SpawnPoints) {
 			float needspawn = m_Curve.Evaluate (Random.value);
-			if (needspawn <= m_Probability) {
+			if (needspawn <= m_Probability * i) {
 				SpawnPointController controller = (SpawnPointController)obj.GetComponent<SpawnPointController> ();
 				if (controller != null)
 					controller.GeneratePoint ();
+				i++;
 				return;
 			}
 		}
@@ -97,8 +107,10 @@ public class SpawnPointHandler : MonoBehaviour {
 			if (m_RunningTime >= m_TimeForSpawn) {
 				SpawnObject ();
 				m_RunningTime = 0f;
-			} else
+			} else {
 				m_RunningTime += Time.deltaTime;
+			}
 		}
+		//Debug.Log ("Running Time: " + m_RunningTime);
 	}
 }

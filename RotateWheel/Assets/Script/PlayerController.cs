@@ -48,7 +48,12 @@ public class PlayerController : MonoBehaviour {
 		//m_Direction = Vector2.up * -1;
 
 		m_Direction = Random.insideUnitCircle;
+		//Debug.Log ("Direction :" + m_Direction.ToString ());
 		m_Direction.Normalize ();
+//		if (Random.Range (0, 2) == 0)
+//			m_Direction.x *= -1;
+//		if (Random.Range (0, 2) == 0)
+//			m_Direction.y *= -1;
 
 		m_Renderer = GetComponent<SpriteRenderer> ();
 		m_TextAmount = GetComponentInChildren<Text> ();
