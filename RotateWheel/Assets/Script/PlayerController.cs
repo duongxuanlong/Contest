@@ -120,17 +120,18 @@ public class PlayerController : MonoBehaviour {
 
 		if (obj.tag == Constant.TAG_OBSTACLE || obj.tag == Constant.TAG_PLAYER) {
 
-			//Vector2 opPos = Vector2.zero - (Vector2)obj.transform.position;
-			float new_x;
-			float new_y;
-			new_x = Random.value /*+ opPos.x*/;
-			new_y = Random.value /*+ opPos.y*/;
-
-			m_Direction.x = new_x;
-			m_Direction.y = new_y;
+//			//Vector2 opPos = Vector2.zero - (Vector2)obj.transform.position;
+//			float new_x;
+//			float new_y;
+//			new_x = Random.value /*+ opPos.x*/;
+//			new_y = Random.value /*+ opPos.y*/;
+//
+//			m_Direction.x = new_x;
+//			m_Direction.y = new_y;
 
 			//Debug.Log ("Direction: " + m_Direction.ToString ());
 
+			m_Direction = Random.insideUnitCircle;
 			m_Direction.Normalize ();
 
 		}
