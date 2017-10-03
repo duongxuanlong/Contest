@@ -4280,6 +4280,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
+        type: 2}
+      propertyPath: m_SpawnLevels.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224173377748759496, guid: f26733debcf2cbd40a4b64dc6e7e65af,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -4373,6 +4378,12 @@ Prefab:
     - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
         type: 2}
       propertyPath: m_SpawnPoint
+      value: 
+      objectReference: {fileID: 1315604421468620, guid: 16fec3b3c8b941743b0006b7546af47e,
+        type: 2}
+    - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
+        type: 2}
+      propertyPath: m_SpawnLevels.Array.data[0]
       value: 
       objectReference: {fileID: 1315604421468620, guid: 16fec3b3c8b941743b0006b7546af47e,
         type: 2}

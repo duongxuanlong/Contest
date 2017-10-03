@@ -5,46 +5,50 @@ using UnityEngine;
 public class SpawnPointHandler : MonoBehaviour {
 
 	#region reference
-	public GameObject m_SpawnPoint;
-	//public GameObject m_ObjectSpawns;
-	private GameObject m_SpawnInstance;
+	public GameObject[] m_SpawnLevels;
+	private List<GameObject> m_InstanceLevels;
 	#endregion
 
 	#region param
 	public float m_TimeForSpawn;
-	public int m_TotalSpawnPoints;
+	//public int m_TotalSpawnPoints;
 	public float m_Radius;
 	public float m_Probability;
+	public int m_CurrentLevel;
 	#endregion
 
 	#region probability
 	public AnimationCurve m_Curve;
 	#endregion
 
-	//List<GameObject> m_SpawnPoints;
-	GameObject[] m_SpawnPoints;
+	List<GameObject> m_SpawnPoints;
 	float m_RunningTime;
 	bool m_CanRun;
 
 	void Awake()
 	{
-//		if (m_SpawnPoints == null)
-//			m_SpawnPoints = new List<GameObject> ();
-		m_SpawnInstance = (GameObject)Instantiate (m_SpawnPoint, m_SpawnPoint.transform.position , Quaternion.identity) as GameObject;
-		m_SpawnPoints = GameObject.FindGameObjectsWithTag (Constant.TAG_SPAWNPOINT);
-		m_TotalSpawnPoints = m_SpawnPoints.Length;
+		if (m_InstanceLevels == null)
+			m_InstanceLevels = new List<GameObject> ();
+		if (m_SpawnPoints == null)
+			m_SpawnPoints = new List<GameObject> ();
+		int totallevels = m_SpawnLevels.Length;
+		for (int i = 0; i < totallevels; i++) {
+			GameObject level = Instantiate (m_SpawnLevels[i], m_SpawnLevels[i].transform.position , Quaternion.identity) as GameObject;
+			m_InstanceLevels.Add (level);
+		}
+		GameObject currentlevel = m_InstanceLevels[m_CurrentLevel];
+		foreach (Transform child in currentlevel.transform)
+			m_SpawnPoints.Add (child.gameObject);
+		//m_TotalSpawnPoints = m_SpawnPoints.Count;
 
 		if (m_TimeForSpawn == 0)
 			m_TimeForSpawn = 0.2f;
-
-//		if (m_TotalSpawnPoints == 0)
-//			m_TotalSpawnPoints = 7;
 
 		if (m_Radius == 0)
 			m_Radius = 2.5f;
 
 		if (m_Probability == 0)
-			m_Probability = 1f / m_TotalSpawnPoints;
+			m_Probability = 1f / m_SpawnPoints.Count;
 
 		m_RunningTime = 0f;
 		m_CanRun = true;
@@ -102,7 +106,7 @@ public class SpawnPointHandler : MonoBehaviour {
 			}
 		}
 
-		SpawnPointController ctrl = (SpawnPointController)m_SpawnPoints[m_SpawnPoints.Length - 1].GetComponent<SpawnPointController> ();
+		SpawnPointController ctrl = (SpawnPointController)m_SpawnPoints[m_SpawnPoints.Count - 1].GetComponent<SpawnPointController> ();
 		if (ctrl != null)
 			ctrl.GeneratePoint ();
 	}
