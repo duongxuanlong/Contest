@@ -58,6 +58,7 @@ public class CanvasController : MonoBehaviour {
 
 	void EndGame ()
 	{
+		m_EndGame.text = "END GAME";
 		m_EndGame.enabled = true;
 	}
 

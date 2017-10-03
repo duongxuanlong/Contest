@@ -6,6 +6,8 @@ public class SpawnPointHandler : MonoBehaviour {
 
 	#region reference
 	public GameObject m_SpawnPoint;
+	//public GameObject m_ObjectSpawns;
+	private GameObject m_SpawnInstance;
 	#endregion
 
 	#region param
@@ -19,20 +21,24 @@ public class SpawnPointHandler : MonoBehaviour {
 	public AnimationCurve m_Curve;
 	#endregion
 
-	List<GameObject> m_SpawnPoints;
+	//List<GameObject> m_SpawnPoints;
+	GameObject[] m_SpawnPoints;
 	float m_RunningTime;
 	bool m_CanRun;
 
 	void Awake()
 	{
-		if (m_SpawnPoints == null)
-			m_SpawnPoints = new List<GameObject> ();
+//		if (m_SpawnPoints == null)
+//			m_SpawnPoints = new List<GameObject> ();
+		m_SpawnInstance = (GameObject)Instantiate (m_SpawnPoint, m_SpawnPoint.transform.position , Quaternion.identity) as GameObject;
+		m_SpawnPoints = GameObject.FindGameObjectsWithTag (Constant.TAG_SPAWNPOINT);
+		m_TotalSpawnPoints = m_SpawnPoints.Length;
 
 		if (m_TimeForSpawn == 0)
 			m_TimeForSpawn = 0.2f;
 
-		if (m_TotalSpawnPoints == 0)
-			m_TotalSpawnPoints = 7;
+//		if (m_TotalSpawnPoints == 0)
+//			m_TotalSpawnPoints = 7;
 
 		if (m_Radius == 0)
 			m_Radius = 2.5f;
@@ -43,15 +49,15 @@ public class SpawnPointHandler : MonoBehaviour {
 		m_RunningTime = 0f;
 		m_CanRun = true;
 
-		for (int i = 0; i < m_TotalSpawnPoints; i++) {
-			Vector2 pos = Vector2.zero;
-			while (pos == Vector2.zero) {
-				pos = Random.insideUnitCircle * m_Radius;
-			}
-
-			GameObject obj = (GameObject)Instantiate (m_SpawnPoint,new Vector3 (pos.x, pos.y, 0), Quaternion.identity) as GameObject;
-			m_SpawnPoints.Add (obj);
-		}
+//		for (int i = 0; i < m_TotalSpawnPoints; i++) {
+//			Vector2 pos = Vector2.zero;
+//			while (pos == Vector2.zero) {
+//				pos = Random.insideUnitCircle * m_Radius;
+//			}
+//
+//			GameObject obj = (GameObject)Instantiate (m_SpawnPoint,new Vector3 (pos.x, pos.y, 0), Quaternion.identity) as GameObject;
+//			m_SpawnPoints.Add (obj);
+//		}
 	}
 
 	void OnEnable()
@@ -73,7 +79,7 @@ public class SpawnPointHandler : MonoBehaviour {
 
 	public void Reset()
 	{
-		m_SpawnPoints.Clear ();
+		//m_SpawnPoints.Clear ();
 	}
 
 	void OnDifferentLevel()
@@ -96,7 +102,7 @@ public class SpawnPointHandler : MonoBehaviour {
 			}
 		}
 
-		SpawnPointController ctrl = (SpawnPointController)m_SpawnPoints[m_SpawnPoints.Count - 1].GetComponent<SpawnPointController> ();
+		SpawnPointController ctrl = (SpawnPointController)m_SpawnPoints[m_SpawnPoints.Length - 1].GetComponent<SpawnPointController> ();
 		if (ctrl != null)
 			ctrl.GeneratePoint ();
 	}

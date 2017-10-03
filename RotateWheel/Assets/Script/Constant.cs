@@ -17,6 +17,8 @@ public class Constant {
 
 	public const string TAG_PLAYER = "Player";
 
+	public const string TAG_SPAWNPOINT = "SpawnPoint";
+
 	public static Color RED = new Color (0.933f,0.106f,0.141f);
 
 	public static Color GREEN = new Color (0.137f,0.694f,0.302f);
