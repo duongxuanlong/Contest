@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour {
 		if (m_MaxHeal == 0)
 			m_MaxHeal = 5;
 		if (m_PercentDamage == 0)
-			m_PercentDamage = 0.4f;
+			m_PercentDamage = 0.5f;
 		m_CanRun = true;
 		
 		//m_Curve.Evaluate(0.5f);

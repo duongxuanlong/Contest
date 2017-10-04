@@ -52,11 +52,12 @@ public class WheelController : MonoBehaviour {
 				return;
 			}
 			
-			if (newhp <= m_HP) {
+			/*if (newhp <= m_HP) {
 				m_CurrentHP = newhp;
 			} else {
 				m_CurrentHP = m_HP;
-			}
+			}*/
+			m_CurrentHP = newhp;
 			m_HPText.text = "" + m_CurrentHP;
 		}
 	}

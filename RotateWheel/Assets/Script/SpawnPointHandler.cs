@@ -89,7 +89,7 @@ public class SpawnPointHandler : MonoBehaviour {
 	void OnDifferentLevel()
 	{
 		//m_Probability = 0.7f;
-		m_TimeForSpawn = 0.1f;
+		//m_TimeForSpawn = 0.1f;
 	}
 
 	void SpawnObject()
@@ -97,13 +97,13 @@ public class SpawnPointHandler : MonoBehaviour {
 		int i = 1;
 		foreach (GameObject obj in m_SpawnPoints) {
 			float needspawn = m_Curve.Evaluate (Random.value);
-			if (needspawn <= m_Probability * i) {
+			//if (needspawn <= m_Probability * i) {
 				SpawnPointController controller = (SpawnPointController)obj.GetComponent<SpawnPointController> ();
 				if (controller != null)
 					controller.GeneratePoint ();
 				i++;
-				return;
-			}
+				//return;
+			//}
 		}
 
 		SpawnPointController ctrl = (SpawnPointController)m_SpawnPoints[m_SpawnPoints.Count - 1].GetComponent<SpawnPointController> ();
