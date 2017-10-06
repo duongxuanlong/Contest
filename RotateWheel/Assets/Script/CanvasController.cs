@@ -8,7 +8,8 @@ public class CanvasController : MonoBehaviour {
 
 	public Text m_Score;
 	public Text m_Best;
-	public Text m_Tutorial;
+	public GameObject m_Tutorial;
+	//public Text m_Tutorial;
 
 	public Text m_EndGame;
 	Button m_Reset;
@@ -48,9 +49,9 @@ public class CanvasController : MonoBehaviour {
 			m_Best.text = "" + best;
 		}
 
-		if (m_Tutorial != null)
-		if (m_Init && GameController.m_Instance.GetTutorialPhase () == Constant.TUTORIAL_PHASE_0)
-				m_Tutorial.text = "PRESS LEFT/RIGHT ARROW TO ROTATE";
+//		if (m_Tutorial != null)
+//		if (m_Init && GameController.m_Instance.GetTutorialPhase () == Constant.TUTORIAL_PHASE_0)
+//				m_Tutorial.text = "PRESS LEFT/RIGHT ARROW TO ROTATE";
 			
 
 		if (m_EndGame != null)
@@ -97,18 +98,25 @@ public class CanvasController : MonoBehaviour {
 
 	void Update()
 	{
-		if (m_Init)
+		//m_Tutorial.SetActive (false);
+//		if (m_Init)
+//			return;
+
+		if (GameController.m_Instance == null ||
+		    !GameController.m_Instance.IsReady ())
 			return;
 
-		if (GameController.m_Instance != null && GameController.m_Instance.IsReady()) {
+		if (!m_Init) {
 			m_Init = true;
 			if (m_Best != null) {
 				m_Best.text = "" + GameController.m_Instance.GetBestScore ();
 			}
-
-			if (m_Tutorial != null)
-			if (GameController.m_Instance.GetTutorialPhase () == Constant.TUTORIAL_PHASE_0)
-				m_Tutorial.text = "PRESS LEFT/RIGHT ARROW TO ROTATE";
 		}
+
+		if (m_Tutorial != null)
+		if (GameController.m_Instance.GetTutorialPhase () == Constant.TUTORIAL_PHASE_0)
+			m_Tutorial.SetActive (true);
+		else
+			m_Tutorial.SetActive (false);
 	}
 }

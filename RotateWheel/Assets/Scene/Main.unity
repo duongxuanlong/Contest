@@ -480,7 +480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &682481908
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Score: {fileID: 1240844144}
   m_Best: {fileID: 1023821434}
-  m_Tutorial: {fileID: 1769361489}
+  m_Tutorial: {fileID: 466852971}
   m_EndGame: {fileID: 684115131}
 --- !u!1 &1469993378
 GameObject:

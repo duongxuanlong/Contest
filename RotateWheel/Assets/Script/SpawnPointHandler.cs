@@ -106,15 +106,15 @@ public class SpawnPointHandler : MonoBehaviour {
 			//}
 		}
 
-		SpawnPointController ctrl = (SpawnPointController)m_SpawnPoints[m_SpawnPoints.Count - 1].GetComponent<SpawnPointController> ();
-		if (ctrl != null)
-			ctrl.GeneratePoint ();
+//		SpawnPointController ctrl = (SpawnPointController)m_SpawnPoints[m_SpawnPoints.Count - 1].GetComponent<SpawnPointController> ();
+//		if (ctrl != null)
+//			ctrl.GeneratePoint ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-		if (!GameController.m_Instance.IsReady() ||
+		if (GameController.m_Instance == null ||
+			!GameController.m_Instance.IsReady() ||
 			GameController.m_Instance.GetTutorialPhase() == Constant.TUTORIAL_PHASE_0)
 			return;
 		

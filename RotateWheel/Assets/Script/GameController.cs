@@ -24,9 +24,11 @@ public class GameController : MonoBehaviour {
 		return m_TutorialPhase;
 	}
 
-	public void SetTutorialPhase(int phase)
+	public void SetTutorialPhase()
 	{
-		m_TutorialPhase = phase;
+		if (m_TutorialPhase == Constant.TUTORIAL_PHASE_0)
+			m_TutorialPhase++;
+		//m_TutorialPhase = phase;
 	}
 
 	public float GetBestScore()
@@ -63,7 +65,8 @@ public class GameController : MonoBehaviour {
 			info = (GameInfo)bif.Deserialize (f);
 			f.Close ();
 
-			m_TutorialPhase = info.TutorialPhase;
+			//m_TutorialPhase = info.TutorialPhase;
+			m_TutorialPhase = Constant.TUTORIAL_PHASE_0;
 			m_BestScore = info.BestScore;
 		} else {
 			m_TutorialPhase = Constant.TUTORIAL_PHASE_0;

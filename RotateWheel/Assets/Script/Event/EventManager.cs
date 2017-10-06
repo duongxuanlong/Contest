@@ -14,7 +14,7 @@ public class EventManager{
 
 	//delegate bool DelIsGameReady();
 	//delegate int DelTutorialPhase();
-	public delegate void DelModifyPhase (int phase);
+	public delegate void DelModifyPhase ();
 	//delegate float DelGetBest ();
 	public delegate void DelScoreBest (float score);
 
@@ -65,4 +65,17 @@ public class EventManager{
 		if (CanRunCallback != null)
 			CanRunCallback (run);
 	}
+
+	public static void ModifyPhase()
+	{
+		if (ModifyPhaseCallback != null)
+			ModifyPhaseCallback ();
+	}
+
+	public static void ScoreBest (float best)
+	{
+		if (ScoreBestCallback != null)
+			ScoreBestCallback (best);
+	}
+
 }

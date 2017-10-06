@@ -82,6 +82,10 @@ public class CircleController : MonoBehaviour {
 	void Update () {
 		if (m_CanRun) {
 			float direction = Input.GetAxis ("Horizontal");
+
+			if (direction != 0)
+				EventManager.ModifyPhase ();
+
 			gameObject.transform.Rotate (Vector3.forward * direction * (-1) * m_Speed * Time.deltaTime);
 
 			Vector3 next = gameObject.transform.eulerAngles;
