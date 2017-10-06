@@ -50,7 +50,7 @@ public class SpawnPointHandler : MonoBehaviour {
 		if (m_Probability == 0)
 			m_Probability = 1f / m_SpawnPoints.Count;
 
-		m_RunningTime = 0f;
+		m_RunningTime = m_TimeForSpawn;
 		m_CanRun = true;
 
 //		for (int i = 0; i < m_TotalSpawnPoints; i++) {
@@ -113,6 +113,11 @@ public class SpawnPointHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (!GameController.m_Instance.IsReady() ||
+			GameController.m_Instance.GetTutorialPhase() == Constant.TUTORIAL_PHASE_0)
+			return;
+		
 		if (m_CanRun) {
 			if (m_RunningTime >= m_TimeForSpawn) {
 				SpawnObject ();

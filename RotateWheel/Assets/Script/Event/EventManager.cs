@@ -12,6 +12,12 @@ public class EventManager{
 	public delegate void DelIncreaseDiff ();
 	public delegate void DelCanRun (bool run);
 
+	//delegate bool DelIsGameReady();
+	//delegate int DelTutorialPhase();
+	public delegate void DelModifyPhase (int phase);
+	//delegate float DelGetBest ();
+	public delegate void DelScoreBest (float score);
+
 	//public static DelSendHP SendHPCallback;
 	public static event DelReceiveHP ReceiveHPCallback;
 	public static event DelUpdatePoints UpdatePointsCallback;
@@ -19,6 +25,12 @@ public class EventManager{
 	public static event DelEndGame EndGameCallback;
 	public static event DelIncreaseDiff IncreaaseDiffCallback;
 	public static event DelCanRun CanRunCallback;
+
+	//public static event DelIsGameReady IsGameReadyCallback;
+	//public static event DelTutorialPhase TutorialPhaseCallback;
+	public static event DelModifyPhase ModifyPhaseCallback;
+	//public static event DelGetBest GetBestCallback;
+	public static event DelScoreBest ScoreBestCallback;
 
 	public static void SendHPCallback (Transform identity, float amount)
 	{

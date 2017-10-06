@@ -23,4 +23,12 @@ public class Constant {
 
 	public static Color GREEN = new Color (0.137f,0.694f,0.302f);
 
+	//Game tutorial phase
+	public const int TUTORIAL_PHASE_0 = 0;
+	public const int TUTORIAL_PHASE_1 = 1;
+	public const int TUTORIAL_PHASE_2 = 2;
+
+	//save game
+	public const string SAVE_GAME = "/GameInfo.dat";
+
 }
