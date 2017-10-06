@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\CircleController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\CanvasController.cs">
     <Files>
       <File FileName="Assets\Script\Rotate.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\SingleRotate.cs" Line="1" Column="1" />
@@ -8,12 +8,12 @@
       <File FileName="Assets\Spinning.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\PlayerController.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\Constant.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\CircleController.cs" Line="41" Column="94" />
+      <File FileName="Assets\Script\CircleController.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\SpawnPointController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\SpawnPointHandler.cs" Line="36" Column="20" />
+      <File FileName="Assets\Script\SpawnPointHandler.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\WheelController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\CanvasController.cs" Line="32" Column="59" />
-      <File FileName="Assets\Script\Event\EventManager.cs" Line="15" Column="35" />
+      <File FileName="Assets\Script\CanvasController.cs" Line="39" Column="3" />
+      <File FileName="Assets\Script\Event\EventManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\Explode.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\GameController.cs" Line="1" Column="1" />
     </Files>
