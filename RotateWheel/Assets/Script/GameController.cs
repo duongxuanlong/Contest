@@ -77,8 +77,8 @@ public class GameController : MonoBehaviour {
 			info = (GameInfo)bif.Deserialize (f);
 			f.Close ();
 
-			//m_TutorialPhase = info.TutorialPhase;
-			m_TutorialPhase = Constant.TUTORIAL_PHASE_0;
+			m_TutorialPhase = info.TutorialPhase;
+			//m_TutorialPhase = Constant.TUTORIAL_PHASE_0;
 			m_BestScore = info.BestScore;
 		} else {
 			m_TutorialPhase = Constant.TUTORIAL_PHASE_0;

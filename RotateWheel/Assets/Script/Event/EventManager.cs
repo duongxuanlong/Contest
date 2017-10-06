@@ -19,6 +19,8 @@ public class EventManager{
 	//delegate float DelGetBest ();
 	public delegate void DelScoreBest (float score);
 
+	public delegate float DelGetStatus ();
+
 	//public static DelSendHP SendHPCallback;
 	public static event DelReceiveHP ReceiveHPCallback;
 	public static event DelUpdatePoints UpdatePointsCallback;
@@ -32,6 +34,8 @@ public class EventManager{
 	public static event DelModifyPhase ModifyPhaseCallback;
 	//public static event DelGetBest GetBestCallback;
 	public static event DelScoreBest ScoreBestCallback;
+
+	public static event DelGetStatus GetStatusCallback;
 
 	public static void SendHPCallback (Transform identity, float amount)
 	{
@@ -78,6 +82,13 @@ public class EventManager{
 	{
 		if (ScoreBestCallback != null)
 			ScoreBestCallback (best);
+	}
+
+	public static float GetStatus ()
+	{
+		if (GetStatusCallback != null)
+			return GetStatusCallback ();
+		return 0;
 	}
 
 }

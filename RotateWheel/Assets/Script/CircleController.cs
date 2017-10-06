@@ -55,17 +55,27 @@ public class CircleController : MonoBehaviour {
 	{
 		EventManager.ReducePartCallback += ReduceWheelPart;
 		EventManager.CanRunCallback += CanRun;
+		EventManager.GetStatusCallback += GetMaxHP;
 	}
 
 	void OnDisable()
 	{
 		EventManager.ReducePartCallback -= ReduceWheelPart;
 		EventManager.CanRunCallback -= CanRun;
+		EventManager.GetStatusCallback -= GetMaxHP;
 	}
 
 	void CanRun (bool run)
 	{
 		m_CanRun = run;
+	}
+
+	float GetMaxHP ()
+	{
+		if (m_LeftController.m_HP > m_RightController.m_HP)
+			return m_LeftController.m_HP;
+		else
+			return m_RightController.m_HP;
 	}
 
 	void ReduceWheelPart ()

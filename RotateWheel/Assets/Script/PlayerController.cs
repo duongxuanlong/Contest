@@ -13,6 +13,11 @@ public class PlayerController : MonoBehaviour {
 	public int m_MaxDamage;
 	public int m_MaxHeal;
 
+	public int m_RangeDam;
+	public int m_SpecialRange;
+	public float m_SpecialPercent;
+	public float[] m_Prob;
+
 	public float m_PercentDamage;
 	#endregion
 
@@ -41,7 +46,25 @@ public class PlayerController : MonoBehaviour {
 			m_MaxHeal = 5;
 		if (m_PercentDamage == 0)
 			m_PercentDamage = 0.5f;
+		if (m_RangeDam == 0)
+			m_RangeDam = 15;
+		m_Prob = new float[m_RangeDam];
+		if (m_SpecialRange == 0)
+			m_SpecialRange = 5;
+		if (m_SpecialPercent == 0)
+			m_SpecialPercent = 0.4f;
 		m_CanRun = true;
+
+		//Initialize probability for each dam
+		float special = m_SpecialPercent / m_SpecialRange;
+		float rest = (1 - m_SpecialPercent) / (m_RangeDam - m_SpecialRange);
+		int index = m_RangeDam - m_SpecialRange;
+		for (int i = 0; i < m_RangeDam; i++) {
+			if (i < index)
+				m_Prob [i] = rest;
+			else
+				m_Prob [i] = special;
+		}
 		
 		//m_Curve.Evaluate(0.5f);
 
@@ -92,7 +115,23 @@ public class PlayerController : MonoBehaviour {
 		case 0: // damage blue ball
 			if (m_Renderer != null)
 				m_Renderer.sprite = Resources.Load (Constant.DAMAGE, typeof(Sprite)) as Sprite;
-			m_CurrentAmount = Random.Range (m_MaxDamage, -1);
+			
+			//m_CurrentAmount = Random.Range (m_MaxDamage, -1);
+			int range = (m_RangeDam - m_SpecialRange);
+			int current = (int)((EventManager.GetStatus () - 1) / range);
+			current *= range;
+
+			float prob = Random.value;
+			for (int i = 0; i < m_RangeDam; i++) {
+				if (prob <= m_Prob [i]) {
+					m_CurrentAmount = current + (i + 1);
+					break;
+				} else {
+					prob -= m_Prob [i];
+				}
+			}
+			m_CurrentAmount = 0 - m_CurrentAmount;
+
 			if (m_TextAmount != null) {
 				m_TextAmount.text = "" + m_CurrentAmount;
 				m_TextAmount.color = Constant.RED;

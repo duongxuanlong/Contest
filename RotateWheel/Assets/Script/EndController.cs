@@ -15,7 +15,8 @@ public class EndController : MonoBehaviour {
 			m_Score.text = "" + GameController.m_Instance.GetScore ();
 
 		if (m_Best != null) {
-			if (GameController.m_Instance.GetScore() >= GameController.m_Instance.GetBestScore ())
+			if (GameController.m_Instance.GetScore() >= GameController.m_Instance.GetBestScore () 
+				&& GameController.m_Instance.GetBestScore() > 0)
 				m_Best.color = Constant.GREEN;
 			m_Best.text = "" + GameController.m_Instance.GetBestScore ();
 		}
