@@ -11,8 +11,8 @@ public class CanvasController : MonoBehaviour {
 	public GameObject m_Tutorial;
 	//public Text m_Tutorial;
 
-	public Text m_EndGame;
-	Button m_Reset;
+	//public Text m_EndGame;
+	//Button m_Reset;
 	private float m_CurrentPoints;
 	bool m_Init;
 
@@ -30,8 +30,8 @@ public class CanvasController : MonoBehaviour {
 //		m_EndGame = texts [1];
 //		m_EndGame.enabled = false;
 
-		m_Reset = GetComponentInChildren<Button> ().GetComponent<Button> ();
-		m_Reset.onClick.AddListener (Reset);
+//		m_Reset = GetComponentInChildren<Button> ().GetComponent<Button> ();
+//		m_Reset.onClick.AddListener (Reset);
 
 		if (m_Score != null) {
 			m_Score.color = Color.white;
@@ -54,8 +54,8 @@ public class CanvasController : MonoBehaviour {
 //				m_Tutorial.text = "PRESS LEFT/RIGHT ARROW TO ROTATE";
 			
 
-		if (m_EndGame != null)
-			m_EndGame.enabled = false;
+//		if (m_EndGame != null)
+//			m_EndGame.enabled = false;
 	}
 
 	void OnEnable()
@@ -75,19 +75,21 @@ public class CanvasController : MonoBehaviour {
 		m_CurrentPoints += amount;
 		if (m_Score != null)
 			m_Score.text = "" + m_CurrentPoints;
+		GameController.m_Instance.SetScore (m_CurrentPoints);
 
 		if (m_Best != null) {
 			if (m_CurrentPoints > GameController.m_Instance.GetBestScore ()) {
 				m_Best.color = Constant.GREEN;
-				m_Best.text = "" + GameController.m_Instance.GetBestScore ();
+				m_Best.text = "" + m_CurrentPoints;
+				EventManager.ScoreBest (m_CurrentPoints);
 			}
 		}
 	}
 
 	void EndGame ()
 	{
-		m_EndGame.text = "END GAME";
-		m_EndGame.enabled = true;
+//		m_EndGame.text = "END GAME";
+//		m_EndGame.enabled = true;
 	}
 
 	public void Reset()

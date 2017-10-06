@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EventManager{
 
@@ -52,6 +53,7 @@ public class EventManager{
 		if (EndGameCallback != null)
 			EndGameCallback ();	
 		CanRun (false);
+		SceneManager.LoadScene (Constant.SCENE_END);
 	}
 
 	public static void IncreaseDiff()

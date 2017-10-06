@@ -12,8 +12,9 @@ public class SpawnPointHandler : MonoBehaviour {
 	#region param
 	public float m_TimeForSpawn;
 	//public int m_TotalSpawnPoints;
-	public float m_Radius;
-	public float m_Probability;
+	//public float m_Radius;
+	//public float m_Probability;
+	int m_TotalLevels;
 	public int m_CurrentLevel;
 	#endregion
 
@@ -21,7 +22,7 @@ public class SpawnPointHandler : MonoBehaviour {
 	public AnimationCurve m_Curve;
 	#endregion
 
-	List<GameObject> m_SpawnPoints;
+	//List<GameObject> m_SpawnPoints;
 	float m_RunningTime;
 	bool m_CanRun;
 
@@ -29,26 +30,28 @@ public class SpawnPointHandler : MonoBehaviour {
 	{
 		if (m_InstanceLevels == null)
 			m_InstanceLevels = new List<GameObject> ();
-		if (m_SpawnPoints == null)
-			m_SpawnPoints = new List<GameObject> ();
-		int totallevels = m_SpawnLevels.Length;
-		for (int i = 0; i < totallevels; i++) {
+//		if (m_SpawnPoints == null)
+//			m_SpawnPoints = new List<GameObject> ();
+		m_TotalLevels = m_SpawnLevels.Length;
+		for (int i = 0; i < m_TotalLevels; i++) {
 			GameObject level = Instantiate (m_SpawnLevels[i], m_SpawnLevels[i].transform.position , Quaternion.identity) as GameObject;
 			m_InstanceLevels.Add (level);
 		}
-		GameObject currentlevel = m_InstanceLevels[m_CurrentLevel];
-		foreach (Transform child in currentlevel.transform)
-			m_SpawnPoints.Add (child.gameObject);
+//		GameObject currentlevel = m_InstanceLevels[m_CurrentLevel];
+//		foreach (Transform child in currentlevel.transform)
+//			m_SpawnPoints.Add (child.gameObject);
 		//m_TotalSpawnPoints = m_SpawnPoints.Count;
 
 		if (m_TimeForSpawn == 0)
 			m_TimeForSpawn = 0.2f;
 
-		if (m_Radius == 0)
-			m_Radius = 2.5f;
+		m_CurrentLevel = -1;
 
-		if (m_Probability == 0)
-			m_Probability = 1f / m_SpawnPoints.Count;
+//		if (m_Radius == 0)
+//			m_Radius = 2.5f;
+
+//		if (m_Probability == 0)
+//			m_Probability = 1f / m_SpawnPoints.Count;
 
 		m_RunningTime = m_TimeForSpawn;
 		m_CanRun = true;
@@ -94,16 +97,26 @@ public class SpawnPointHandler : MonoBehaviour {
 
 	void SpawnObject()
 	{
-		int i = 1;
-		foreach (GameObject obj in m_SpawnPoints) {
-			float needspawn = m_Curve.Evaluate (Random.value);
+		int newlevel = Random.Range (0, m_TotalLevels);
+		if (m_CurrentLevel == -1)
+			m_CurrentLevel = newlevel;
+		else if (m_TotalLevels > 1){
+			while (newlevel == m_CurrentLevel)
+				newlevel = Random.Range (0, m_TotalLevels);
+		}
+
+		m_CurrentLevel = newlevel;
+		GameObject level = m_InstanceLevels [m_CurrentLevel];
+		foreach (Transform child in level.transform) {
+			//float needspawn = m_Curve.Evaluate (Random.value);
 			//if (needspawn <= m_Probability * i) {
-				SpawnPointController controller = (SpawnPointController)obj.GetComponent<SpawnPointController> ();
-				if (controller != null)
-					controller.GeneratePoint ();
-				i++;
-				//return;
-			//}
+			GameObject obj = child.gameObject;
+			SpawnPointController controller = (SpawnPointController)obj.GetComponent<SpawnPointController> ();
+			if (controller != null)
+				controller.GeneratePoint ();
+			//i++;
+			//return;
+		//}
 		}
 
 //		SpawnPointController ctrl = (SpawnPointController)m_SpawnPoints[m_SpawnPoints.Count - 1].GetComponent<SpawnPointController> ();

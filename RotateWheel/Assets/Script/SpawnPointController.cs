@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpawnPointController : MonoBehaviour {
 
 	public GameObject m_Player;
-	bool hasgen = false;
 	// Use this for initialization
 
 	public void Reset()

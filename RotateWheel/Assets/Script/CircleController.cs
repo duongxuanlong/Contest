@@ -27,7 +27,7 @@ public class CircleController : MonoBehaviour {
 	#endregion
 
 	private Vector3 m_Euler;
-	private int m_TotalParts;
+	//private int m_TotalParts;
 	bool m_CanRun;
 
 	void Awake()
@@ -42,7 +42,7 @@ public class CircleController : MonoBehaviour {
 			m_RightController = m_Right.GetComponent<WheelController> ();
 		}
 
-		m_TotalParts = 2;
+		//m_TotalParts = 2;
 		m_CanRun = true;
 	}
 
@@ -70,12 +70,13 @@ public class CircleController : MonoBehaviour {
 
 	void ReduceWheelPart ()
 	{
-		m_TotalParts--;
-
-		if (m_TotalParts <= 0)
-			EventManager.TriggerEndGame ();
-		else
-			EventManager.IncreaseDiff ();
+//		m_TotalParts--;
+//
+//		if (m_TotalParts <= 0)
+//			EventManager.TriggerEndGame ();
+//		else
+//			EventManager.IncreaseDiff ();
+		EventManager.TriggerEndGame();
 	}
 
 	// Update is called once per frame

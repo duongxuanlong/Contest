@@ -480,7 +480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &682481908
 RectTransform:
   m_ObjectHideFlags: 0
@@ -794,11 +794,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9019ad9b0c9a28c46a1e94f5a19a55be, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &955614510 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1870192267992964, guid: a0300b4b31b0cad409921e4771b7dd72,
-    type: 2}
-  m_PrefabInternal: {fileID: 541104337}
 --- !u!1 &1023821433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,7 +1239,6 @@ MonoBehaviour:
   m_Score: {fileID: 1240844144}
   m_Best: {fileID: 1023821434}
   m_Tutorial: {fileID: 466852971}
-  m_EndGame: {fileID: 684115131}
 --- !u!1 &1469993378
 GameObject:
   m_ObjectHideFlags: 0
@@ -4851,7 +4845,7 @@ Prefab:
     - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
         type: 2}
       propertyPath: m_SpawnLevels.Array.size
-      value: 1
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 224173377748759496, guid: f26733debcf2cbd40a4b64dc6e7e65af,
         type: 2}
@@ -4958,7 +4952,8 @@ Prefab:
         type: 2}
       propertyPath: m_SpawnLevels.Array.data[1]
       value: 
-      objectReference: {fileID: 955614510}
+      objectReference: {fileID: 1315604421468620, guid: 16fec3b3c8b941743b0006b7546af47e,
+        type: 2}
     - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
         type: 2}
       propertyPath: m_CurrentLevel
@@ -4974,6 +4969,72 @@ Prefab:
       propertyPath: m_Radius
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
+        type: 2}
+      propertyPath: m_SpawnLevels.Array.data[2]
+      value: 
+      objectReference: {fileID: 1870192267992964, guid: a0300b4b31b0cad409921e4771b7dd72,
+        type: 2}
+    - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
+        type: 2}
+      propertyPath: m_SpawnLevels.Array.data[3]
+      value: 
+      objectReference: {fileID: 1319298419986522, guid: 24b27da139ae3844da13a8c50df95d5f,
+        type: 2}
+    - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
+        type: 2}
+      propertyPath: m_SpawnLevels.Array.data[4]
+      value: 
+      objectReference: {fileID: 1384471278806086, guid: d779ca07c821e2d42bf96efc5a12a1c8,
+        type: 2}
+    - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
+        type: 2}
+      propertyPath: m_SpawnLevels.Array.data[5]
+      value: 
+      objectReference: {fileID: 1701632090906778, guid: a9722be8b23d64b4192d524e841b54b5,
+        type: 2}
+    - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
+        type: 2}
+      propertyPath: m_SpawnLevels.Array.data[6]
+      value: 
+      objectReference: {fileID: 1601646319617880, guid: bb99f0ba80c64a147b5a7f8b659c1a10,
+        type: 2}
+    - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
+        type: 2}
+      propertyPath: m_SpawnLevels.Array.data[7]
+      value: 
+      objectReference: {fileID: 1436489592073720, guid: d8fb839685f9fe44bad52790d0f5bee6,
+        type: 2}
+    - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
+        type: 2}
+      propertyPath: m_SpawnLevels.Array.data[8]
+      value: 
+      objectReference: {fileID: 1592551755805508, guid: 0753fe0050e14944e91c63d8b9515a7c,
+        type: 2}
+    - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
+        type: 2}
+      propertyPath: m_SpawnLevels.Array.data[9]
+      value: 
+      objectReference: {fileID: 1760675650988396, guid: 1f3dace4b10bdc24daaaded9eaff2ace,
+        type: 2}
+    - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
+        type: 2}
+      propertyPath: m_SpawnLevels.Array.data[10]
+      value: 
+      objectReference: {fileID: 1577197352366470, guid: 9624f069765427c4ea3abf22e7fdf898,
+        type: 2}
+    - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
+        type: 2}
+      propertyPath: m_SpawnLevels.Array.data[11]
+      value: 
+      objectReference: {fileID: 1203440551149662, guid: ebb41d01e16fed846988822353a73845,
+        type: 2}
+    - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
+        type: 2}
+      propertyPath: m_SpawnLevels.Array.data[12]
+      value: 
+      objectReference: {fileID: 1193045531091332, guid: f767fcba0c71bde4d9f04c17bd9a7516,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f26733debcf2cbd40a4b64dc6e7e65af, type: 2}
   m_IsPrefabParent: 0

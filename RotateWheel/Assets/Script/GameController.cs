@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour {
 
 	private int m_TutorialPhase;
 	private float m_BestScore;
+	private float m_Score;
 
 	private bool m_IsReady = false;
 
@@ -41,6 +42,16 @@ public class GameController : MonoBehaviour {
 		m_BestScore = score;
 	}
 
+	public float GetScore()
+	{
+		return m_Score;
+	}
+
+	public void SetScore(float score)
+	{
+		m_Score = score;
+	}
+
 	void Awake()
 	{
 		if (m_Instance == null) {
@@ -58,6 +69,7 @@ public class GameController : MonoBehaviour {
 
 		BinaryFormatter bif = new BinaryFormatter ();
 		string path = Application.persistentDataPath + Constant.SAVE_GAME;
+		Debug.Log ("Path: " + path);
 		if (File.Exists(path))
 		{
 			FileStream f = File.Open (Application.persistentDataPath + Constant.SAVE_GAME, FileMode.Open);
