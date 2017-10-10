@@ -50,9 +50,9 @@ public class PlayerController : MonoBehaviour {
 			m_RangeDam = 15;
 		m_Prob = new float[m_RangeDam];
 		if (m_SpecialRange == 0)
-			m_SpecialRange = 5;
+			m_SpecialRange = 2;
 		if (m_SpecialPercent == 0)
-			m_SpecialPercent = 0.4f;
+			m_SpecialPercent = 0.1f;
 		m_CanRun = true;
 
 		//Initialize probability for each dam

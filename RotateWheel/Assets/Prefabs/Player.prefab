@@ -100,7 +100,11 @@ MonoBehaviour:
   m_MaxSpeed: 3
   m_MaxDamage: 0
   m_MaxHeal: 0
-  m_PercentDamage: 0
+  m_RangeDam: 0
+  m_SpecialRange: 0
+  m_SpecialPercent: 0
+  m_Prob: []
+  m_PercentDamage: 0.4
   m_Curve:
     serializedVersion: 2
     m_Curve:
@@ -227,8 +231,6 @@ SpriteRenderer:
   m_Size: {x: 0.3, y: 0.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!222 &222283804836146580
 CanvasRenderer:
   m_ObjectHideFlags: 1
