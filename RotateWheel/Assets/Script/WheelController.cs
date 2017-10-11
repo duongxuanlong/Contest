@@ -10,7 +10,7 @@ public class WheelController : MonoBehaviour {
 	#endregion
 
 	private Text m_HPText;
-	private float m_CurrentHP;
+	public float m_CurrentHP;
 	bool m_CanRun;
 
 	void Awake()

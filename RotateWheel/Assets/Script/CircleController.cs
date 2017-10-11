@@ -72,10 +72,10 @@ public class CircleController : MonoBehaviour {
 
 	float GetMaxHP ()
 	{
-		if (m_LeftController.m_HP > m_RightController.m_HP)
-			return m_LeftController.m_HP;
+		if (m_LeftController.m_CurrentHP > m_RightController.m_CurrentHP)
+			return m_LeftController.m_CurrentHP;
 		else
-			return m_RightController.m_HP;
+			return m_RightController.m_CurrentHP;
 	}
 
 	void ReduceWheelPart ()

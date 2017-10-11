@@ -56,15 +56,7 @@ public class PlayerController : MonoBehaviour {
 		m_CanRun = true;
 
 		//Initialize probability for each dam
-		float special = m_SpecialPercent / m_SpecialRange;
-		float rest = (1 - m_SpecialPercent) / (m_RangeDam - m_SpecialRange);
-		int index = m_RangeDam - m_SpecialRange;
-		for (int i = 0; i < m_RangeDam; i++) {
-			if (i < index)
-				m_Prob [i] = rest;
-			else
-				m_Prob [i] = special;
-		}
+		GenerateProbability ();
 		
 		//m_Curve.Evaluate(0.5f);
 
@@ -87,6 +79,19 @@ public class PlayerController : MonoBehaviour {
 			SetObjectType (0);
 		else
 			SetObjectType (1);
+	}
+
+	void GenerateProbability ()
+	{
+		float special = m_SpecialPercent / m_SpecialRange;
+		float rest = (1 - m_SpecialPercent) / (m_RangeDam - m_SpecialRange);
+		int index = m_RangeDam - m_SpecialRange;
+		for (int i = 0; i < m_RangeDam; i++) {
+			if (i < index)
+				m_Prob [i] = rest;
+			else
+				m_Prob [i] = special;
+		}
 	}
 
 	void OnBecameInvisible ()
@@ -118,7 +123,8 @@ public class PlayerController : MonoBehaviour {
 			
 			//m_CurrentAmount = Random.Range (m_MaxDamage, -1);
 			int range = (m_RangeDam - m_SpecialRange);
-			int current = (int)((EventManager.GetStatus () - 1) / range);
+			int hp = Mathf.RoundToInt(EventManager.GetStatus()) - 1;
+			int current = hp / range;
 			current *= range;
 
 			float prob = Random.value;
