@@ -123,11 +123,22 @@ public class PlayerController : MonoBehaviour {
 			
 			//m_CurrentAmount = Random.Range (m_MaxDamage, -1);
 			int range = (m_RangeDam - m_SpecialRange);
-			int hp = Mathf.RoundToInt(EventManager.GetStatus()) - 1;
+			int hp = Mathf.RoundToInt (EventManager.GetStatus ()) - 1;
 			int current = hp / range;
 			current *= range;
 
 			float prob = Random.value;
+
+			//Adjust hyper dam
+			if (1 - prob <= m_SpecialPercent) {
+				if (EventManager.CanGenerateHyperDam ()) {
+					EventManager.UpdateHyperDam ();
+				} else {
+					while ((1 - prob) <= m_SpecialPercent)
+						prob = Random.value;
+				}
+			}
+
 			for (int i = 0; i < m_RangeDam; i++) {
 				if (prob <= m_Prob [i]) {
 					m_CurrentAmount = current + (i + 1);

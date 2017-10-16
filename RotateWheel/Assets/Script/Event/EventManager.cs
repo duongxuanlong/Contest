@@ -21,6 +21,9 @@ public class EventManager{
 
 	public delegate float DelGetStatus ();
 
+	public delegate void DelUpdateHyperDam ();
+	public delegate bool DelCanGenerateHyperDam ();
+
 	//public static DelSendHP SendHPCallback;
 	public static event DelReceiveHP ReceiveHPCallback;
 	public static event DelUpdatePoints UpdatePointsCallback;
@@ -36,6 +39,9 @@ public class EventManager{
 	public static event DelScoreBest ScoreBestCallback;
 
 	public static event DelGetStatus GetStatusCallback;
+
+	public static event DelCanGenerateHyperDam CanGenerateHyperDamCallback;
+	public static event DelUpdateHyperDam UpdateHyperDamCallback;
 
 	public static void SendHPCallback (Transform identity, float amount)
 	{
@@ -89,6 +95,19 @@ public class EventManager{
 		if (GetStatusCallback != null)
 			return GetStatusCallback ();
 		return 0;
+	}
+
+	public static bool CanGenerateHyperDam()
+	{
+		if (CanGenerateHyperDamCallback != null)
+			return CanGenerateHyperDamCallback();
+		return false;
+	}
+
+	public static void UpdateHyperDam()
+	{
+		if (UpdateHyperDamCallback != null)
+			UpdateHyperDamCallback ();
 	}
 
 }

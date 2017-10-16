@@ -15,7 +15,18 @@ public class SpawnPointHandler : MonoBehaviour {
 	//public float m_Radius;
 	//public float m_Probability;
 	int m_TotalLevels;
-	public int m_CurrentLevel;
+	private int m_CurrentLevel;
+	#endregion
+
+	#region Easy Pools
+	public int m_EasyPools;
+	private int m_RunningEasyPools;
+	private int m_TotalEasyPools;
+	#endregion
+
+	#region Hyper dam
+	private int m_CurrentHyperDam;
+	public int m_MaxHyperDam;
 	#endregion
 
 	#region probability
@@ -56,6 +67,15 @@ public class SpawnPointHandler : MonoBehaviour {
 		m_RunningTime = m_TimeForSpawn;
 		m_CanRun = true;
 
+		if (m_EasyPools == 0)
+			m_EasyPools = 3;
+		m_RunningEasyPools = 0;
+		m_TotalEasyPools = 10;
+
+		if (m_MaxHyperDam == 0)
+			m_MaxHyperDam = 2;
+		m_CurrentHyperDam = 0;
+
 //		for (int i = 0; i < m_TotalSpawnPoints; i++) {
 //			Vector2 pos = Vector2.zero;
 //			while (pos == Vector2.zero) {
@@ -71,12 +91,16 @@ public class SpawnPointHandler : MonoBehaviour {
 	{
 		EventManager.CanRunCallback += CanRun;
 		EventManager.IncreaaseDiffCallback += OnDifferentLevel;
+		EventManager.CanGenerateHyperDamCallback += CanGenerateHyperDam;
+		EventManager.UpdateHyperDamCallback += UpdateHyperDam;
 	}
 
 	void OnDisable()
 	{
 		EventManager.CanRunCallback -= CanRun;
 		EventManager.IncreaaseDiffCallback -= OnDifferentLevel;
+		EventManager.CanGenerateHyperDamCallback -= CanGenerateHyperDam;
+		EventManager.UpdateHyperDamCallback -= UpdateHyperDam;
 	}
 
 	void CanRun (bool run)
@@ -89,6 +113,16 @@ public class SpawnPointHandler : MonoBehaviour {
 		//m_SpawnPoints.Clear ();
 	}
 
+	bool CanGenerateHyperDam()
+	{
+		return m_CurrentHyperDam < m_MaxHyperDam;
+	}
+
+	void UpdateHyperDam()
+	{
+		m_CurrentHyperDam++;
+	}
+
 	void OnDifferentLevel()
 	{
 		//m_Probability = 0.7f;
@@ -97,14 +131,24 @@ public class SpawnPointHandler : MonoBehaviour {
 
 	void SpawnObject()
 	{
-		int newlevel = Random.Range (0, m_TotalLevels);
-		if (m_CurrentLevel == -1)
-			m_CurrentLevel = newlevel;
-		else if (m_TotalLevels > 1){
-			while (newlevel == m_CurrentLevel)
-				newlevel = Random.Range (0, m_TotalLevels);
+		int newlevel = 0;
+		if (m_RunningEasyPools < m_EasyPools)
+		{
+			newlevel = Random.Range (0, m_TotalEasyPools);
+			m_RunningEasyPools++;
 		}
+		else
+			newlevel = Random.Range (0, m_TotalLevels);
 
+		m_CurrentLevel = newlevel;
+//		if (m_CurrentLevel == -1)
+//			m_CurrentLevel = newlevel;
+//		else if (m_TotalLevels > 1){
+//			while (newlevel == m_CurrentLevel)
+//				newlevel = Random.Range (0, m_TotalLevels);
+//		}
+			
+		m_CurrentHyperDam = 0;
 		m_CurrentLevel = newlevel;
 		GameObject level = m_InstanceLevels [m_CurrentLevel];
 		foreach (Transform child in level.transform) {
