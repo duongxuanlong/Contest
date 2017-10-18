@@ -85,6 +85,9 @@ public class GameController : MonoBehaviour {
 			m_BestScore = 0f;
 		}
 
+//		if (m_TutorialPhase == Constant.TUTORIAL_PHASE_0)
+//			EventManager.GenerateGreenBalls ();
+		
 		m_IsReady = true;
 	}
 

@@ -43,6 +43,8 @@ public class EventManager{
 	public static event DelCanGenerateHyperDam CanGenerateHyperDamCallback;
 	public static event DelUpdateHyperDam UpdateHyperDamCallback;
 
+	private static bool m_AllGreens = true;
+
 	public static void SendHPCallback (Transform identity, float amount)
 	{
 		if (ReceiveHPCallback != null)
@@ -108,6 +110,21 @@ public class EventManager{
 	{
 		if (UpdateHyperDamCallback != null)
 			UpdateHyperDamCallback ();
+	}
+
+//	public static void GenerateGreenBalls()
+//	{
+//		m_AllGreens = true;
+//	}
+
+	public static bool ShouldGenerateAllGreen()
+	{
+		return m_AllGreens;
+	}
+
+	public static void StopGenerateAllGcreen()
+	{
+		m_AllGreens = false;
 	}
 
 }
