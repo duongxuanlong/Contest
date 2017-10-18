@@ -74,11 +74,16 @@ public class PlayerController : MonoBehaviour {
 		m_TextAmount = GetComponentInChildren<Text> ();
 
 		//Set object type
-		float value = Random.value;
-		if (value <= m_PercentDamage)
-			SetObjectType (0);
-		else
+		if (EventManager.ShouldGenerateAllGreen ()) {
 			SetObjectType (1);
+			EventManager.StopGenerateAllGcreen ();
+		} else {
+			float value = Random.value;
+			if (value <= m_PercentDamage)
+				SetObjectType (0);
+			else
+				SetObjectType (1);
+		}
 	}
 
 	void GenerateProbability ()

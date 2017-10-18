@@ -163,6 +163,9 @@ public class SpawnPointHandler : MonoBehaviour {
 		//}
 		}
 
+//		if (EventManager.ShouldGenerateAllGreen ())
+//			EventManager.StopGenerateAllGcreen ();
+
 //		SpawnPointController ctrl = (SpawnPointController)m_SpawnPoints[m_SpawnPoints.Count - 1].GetComponent<SpawnPointController> ();
 //		if (ctrl != null)
 //			ctrl.GeneratePoint ();
