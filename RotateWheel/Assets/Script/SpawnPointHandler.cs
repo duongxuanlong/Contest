@@ -24,6 +24,12 @@ public class SpawnPointHandler : MonoBehaviour {
 	private int m_TotalEasyPools;
 	#endregion
 
+	#region Medium Pools
+	public int m_MediumPools;
+	private int m_RunningMediumPools;
+	private int m_TotalMediumPools;
+	#endregion
+
 	#region Hyper dam
 	private int m_CurrentHyperDam;
 	public int m_MaxHyperDam;
@@ -70,7 +76,12 @@ public class SpawnPointHandler : MonoBehaviour {
 		if (m_EasyPools == 0)
 			m_EasyPools = 3;
 		m_RunningEasyPools = 0;
-		m_TotalEasyPools = 9;
+		m_TotalEasyPools = 3;
+
+		if (m_MediumPools == 0)
+			m_MediumPools = 5;
+		m_RunningMediumPools = 0;
+		m_TotalMediumPools = 11;
 
 		if (m_MaxHyperDam == 0)
 			m_MaxHyperDam = 2;
@@ -136,6 +147,13 @@ public class SpawnPointHandler : MonoBehaviour {
 		{
 			newlevel = Random.Range (0, m_TotalEasyPools);
 			m_RunningEasyPools++;
+			Debug.Log (newlevel);
+		}
+		else if (m_RunningMediumPools < m_MediumPools)
+		{
+			newlevel = Random.Range (0, m_TotalEasyPools + m_TotalMediumPools);
+			m_RunningMediumPools++;
+			Debug.Log (newlevel);
 		}
 		else
 			newlevel = Random.Range (0, m_TotalLevels);
