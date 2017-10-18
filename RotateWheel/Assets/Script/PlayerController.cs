@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour {
 
 			if (m_TextAmount != null) {
 				m_TextAmount.text = "" + m_CurrentAmount;
-				m_TextAmount.color = Constant.RED;
+				//m_TextAmount.color = Constant.RED;
 			}
 			break;
 		case 1: // heal pink ball
@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour {
 			m_CurrentAmount = Random.Range (1, m_MaxHeal);
 			if (m_TextAmount != null) {
 				m_TextAmount.text = "+" + m_CurrentAmount;
-				m_TextAmount.color = Constant.GREEN;
+				//m_TextAmount.color = Constant.GREEN;
 			}
 			break;
 		}
