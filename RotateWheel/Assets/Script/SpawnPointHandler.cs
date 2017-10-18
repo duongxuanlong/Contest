@@ -70,7 +70,7 @@ public class SpawnPointHandler : MonoBehaviour {
 		if (m_EasyPools == 0)
 			m_EasyPools = 3;
 		m_RunningEasyPools = 0;
-		m_TotalEasyPools = 10;
+		m_TotalEasyPools = 9;
 
 		if (m_MaxHyperDam == 0)
 			m_MaxHyperDam = 2;

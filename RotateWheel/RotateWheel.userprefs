@@ -1,6 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\PlayerController.cs">
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\SpawnPointHandler.cs">
+>>>>>>> b7538ebbf5ab44d7a05c09e442bc96aa390c21ea
     <Files>
       <File FileName="Assets\Script\Rotate.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\SingleRotate.cs" Line="1" Column="1" />
@@ -10,7 +14,11 @@
       <File FileName="Assets\Script\Constant.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\CircleController.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\SpawnPointController.cs" Line="1" Column="1" />
+<<<<<<< HEAD
       <File FileName="Assets\Script\SpawnPointHandler.cs" Line="167" Column="44" />
+=======
+      <File FileName="Assets\Script\SpawnPointHandler.cs" Line="27" Column="19" />
+>>>>>>> b7538ebbf5ab44d7a05c09e442bc96aa390c21ea
       <File FileName="Assets\Script\WheelController.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\CanvasController.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\Event\EventManager.cs" Line="120" Column="43" />
