@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour {
 		if (m_PercentDamage == 0)
 			m_PercentDamage = 0.5f;
 		if (m_RangeDam == 0)
-			m_RangeDam = 15;
+			m_RangeDam = 11;
 		m_Prob = new float[m_RangeDam];
 		if (m_SpecialRange == 0)
 			m_SpecialRange = 2;
@@ -122,10 +122,12 @@ public class PlayerController : MonoBehaviour {
 				m_Renderer.sprite = Resources.Load (Constant.DAMAGE, typeof(Sprite)) as Sprite;
 			
 			//m_CurrentAmount = Random.Range (m_MaxDamage, -1);
-			int range = (m_RangeDam - m_SpecialRange);
-			int hp = Mathf.RoundToInt (EventManager.GetStatus ()) - 1;
-			int current = hp / range;
-			current *= range;
+//			int range = (m_RangeDam - m_SpecialRange);
+//			int hp = Mathf.RoundToInt (EventManager.GetStatus ()) - 1;
+//			int current = hp / range;
+//			current *= range;
+			int hp = Mathf.RoundToInt (EventManager.GetStatus ());
+			int current = hp - m_RangeDam;
 
 			float prob = Random.value;
 
@@ -147,7 +149,8 @@ public class PlayerController : MonoBehaviour {
 					prob -= m_Prob [i];
 				}
 			}
-			m_CurrentAmount = 0 - m_CurrentAmount;
+			if (m_CurrentAmount > 0)
+				m_CurrentAmount = 0 - m_CurrentAmount;
 
 			if (m_TextAmount != null) {
 				m_TextAmount.text = "" + m_CurrentAmount;
