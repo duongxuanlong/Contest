@@ -165,7 +165,8 @@ public class PlayerController : MonoBehaviour {
 		case 1: // heal pink ball
 			if (m_Renderer)
 				m_Renderer.sprite = Resources.Load (Constant.HEAL, typeof(Sprite)) as Sprite;
-			m_CurrentAmount = Random.Range (1, m_MaxHeal);
+			int greenhp = Mathf.RoundToInt (EventManager.GetStatus ());
+			m_CurrentAmount = Random.Range (1, (greenhp/5));
 			if (m_TextAmount != null) {
 				m_TextAmount.text = "+" + m_CurrentAmount;
 				//m_TextAmount.color = Constant.GREEN;
