@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class CanvasController : MonoBehaviour {
 
+	//This file is unused
 	public Text m_Score;
 	public Text m_Best;
 	public GameObject m_Tutorial;
