@@ -81,7 +81,7 @@ public class SpawnPointHandler : MonoBehaviour {
 		if (m_MediumPools == 0)
 			m_MediumPools = 5;
 		m_RunningMediumPools = 0;
-		m_TotalMediumPools = 11;
+		m_TotalMediumPools = 8;
 
 		if (m_MaxHyperDam == 0)
 			m_MaxHyperDam = 2;

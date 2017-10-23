@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour {
 		if (m_MaxHeal == 0)
 			m_MaxHeal = 5;
 		if (m_PercentDamage == 0)
-			m_PercentDamage = 0.5f;
+			m_PercentDamage = 0.3f;
 		if (m_RangeDam == 0)
 			m_RangeDam = 11;
 		m_Prob = new float[m_RangeDam];
@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour {
 			if (m_Renderer)
 				m_Renderer.sprite = Resources.Load (Constant.HEAL, typeof(Sprite)) as Sprite;
 			int greenhp = Mathf.RoundToInt (EventManager.GetStatus ());
-			m_CurrentAmount = Random.Range (1, (greenhp/5));
+			m_CurrentAmount = Random.Range (1, (greenhp/4));
 			if (m_TextAmount != null) {
 				m_TextAmount.text = "+" + m_CurrentAmount;
 				//m_TextAmount.color = Constant.GREEN;
