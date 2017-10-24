@@ -181,7 +181,7 @@ public class SpawnPointHandler : MonoBehaviour {
 			SpawnPointController controller = (SpawnPointController)obj.GetComponent<SpawnPointController> ();
 			if (controller != null)
 				controller.GeneratePoint ();
-			yield return new WaitForSeconds (0.2f);
+			yield return new WaitForSeconds (0f);
 			//i++;
 			//return;
 		//}
