@@ -24,6 +24,8 @@ public class EventManager{
 	public delegate void DelUpdateHyperDam ();
 	public delegate bool DelCanGenerateHyperDam ();
 
+	public delegate GameObject DelGetAvailable();
+
 	//public static DelSendHP SendHPCallback;
 	public static event DelReceiveHP ReceiveHPCallback;
 	public static event DelUpdatePoints UpdatePointsCallback;
@@ -42,6 +44,8 @@ public class EventManager{
 
 	public static event DelCanGenerateHyperDam CanGenerateHyperDamCallback;
 	public static event DelUpdateHyperDam UpdateHyperDamCallback;
+
+	public static event DelGetAvailable GetAvailableCallback;
 
 	private static bool m_AllGreens = true;
 
@@ -125,6 +129,13 @@ public class EventManager{
 	public static void StopGenerateAllGcreen()
 	{
 		m_AllGreens = false;
+	}
+
+	public static GameObject GetAvailablePlayer ()
+	{
+		if (GetAvailableCallback != null)
+			return GetAvailableCallback ();
+		return null;
 	}
 
 }

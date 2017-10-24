@@ -42,9 +42,11 @@ public class SpawnPointHandler : MonoBehaviour {
 	//List<GameObject> m_SpawnPoints;
 	float m_RunningTime;
 	bool m_CanRun;
+	bool m_CanSpawn;
 
 	void Awake()
 	{
+		m_CanSpawn = true;
 		if (m_InstanceLevels == null)
 			m_InstanceLevels = new List<GameObject> ();
 //		if (m_SpawnPoints == null)
@@ -140,8 +142,9 @@ public class SpawnPointHandler : MonoBehaviour {
 		//m_TimeForSpawn = 0.1f;
 	}
 
-	void SpawnObject()
+	IEnumerator SpawnObject()
 	{
+		m_CanSpawn = false;
 		int newlevel = 0;
 		if (m_RunningEasyPools < m_EasyPools)
 		{
@@ -176,10 +179,13 @@ public class SpawnPointHandler : MonoBehaviour {
 			SpawnPointController controller = (SpawnPointController)obj.GetComponent<SpawnPointController> ();
 			if (controller != null)
 				controller.GeneratePoint ();
+			yield return new WaitForSeconds (0.2f);
 			//i++;
 			//return;
 		//}
 		}
+
+		m_CanSpawn = true;
 
 //		if (EventManager.ShouldGenerateAllGreen ())
 //			EventManager.StopGenerateAllGcreen ();
@@ -198,8 +204,10 @@ public class SpawnPointHandler : MonoBehaviour {
 		
 		if (m_CanRun) {
 			if (m_RunningTime >= m_TimeForSpawn) {
-				SpawnObject ();
-				m_RunningTime = 0f;
+				if (m_CanSpawn) {
+					StartCoroutine(SpawnObject ());
+					m_RunningTime = 0f;
+				}
 			} else {
 				m_RunningTime += Time.deltaTime;
 			}

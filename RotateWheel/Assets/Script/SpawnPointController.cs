@@ -14,7 +14,16 @@ public class SpawnPointController : MonoBehaviour {
 
 	public void GeneratePoint()
 	{
-		GameObject obj = Instantiate (m_Player, gameObject.transform.position, Quaternion.identity) as GameObject;
+		//GameObject obj = Instantiate (m_Player, gameObject.transform.position, Quaternion.identity) as GameObject;
+		GameObject obj = EventManager.GetAvailablePlayer();
+		if (obj != null) {
+			obj.transform.position = gameObject.transform.position;
+			obj.transform.rotation = gameObject.transform.rotation;
+			PlayerController ctrl = (PlayerController)obj.GetComponent<PlayerController> ();
+			if (ctrl != null)
+				ctrl.GenerateObjectType ();
+			obj.SetActive (true);
+		}
 	}
 
 //	void Update()

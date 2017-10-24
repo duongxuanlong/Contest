@@ -74,16 +74,7 @@ public class PlayerController : MonoBehaviour {
 		m_TextAmount = GetComponentInChildren<Text> ();
 
 		//Set object type
-		if (EventManager.ShouldGenerateAllGreen ()) {
-			SetObjectType (1);
-			EventManager.StopGenerateAllGcreen ();
-		} else {
-			float value = Random.value;
-			if (value <= m_PercentDamage)
-				SetObjectType (0);
-			else
-				SetObjectType (1);
-		}
+		GenerateObjectType ();
 	}
 
 	void GenerateProbability ()
@@ -101,12 +92,18 @@ public class PlayerController : MonoBehaviour {
 
 	void OnBecameInvisible ()
 	{
-		Destroy (gameObject);
+		//Destroy (gameObject);
+		gameObject.SetActive(false);
+		//Debug.Log ("Pos: " + gameObject.transform.position);
 	}
 
 	void OnEnable()
 	{
 		EventManager.CanRunCallback += CanRun;	
+
+		m_Direction = Random.insideUnitCircle;
+		m_Direction.Normalize ();
+		m_Speed = 0f;
 	}
 
 	void OnDisable()
@@ -119,6 +116,21 @@ public class PlayerController : MonoBehaviour {
 		m_CanRun = run;
 	}
 
+	public void GenerateObjectType()
+	{
+		if (EventManager.ShouldGenerateAllGreen ()) {
+			SetObjectType (1);
+			EventManager.StopGenerateAllGcreen ();
+		}
+		else {
+			float value = Random.value;
+			if (value <= m_PercentDamage)
+				SetObjectType (0);
+			else
+				SetObjectType (1);
+		}
+	}
+		
 	private void SetObjectType (int type)
 	{
 		switch (type) {
@@ -180,7 +192,8 @@ public class PlayerController : MonoBehaviour {
 
 		if (obj.tag == Constant.TAG_WHEEL) {
 			EventManager.SendHPCallback (other.transform, this.m_CurrentAmount);
-			Destroy (gameObject);
+			//Destroy (gameObject);
+			gameObject.SetActive(false);
 		}
 
 		if (obj.tag == Constant.TAG_OBSTACLE || obj.tag == Constant.TAG_PLAYER) {
