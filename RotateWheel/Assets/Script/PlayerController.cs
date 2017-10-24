@@ -45,9 +45,9 @@ public class PlayerController : MonoBehaviour {
 		if (m_MaxHeal == 0)
 			m_MaxHeal = 5;
 		if (m_PercentDamage == 0)
-			m_PercentDamage = 0.5f;
+			m_PercentDamage = 0.1f;
 		if (m_RangeDam == 0)
-			m_RangeDam = 11;
+			m_RangeDam = 16;
 		m_Prob = new float[m_RangeDam];
 		if (m_SpecialRange == 0)
 			m_SpecialRange = 2;
@@ -74,7 +74,20 @@ public class PlayerController : MonoBehaviour {
 		m_TextAmount = GetComponentInChildren<Text> ();
 
 		//Set object type
+<<<<<<< HEAD
 		GenerateObjectType ();
+=======
+		if (EventManager.ShouldGenerateAllGreen ()) {
+			SetObjectType (1);
+			//EventManager.StopGenerateAllGcreen ();
+		} else {
+			float value = Random.value;
+			if (value <= m_PercentDamage)
+				SetObjectType (0);
+			else
+				SetObjectType (1);
+		}
+>>>>>>> f8467faa2df78429e32f56c95d8332c5c772b5dd
 	}
 
 	void GenerateProbability ()
@@ -178,7 +191,7 @@ public class PlayerController : MonoBehaviour {
 			if (m_Renderer)
 				m_Renderer.sprite = Resources.Load (Constant.HEAL, typeof(Sprite)) as Sprite;
 			int greenhp = Mathf.RoundToInt (EventManager.GetStatus ());
-			m_CurrentAmount = Random.Range (1, (greenhp/5));
+			m_CurrentAmount = Random.Range (1, (greenhp/4));
 			if (m_TextAmount != null) {
 				m_TextAmount.text = "+" + m_CurrentAmount;
 				//m_TextAmount.color = Constant.GREEN;

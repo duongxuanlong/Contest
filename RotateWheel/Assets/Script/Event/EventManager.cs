@@ -136,6 +136,9 @@ public class EventManager{
 		if (GetAvailableCallback != null)
 			return GetAvailableCallback ();
 		return null;
+	public static void StartGenerateAllGreen()
+	{
+		m_AllGreens = true;
 	}
 
 }
