@@ -145,12 +145,14 @@ public class SpawnPointHandler : MonoBehaviour {
 		int newlevel = 0;
 		if (m_RunningEasyPools < m_EasyPools)
 		{
+			EventManager.StartGenerateAllGreen ();
 			newlevel = Random.Range (0, m_TotalEasyPools);
 			m_RunningEasyPools++;
 			Debug.Log (newlevel);
 		}
 		else if (m_RunningMediumPools < m_MediumPools)
 		{
+			EventManager.StopGenerateAllGcreen ();
 			newlevel = Random.Range (0, m_TotalEasyPools + m_TotalMediumPools);
 			m_RunningMediumPools++;
 			Debug.Log (newlevel);

@@ -127,4 +127,9 @@ public class EventManager{
 		m_AllGreens = false;
 	}
 
+	public static void StartGenerateAllGreen()
+	{
+		m_AllGreens = true;
+	}
+
 }

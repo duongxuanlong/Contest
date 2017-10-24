@@ -45,9 +45,9 @@ public class PlayerController : MonoBehaviour {
 		if (m_MaxHeal == 0)
 			m_MaxHeal = 5;
 		if (m_PercentDamage == 0)
-			m_PercentDamage = 0.3f;
+			m_PercentDamage = 0.1f;
 		if (m_RangeDam == 0)
-			m_RangeDam = 11;
+			m_RangeDam = 16;
 		m_Prob = new float[m_RangeDam];
 		if (m_SpecialRange == 0)
 			m_SpecialRange = 2;
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour {
 		//Set object type
 		if (EventManager.ShouldGenerateAllGreen ()) {
 			SetObjectType (1);
-			EventManager.StopGenerateAllGcreen ();
+			//EventManager.StopGenerateAllGcreen ();
 		} else {
 			float value = Random.value;
 			if (value <= m_PercentDamage)
