@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (EventManager.ShouldGenerateAllGreen ()) {
 			SetObjectType (1);
-			EventManager.StopGenerateAllGcreen ();
+			//EventManager.StopGenerateAllGcreen ();
 		}
 		else {
 			float value = Random.value;
