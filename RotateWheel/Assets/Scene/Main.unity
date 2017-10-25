@@ -4866,7 +4866,7 @@ Prefab:
     - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
         type: 2}
       propertyPath: m_TimeForSpawn
-      value: 2
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 114367599213400126, guid: f26733debcf2cbd40a4b64dc6e7e65af,
         type: 2}

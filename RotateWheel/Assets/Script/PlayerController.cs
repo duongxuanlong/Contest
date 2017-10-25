@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour {
 	Vector2 m_Direction;
 	bool m_CanRun;
 
+	int count;
+
 	void Awake()
 	{
 		if (m_Acceleration == 0)
@@ -118,14 +120,27 @@ public class PlayerController : MonoBehaviour {
 
 	public void GenerateObjectType()
 	{
+		count = EventManager.CheckRedBallCount ();
 		if (EventManager.ShouldGenerateAllGreen ()) {
 			SetObjectType (1);
 			//EventManager.StopGenerateAllGcreen ();
 		}
 		else {
 			float value = Random.value;
-			if (value <= m_PercentDamage)
-				SetObjectType (0);
+			if (value <= m_PercentDamage) {
+				if (EventManager.CheckStartHard() == false) {
+					if (count < 3) {
+						SetObjectType (0);
+						EventManager.StartRedBallCount ();
+					} else {
+						Debug.Log (count);
+						SetObjectType (1);
+						EventManager.ResetRedBallCount ();
+					}
+				}
+				else
+					SetObjectType (0);
+			}
 			else
 				SetObjectType (1);
 		}

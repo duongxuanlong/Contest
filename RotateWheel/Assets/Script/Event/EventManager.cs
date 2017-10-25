@@ -49,6 +49,10 @@ public class EventManager{
 
 	private static bool m_AllGreens = true;
 
+	private static int m_RedBallCount = 0;
+
+	private static bool m_StartHard = false;
+
 	public static void SendHPCallback (Transform identity, float amount)
 	{
 		if (ReceiveHPCallback != null)
@@ -141,6 +145,36 @@ public class EventManager{
 	public static void StartGenerateAllGreen()
 	{
 		m_AllGreens = true;
+	}
+
+	public static int CheckRedBallCount()
+	{
+		return m_RedBallCount;
+	}
+
+	public static void StartRedBallCount()
+	{
+		m_RedBallCount++;
+	}
+
+	public static void ResetRedBallCount()
+	{
+		m_RedBallCount = 0;
+	}
+
+	public static bool CheckStartHard()
+	{
+		return m_StartHard;
+	}
+
+	public static void StartHardDifficulty()
+	{
+		m_StartHard = true;
+	}
+
+	public static void StartMediumDifficulty()
+	{
+		m_StartHard = false;
 	}
 
 }

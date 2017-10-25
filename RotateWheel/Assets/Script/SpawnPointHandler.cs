@@ -146,22 +146,22 @@ public class SpawnPointHandler : MonoBehaviour {
 	{
 		m_CanSpawn = false;
 		int newlevel = 0;
-		if (m_RunningEasyPools < m_EasyPools)
-		{
+		if (m_RunningEasyPools < m_EasyPools) {
 			EventManager.StartGenerateAllGreen ();
 			newlevel = Random.Range (0, m_TotalEasyPools);
 			m_RunningEasyPools++;
-			Debug.Log (newlevel);
-		}
-		else if (m_RunningMediumPools < m_MediumPools)
-		{
+			//Debug.Log (newlevel);
+		} else if (m_RunningMediumPools < m_MediumPools) {
 			EventManager.StopGenerateAllGcreen ();
+			EventManager.ResetRedBallCount ();
+			EventManager.StartMediumDifficulty ();
 			newlevel = Random.Range (0, m_TotalEasyPools + m_TotalMediumPools);
 			m_RunningMediumPools++;
-			Debug.Log (newlevel);
-		}
-		else
+			//Debug.Log (newlevel);
+		} else {
+			EventManager.StartHardDifficulty ();
 			newlevel = Random.Range (0, m_TotalLevels);
+		}
 
 		m_CurrentLevel = newlevel;
 //		if (m_CurrentLevel == -1)
