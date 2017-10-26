@@ -105,6 +105,7 @@ MonoBehaviour:
   m_SpecialPercent: 0
   m_Prob: []
   m_PercentDamage: 0.4
+  m_DeltaScale: 0
   m_Curve:
     serializedVersion: 2
     m_Curve:
@@ -167,9 +168,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '0
-
-'
+  m_Text: 0
 --- !u!114 &114590002100578606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,6 +230,8 @@ SpriteRenderer:
   m_Size: {x: 0.65, y: 0.65}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!222 &222283804836146580
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -272,8 +273,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.04}
-  m_SizeDelta: {x: 10, y: 10}
+  m_AnchoredPosition: {x: -0.0022, y: 0.0007}
+  m_SizeDelta: {x: 4.3474, y: 4.3238}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224523171068043210
 RectTransform:

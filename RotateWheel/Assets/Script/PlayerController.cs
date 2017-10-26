@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour {
 	public float[] m_Prob;
 
 	public float m_PercentDamage;
+
+	public float m_DeltaScale;
+	public float m_OriginalScale;
 	#endregion
 
 	#region reference
@@ -56,6 +59,10 @@ public class PlayerController : MonoBehaviour {
 		if (m_SpecialPercent == 0)
 			m_SpecialPercent = 0.1f;
 		m_CanRun = true;
+
+		if (m_DeltaScale == 0)
+			m_DeltaScale = 0.02f;
+		m_OriginalScale = 0.1f;
 
 		//Initialize probability for each dam
 		GenerateProbability ();
@@ -185,7 +192,18 @@ public class PlayerController : MonoBehaviour {
 				m_CurrentAmount = 0 - m_CurrentAmount;
 
 			if (m_TextAmount != null) {
-				m_TextAmount.text = "" + m_CurrentAmount;
+				string stramount = m_CurrentAmount.ToString ();
+				//if (stramount.Length > 3) {
+				RectTransform rect = m_TextAmount.rectTransform;
+				int length = stramount.Length;
+				float newscale = (length - 2) > 0 ? m_DeltaScale * (stramount.Length - 2) : 0;
+				//Vector3 scale = rect.localScale;
+				if (newscale == 0)
+					rect.localScale = new Vector2 (m_OriginalScale, m_OriginalScale);
+				else
+					rect.localScale = new Vector2 (m_OriginalScale - newscale, m_OriginalScale - newscale);
+				//}
+				m_TextAmount.text = stramount;
 				//m_TextAmount.color = Constant.RED;
 			}
 			break;
@@ -195,7 +213,19 @@ public class PlayerController : MonoBehaviour {
 			int greenhp = Mathf.RoundToInt (EventManager.GetStatus ());
 			m_CurrentAmount = Random.Range (1, (greenhp/4));
 			if (m_TextAmount != null) {
-				m_TextAmount.text = "+" + m_CurrentAmount;
+				string stramount = "+" + m_CurrentAmount;
+				//if (stramount.Length > 3) {
+				RectTransform rect = m_TextAmount.rectTransform;
+				int length = stramount.Length;
+				float newscale = (length - 2) > 0 ? m_DeltaScale * (stramount.Length - 2) : 0;
+				//Vector3 scale = rect.localScale;
+				if (newscale == 0)
+					rect.localScale = new Vector2 (m_OriginalScale, m_OriginalScale);
+				else
+					rect.localScale = new Vector2 (m_OriginalScale - newscale, m_OriginalScale - newscale);
+				//}
+
+				m_TextAmount.text = stramount;
 				//m_TextAmount.color = Constant.GREEN;
 			}
 			break;
