@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour {
 
 	int count;
 
+	public bool red = false;
+
 	void Awake()
 	{
 		if (m_Acceleration == 0)
@@ -170,6 +172,8 @@ public class PlayerController : MonoBehaviour {
 
 			float prob = Random.value;
 
+			red = true;
+
 			//Adjust hyper dam
 			if (1 - prob <= m_SpecialPercent) {
 				if (EventManager.CanGenerateHyperDam ()) {
@@ -208,6 +212,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			break;
 		case 1: // heal pink ball
+			red = false;
 			if (m_Renderer)
 				m_Renderer.sprite = Resources.Load (Constant.HEAL, typeof(Sprite)) as Sprite;
 			int greenhp = Mathf.RoundToInt (EventManager.GetStatus ());

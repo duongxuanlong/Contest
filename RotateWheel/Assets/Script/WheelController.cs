@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class WheelController : MonoBehaviour {
 
 	#region param
@@ -12,6 +13,11 @@ public class WheelController : MonoBehaviour {
 	private Text m_HPText;
 	public float m_CurrentHP;
 	bool m_CanRun;
+
+	public AudioClip green;
+	public AudioClip red;
+
+	AudioSource audiosource;
 
 	void Awake()
 	{
@@ -23,6 +29,7 @@ public class WheelController : MonoBehaviour {
 	{
 		m_CurrentHP = m_HP;
 		m_HPText.text = "" + m_CurrentHP;
+		audiosource = GetComponent<AudioSource> ();
 	}
 
 	void OnEnable()
@@ -71,6 +78,17 @@ public class WheelController : MonoBehaviour {
 
 			gameObject.transform.position = new Vector3 (x, y, objpos.z);
 			gameObject.transform.Rotate (rotation);
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+		GameObject obj = other.gameObject;
+
+		if (obj.tag == "Player") {
+			if(obj.GetComponent<PlayerController>().red)
+				audiosource.PlayOneShot (red);
+			else
+				audiosource.PlayOneShot (green);
 		}
 	}
 }
