@@ -53,6 +53,7 @@ public class EventManager{
 
 	private static bool m_StartHard = false;
 
+
 	public static void SendHPCallback (Transform identity, float amount)
 	{
 		if (ReceiveHPCallback != null)
@@ -176,5 +177,6 @@ public class EventManager{
 	{
 		m_StartHard = false;
 	}
+		
 
 }

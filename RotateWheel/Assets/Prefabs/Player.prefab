@@ -105,7 +105,7 @@ MonoBehaviour:
   m_SpecialPercent: 0
   m_Prob: []
   m_PercentDamage: 0.4
-  m_DeltaScale: 0
+  m_DeltaScale: 0.019
   m_OriginalScale: 0
   m_Curve:
     serializedVersion: 2

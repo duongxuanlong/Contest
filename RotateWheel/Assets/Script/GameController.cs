@@ -15,6 +15,10 @@ public class GameController : MonoBehaviour {
 
 	public static GameController m_Instance;
 
+
+
+
+
 	public bool IsReady ()
 	{
 		return m_IsReady;
