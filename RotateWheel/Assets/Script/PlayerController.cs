@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 		m_CanRun = true;
 
 		if (m_DeltaScale == 0)
-			m_DeltaScale = 0.02f;
+			m_DeltaScale = 0.03f;
 		m_OriginalScale = 0.1f;
 
 		//Initialize probability for each dam
