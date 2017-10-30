@@ -18,6 +18,7 @@ public class CanvasController : MonoBehaviour {
 	//Button m_Reset;
 	private float m_CurrentPoints;
 	bool m_Init;
+	PlayerController.BallType m_Type;
 
 	void Awake()
 	{
@@ -65,26 +66,36 @@ public class CanvasController : MonoBehaviour {
 	{
 		EventManager.UpdatePointsCallback += UpdateUI;
 		EventManager.EndGameCallback += EndGame;
+		EventManager.SendBallTypeCallback += ReceiveBallType;
 	}
 
 	void OnDisable()
 	{
 		EventManager.UpdatePointsCallback -= UpdateUI;
 		EventManager.EndGameCallback -= EndGame;
+		EventManager.SendBallTypeCallback -= ReceiveBallType;
+	}
+
+	void ReceiveBallType (PlayerController.BallType type)
+	{
+		m_Type = type;
 	}
 
 	void UpdateUI (float amount)
 	{
-		m_CurrentPoints += amount;
-		if (m_Score != null)
-			m_Score.text = "" + m_CurrentPoints;
-		GameController.m_Instance.SetScore (m_CurrentPoints);
+		if (m_Type == PlayerController.BallType.Damage ||
+		    m_Type == PlayerController.BallType.Heal) {
+			m_CurrentPoints += amount;
+			if (m_Score != null)
+				m_Score.text = "" + m_CurrentPoints;
+			GameController.m_Instance.SetScore (m_CurrentPoints);
 
-		if (m_Best != null) {
-			if (m_CurrentPoints > GameController.m_Instance.GetBestScore ()) {
-				m_Best.color = Constant.GREEN;
-				m_Best.text = "" + m_CurrentPoints;
-				EventManager.ScoreBest (m_CurrentPoints);
+			if (m_Best != null) {
+				if (m_CurrentPoints > GameController.m_Instance.GetBestScore ()) {
+					m_Best.color = Constant.GREEN;
+					m_Best.text = "" + m_CurrentPoints;
+					EventManager.ScoreBest (m_CurrentPoints);
+				}
 			}
 		}
 	}

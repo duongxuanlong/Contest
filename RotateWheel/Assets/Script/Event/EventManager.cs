@@ -26,6 +26,10 @@ public class EventManager{
 
 	public delegate GameObject DelGetAvailable();
 
+	public delegate void DelSendBallType (PlayerController.BallType type);
+	public delegate bool DelIsInProtection ();
+	public delegate void DelReduceProtection ();
+
 	//public static DelSendHP SendHPCallback;
 	public static event DelReceiveHP ReceiveHPCallback;
 	public static event DelUpdatePoints UpdatePointsCallback;
@@ -47,6 +51,11 @@ public class EventManager{
 
 	public static event DelGetAvailable GetAvailableCallback;
 
+	public static event DelSendBallType SendBallTypeCallback;
+	public static event DelIsInProtection IsInProtectionCallback;
+	public static event DelReduceProtection ReduceProtectionCallback;
+
+
 	private static bool m_AllGreens = true;
 
 	private static int m_RedBallCount = 0;
@@ -54,8 +63,11 @@ public class EventManager{
 	private static bool m_StartHard = false;
 
 
-	public static void SendHPCallback (Transform identity, float amount)
+	public static void SendInfoCallback (Transform identity, float amount, PlayerController.BallType type)
 	{
+		if (SendBallTypeCallback != null)
+			SendBallTypeCallback (type);
+		
 		if (ReceiveHPCallback != null)
 			ReceiveHPCallback (identity, amount);
 
@@ -178,5 +190,16 @@ public class EventManager{
 		m_StartHard = false;
 	}
 		
+	public static bool IsInProtection ()
+	{
+		if (IsInProtectionCallback != null)
+			return IsInProtectionCallback ();
+		return false;
+	}
 
+	public static void ReduceProtection()
+	{
+		if (ReduceProtectionCallback != null)
+			ReduceProtectionCallback ();
+	}
 }

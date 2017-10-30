@@ -24,6 +24,10 @@ public class CircleController : MonoBehaviour {
 
 	#region param
 	public float m_Speed;
+
+	public int m_MaxProtect = 1;
+	private int m_CurProtect = 0;
+	//PlayerController.BallType m_Type;
 	#endregion
 
 	private Vector3 m_Euler;
@@ -44,6 +48,12 @@ public class CircleController : MonoBehaviour {
 
 		//m_TotalParts = 2;
 		m_CanRun = true;
+
+		//Deal with protect ball
+		if (m_MaxProtect == 0)
+			m_MaxProtect = 1;
+		if (m_CurProtect == 0)
+			m_CurProtect = 0;
 	}
 
 	// Use this for initialization
@@ -56,6 +66,9 @@ public class CircleController : MonoBehaviour {
 		EventManager.ReducePartCallback += ReduceWheelPart;
 		EventManager.CanRunCallback += CanRun;
 		EventManager.GetStatusCallback += GetMaxHP;
+		EventManager.SendBallTypeCallback += ReceiveBallType;
+		EventManager.IsInProtectionCallback += IsInProtection;
+		EventManager.ReduceProtectionCallback += ReduceProtection;
 	}
 
 	void OnDisable()
@@ -63,6 +76,9 @@ public class CircleController : MonoBehaviour {
 		EventManager.ReducePartCallback -= ReduceWheelPart;
 		EventManager.CanRunCallback -= CanRun;
 		EventManager.GetStatusCallback -= GetMaxHP;
+		EventManager.SendBallTypeCallback -= ReceiveBallType;
+		EventManager.IsInProtectionCallback -= IsInProtection;
+		EventManager.ReduceProtectionCallback -= ReduceProtection;
 	}
 
 	void CanRun (bool run)
@@ -76,6 +92,35 @@ public class CircleController : MonoBehaviour {
 			return m_LeftController.m_CurrentHP;
 		else
 			return m_RightController.m_CurrentHP;
+	}
+
+	void ReceiveBallType (PlayerController.BallType type)
+	{
+		//m_Type = type;
+		if (type == PlayerController.BallType.Protect) {
+			m_CurProtect += m_MaxProtect;
+		}
+
+//		if (type == PlayerController.BallType.Damage) {
+//			m_CurProtect--;
+//			if (m_CurProtect < 0)
+//				m_CurProtect = 0;
+//		}
+	}
+
+	void ReduceProtection ()
+	{
+		m_CurProtect--;
+		if (m_CurProtect < 0)
+			m_CurProtect = 0;
+	}
+
+	bool IsInProtection ()
+	{
+		if (m_CurProtect > 0) 
+			return true;
+
+		return false;
 	}
 
 	void ReduceWheelPart ()

@@ -7,6 +7,10 @@ public class Constant {
 
 	public const string HEAL = "green_ball";
 
+	public const string PROTECT = "Circle";
+
+	public const string DESTROY = "Circle";
+
 	public const float HOUR_PER_SECONDS = 3600f;
 
 	public static bool RECALCULATE = true;

@@ -19,6 +19,8 @@ public class WheelController : MonoBehaviour {
 
 	AudioSource audiosource;
 
+	PlayerController.BallType m_Type;
+
 	void Awake()
 	{
 		m_HPText = gameObject.GetComponentInChildren<Text> ();
@@ -36,12 +38,19 @@ public class WheelController : MonoBehaviour {
 	{
 		EventManager.ReceiveHPCallback += OnUpdateHP;
 		EventManager.CanRunCallback += CanRun;
+		EventManager.SendBallTypeCallback += ReceiveBallType;
 	}
 
 	void OnDisable()
 	{
 		EventManager.ReceiveHPCallback -= OnUpdateHP;
 		EventManager.CanRunCallback -= CanRun;
+		EventManager.SendBallTypeCallback -= ReceiveBallType;
+	}
+
+	void ReceiveBallType (PlayerController.BallType type)
+	{
+		m_Type = type;
 	}
 
 	void CanRun (bool run)
@@ -52,20 +61,24 @@ public class WheelController : MonoBehaviour {
 	void OnUpdateHP(Transform identity, float amount)
 	{
 		if (gameObject.transform == identity) {
-			float newhp = m_CurrentHP + amount;
-			if (newhp <= 0) {
-				Destroy (gameObject);
-				EventManager.ReducePart ();
+			//In protection mode
+			if (m_Type == PlayerController.BallType.Damage
+			    && EventManager.IsInProtection ())
+				EventManager.ReduceProtection ();
 				return;
-			}
-			
-			/*if (newhp <= m_HP) {
+
+			//Receive dam or heal
+			if (m_Type == PlayerController.BallType.Damage ||
+			    m_Type == PlayerController.BallType.Heal) {
+				float newhp = m_CurrentHP + amount;
+				if (newhp <= 0) {
+					Destroy (gameObject);
+					EventManager.ReducePart ();
+					return;
+				}
 				m_CurrentHP = newhp;
-			} else {
-				m_CurrentHP = m_HP;
-			}*/
-			m_CurrentHP = newhp;
-			m_HPText.text = "" + m_CurrentHP;
+				m_HPText.text = "" + m_CurrentHP;
+			}
 		}
 	}
 

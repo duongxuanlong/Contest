@@ -14,11 +14,35 @@ public class PlayerGenerator : MonoBehaviour {
 	void OnEnable()
 	{
 		EventManager.GetAvailableCallback += GetAvailablePlayer;
+		EventManager.SendBallTypeCallback += ReceiveBallType;
 	}
 
 	void OnDisable()
 	{
 		EventManager.GetAvailableCallback -= GetAvailablePlayer;
+		EventManager.SendBallTypeCallback -= ReceiveBallType;
+	}
+
+	void ReceiveBallType (PlayerController.BallType type)
+	{
+		if (type == PlayerController.BallType.Destroy) {
+			EventManager.CanRun (false);
+			StartCoroutine (DeActiveDamBalls());
+		}
+	}
+
+	IEnumerator DeActiveDamBalls()
+	{
+		for (int i = 0; i < m_Total; ++i) {
+			if (m_Objects [i].activeInHierarchy) {
+				PlayerController ctrl = m_Objects [i].GetComponent<PlayerController> ();
+				if (ctrl.GetBallType () == PlayerController.BallType.Damage) {
+					m_Objects [i].SetActive (false);
+					yield return new WaitForSeconds (2f);
+				}
+			}
+		}
+		EventManager.CanRun (true);
 	}
 
 	void Awake () {

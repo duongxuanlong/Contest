@@ -5,6 +5,15 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
+	public enum BallType
+	{
+		Heal,
+		Damage,
+		Destroy,
+		Protect,
+		Count
+	}
+
 	#region param
 	public float m_Acceleration;
 	public float m_Speed;
@@ -16,9 +25,11 @@ public class PlayerController : MonoBehaviour {
 	public int m_RangeDam;
 	public int m_SpecialRange;
 	public float m_SpecialPercent;
-	public float[] m_Prob;
+	public float[] m_ProbDam;
 
 	public float m_PercentDamage;
+	public float m_PercentDestroy;
+	public float m_PercentProtect;
 
 	public float m_DeltaScale;
 	public float m_OriginalScale;
@@ -39,6 +50,10 @@ public class PlayerController : MonoBehaviour {
 
 	public bool red = false;
 
+	BallType m_Type; //type of ball
+	float[] m_ProbBall; //prob for balls
+
+
 	void Awake()
 	{
 		if (m_Acceleration == 0)
@@ -46,27 +61,41 @@ public class PlayerController : MonoBehaviour {
 		if (m_MaxSpeed == 0)
 			m_MaxSpeed = 8f;
 		m_Speed = 0f;
-		
-		if (m_MaxDamage == 0)
-			m_MaxDamage = -10;
+
+		m_ProbBall = new float[(int)BallType.Count];
+
+		//Heal balls
 		if (m_MaxHeal == 0)
 			m_MaxHeal = 5;
+
+		//Damage balls
+		if (m_MaxDamage == 0)
+			m_MaxDamage = -10;
 		if (m_PercentDamage == 0)
 			m_PercentDamage = 0.1f;
 		if (m_RangeDam == 0)
 			m_RangeDam = 16;
-		m_Prob = new float[m_RangeDam];
+		m_ProbDam = new float[m_RangeDam];
 		if (m_SpecialRange == 0)
 			m_SpecialRange = 2;
 		if (m_SpecialPercent == 0)
 			m_SpecialPercent = 0.1f;
+
+		//Destroy balls
+		if (m_PercentDestroy == 0)
+			m_PercentDestroy = 0.05f;
+
+		//Protect balls
+		if (m_PercentProtect == 0)
+			m_PercentProtect = 0.05f;
+
 		m_CanRun = true;
 
 		if (m_DeltaScale == 0)
 			m_DeltaScale = 0.03f;
 		m_OriginalScale = 0.1f;
 
-		//Initialize probability for each dam
+		//Initialize probability
 		GenerateProbability ();
 		
 		//m_Curve.Evaluate(0.5f);
@@ -74,12 +103,7 @@ public class PlayerController : MonoBehaviour {
 		//m_Direction = Vector2.up * -1;
 
 		m_Direction = Random.insideUnitCircle;
-		//Debug.Log ("Direction :" + m_Direction.ToString ());
 		m_Direction.Normalize ();
-//		if (Random.Range (0, 2) == 0)
-//			m_Direction.x *= -1;
-//		if (Random.Range (0, 2) == 0)
-//			m_Direction.y *= -1;
 
 		m_Renderer = GetComponent<SpriteRenderer> ();
 		m_TextAmount = GetComponentInChildren<Text> ();
@@ -90,14 +114,22 @@ public class PlayerController : MonoBehaviour {
 
 	void GenerateProbability ()
 	{
+		//Prob for balls
+		float heal = 1 - (m_PercentDamage + m_PercentDestroy + m_PercentProtect);
+		m_ProbBall [(int)BallType.Heal] = heal;
+		m_ProbBall [(int)BallType.Damage] = m_PercentDamage;
+		m_ProbBall [(int)BallType.Destroy] = m_PercentDestroy;
+		m_ProbBall [(int)BallType.Protect] = m_PercentProtect;
+		
+		//Prob for dams
 		float special = m_SpecialPercent / m_SpecialRange;
 		float rest = (1 - m_SpecialPercent) / (m_RangeDam - m_SpecialRange);
 		int index = m_RangeDam - m_SpecialRange;
 		for (int i = 0; i < m_RangeDam; i++) {
 			if (i < index)
-				m_Prob [i] = rest;
+				m_ProbDam [i] = rest;
 			else
-				m_Prob [i] = special;
+				m_ProbDam [i] = special;
 		}
 	}
 
@@ -115,11 +147,13 @@ public class PlayerController : MonoBehaviour {
 		m_Direction = Random.insideUnitCircle;
 		m_Direction.Normalize ();
 		m_Speed = 0f;
+		m_CanRun = true;
 	}
 
 	void OnDisable()
 	{
 		EventManager.CanRunCallback -= CanRun;
+		m_CanRun = false;
 	}
 
 	void CanRun (bool run)
@@ -131,42 +165,75 @@ public class PlayerController : MonoBehaviour {
 	{
 		count = EventManager.CheckRedBallCount ();
 		if (EventManager.ShouldGenerateAllGreen ()) {
-			SetObjectType (1);
+			//m_Type = BallType.Heal;
+			SetObjectType (BallType.Heal);
 			//EventManager.StopGenerateAllGcreen ();
 		}
 		else {
 			float value = Random.value;
-			if (value <= m_PercentDamage) {
-				if (EventManager.CheckStartHard() == false) {
-					if (count < 3) {
-						SetObjectType (0);
-						EventManager.StartRedBallCount ();
-					} else {
-						Debug.Log (count);
-						SetObjectType (1);
-						EventManager.ResetRedBallCount ();
+			int length = m_ProbBall.Length;
+			for (int i = 0; i < length; ++i)
+			{
+				if (value <= m_ProbBall[i])
+				{
+					m_Type = (BallType)i;
+					if (m_Type == BallType.Damage)
+					{
+						if (EventManager.CheckStartHard() == false) {
+							if (count < 3) {
+								//m_Type = BallType.Damage;
+								SetObjectType (BallType.Damage);
+								EventManager.StartRedBallCount ();
+							} else {
+								Debug.Log (count);
+								//m_Type = BallType.Heal;
+								SetObjectType (BallType.Heal);
+								EventManager.ResetRedBallCount ();
+							}
+						}
+						else
+							SetObjectType (BallType.Damage);
 					}
+					else
+						SetObjectType(m_Type);
+					break;
 				}
 				else
-					SetObjectType (0);
+					value -= m_ProbBall[i];
 			}
-			else
-				SetObjectType (1);
+
+//			if (value <= m_PercentDamage) {
+//				if (EventManager.CheckStartHard() == false) {
+//					if (count < 3) {
+//						SetObjectType (BallType.Damage);
+//						EventManager.StartRedBallCount ();
+//					} else {
+//						Debug.Log (count);
+//						SetObjectType (BallType.Heal);
+//						EventManager.ResetRedBallCount ();
+//					}
+//				}
+//				else
+//					SetObjectType (BallType.Damage);
+//			}
+//			else
+//				SetObjectType (BallType.Heal);
 		}
 	}
-		
-	private void SetObjectType (int type)
+
+	public BallType GetBallType ()
 	{
+		return m_Type;
+	}
+		
+	private void SetObjectType (BallType type)
+	{
+		m_Type = type;
+
 		switch (type) {
-		case 0: // damage blue ball
+		case BallType.Damage: // damage blue ball
 			if (m_Renderer != null)
 				m_Renderer.sprite = Resources.Load (Constant.DAMAGE, typeof(Sprite)) as Sprite;
-			
-			//m_CurrentAmount = Random.Range (m_MaxDamage, -1);
-//			int range = (m_RangeDam - m_SpecialRange);
-//			int hp = Mathf.RoundToInt (EventManager.GetStatus ()) - 1;
-//			int current = hp / range;
-//			current *= range;
 			int hp = Mathf.RoundToInt (EventManager.GetStatus ());
 			int current = hp - m_RangeDam;
 
@@ -185,11 +252,11 @@ public class PlayerController : MonoBehaviour {
 			}
 
 			for (int i = 0; i < m_RangeDam; i++) {
-				if (prob <= m_Prob [i]) {
+				if (prob <= m_ProbDam [i]) {
 					m_CurrentAmount = current + (i + 1);
 					break;
 				} else {
-					prob -= m_Prob [i];
+					prob -= m_ProbDam [i];
 				}
 			}
 			if (m_CurrentAmount > 0)
@@ -197,21 +264,17 @@ public class PlayerController : MonoBehaviour {
 
 			if (m_TextAmount != null) {
 				string stramount = m_CurrentAmount.ToString ();
-				//if (stramount.Length > 3) {
 				RectTransform rect = m_TextAmount.rectTransform;
 				int length = stramount.Length;
 				float newscale = (length - 2) > 0 ? m_DeltaScale * (stramount.Length - 2) : 0;
-				//Vector3 scale = rect.localScale;
 				if (newscale == 0)
 					rect.localScale = new Vector2 (m_OriginalScale, m_OriginalScale);
 				else
 					rect.localScale = new Vector2 (m_OriginalScale - newscale, m_OriginalScale - newscale);
-				//}
 				m_TextAmount.text = stramount;
-				//m_TextAmount.color = Constant.RED;
 			}
 			break;
-		case 1: // heal pink ball
+		case BallType.Heal: // heal pink ball
 			red = false;
 			if (m_Renderer)
 				m_Renderer.sprite = Resources.Load (Constant.HEAL, typeof(Sprite)) as Sprite;
@@ -219,20 +282,37 @@ public class PlayerController : MonoBehaviour {
 			m_CurrentAmount = Random.Range (1, (greenhp/4));
 			if (m_TextAmount != null) {
 				string stramount = "+" + m_CurrentAmount;
-				//if (stramount.Length > 3) {
 				RectTransform rect = m_TextAmount.rectTransform;
 				int length = stramount.Length;
 				float newscale = (length - 2) > 0 ? m_DeltaScale * (stramount.Length - 2) : 0;
-				//Vector3 scale = rect.localScale;
 				if (newscale == 0)
 					rect.localScale = new Vector2 (m_OriginalScale, m_OriginalScale);
 				else
 					rect.localScale = new Vector2 (m_OriginalScale - newscale, m_OriginalScale - newscale);
-				//}
-
 				m_TextAmount.text = stramount;
-				//m_TextAmount.color = Constant.GREEN;
 			}
+			break;
+		case BallType.Destroy: //Destroy ball
+			if (m_Renderer) {
+				m_Renderer.sprite = Resources.Load (Constant.DESTROY, typeof(Sprite)) as Sprite;
+				m_Renderer.color = Color.gray;
+			}
+			m_CurrentAmount = 0;
+
+			if (m_TextAmount != null)
+				m_TextAmount.text = "";
+			
+			break;
+		case BallType.Protect: //Protect ball
+			if (m_Renderer) {
+				m_Renderer.sprite = Resources.Load (Constant.DESTROY, typeof(Sprite)) as Sprite;
+				m_Renderer.color = Color.yellow;
+			}
+
+			m_CurrentAmount = 0;
+
+			if (m_TextAmount != null)
+				m_TextAmount.text = "";
 			break;
 		}
 	}
@@ -241,7 +321,7 @@ public class PlayerController : MonoBehaviour {
 		GameObject obj = other.gameObject;
 
 		if (obj.tag == Constant.TAG_WHEEL) {
-			EventManager.SendHPCallback (other.transform, this.m_CurrentAmount);
+			EventManager.SendInfoCallback (other.transform, this.m_CurrentAmount, m_Type);
 			//Destroy (gameObject);
 			gameObject.SetActive(false);
 		}
