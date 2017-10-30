@@ -19,14 +19,19 @@ public class WheelController : MonoBehaviour {
 
 
 	SpriteRenderer m_Renderer;
-
+	Sprite m_OriginalSprite;
 	AudioSource audiosource;
+	Animator m_Animator;
 
 	PlayerController.BallType m_Type;
 
 	void Awake()
 	{
 		m_HPText = gameObject.GetComponentInChildren<Text> ();
+		m_Animator = this.GetComponent<Animator> ();
+		m_Renderer = this.GetComponent<SpriteRenderer> ();
+		if (m_Renderer != null)
+			m_OriginalSprite = m_Renderer.sprite;
 		m_CanRun = true;
 	}
 
@@ -68,13 +73,6 @@ public class WheelController : MonoBehaviour {
 			if (m_Type == PlayerController.BallType.Damage
 			    && EventManager.IsInProtection ()) {
 				EventManager.ReduceProtection ();
-				/*this.GetComponent<Animator> ().enabled = false;
-				if (left) {
-					m_Renderer.sprite = Resources.Load (Constant.PADLEFT, typeof(Sprite)) as Sprite;
-				}
-				if (right) {
-					m_Renderer.sprite = Resources.Load (Constant.PADRIGHT, typeof(Sprite)) as Sprite;
-				}*/
 				return;
 			}
 
@@ -108,10 +106,19 @@ public class WheelController : MonoBehaviour {
 	public void UpdateAnimation()
 	{
 		if (EventManager.IsInProtection ()) {
-			Debug.Log ("fdf");
-			this.GetComponent<Animator> ().enabled = true;
+			//this.GetComponent<Animator> ().enabled = true;
+			if (m_Animator != null) {
+				if (!m_Animator.enabled)
+					m_Animator.enabled = true;
+			}
 		} else {
-			this.GetComponent<Animator> ().enabled = false;
+			//this.GetComponent<Animator> ().enabled = false;
+			if (m_Animator != null) {
+				if (m_Animator.enabled) {
+					m_Animator.enabled = false;
+					m_Renderer.sprite = m_OriginalSprite;
+				}
+			}
 		}
 	}
 

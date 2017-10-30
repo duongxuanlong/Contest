@@ -95,7 +95,7 @@ public class SpawnPointHandler : MonoBehaviour {
 		m_CurrentHyperDam = 0;
 
 		if (m_LelBreak == 0)
-			m_LelBreak = 1;
+			m_LelBreak = 4;
 		m_LelRunning = 0;
 
 //		for (int i = 0; i < m_TotalSpawnPoints; i++) {
