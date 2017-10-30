@@ -98,7 +98,7 @@ public class CircleController : MonoBehaviour {
 	{
 		//m_Type = type;
 		if (type == PlayerController.BallType.Protect) {
-			m_CurProtect += m_MaxProtect;
+			m_CurProtect = m_MaxProtect;
 		}
 
 //		if (type == PlayerController.BallType.Damage) {

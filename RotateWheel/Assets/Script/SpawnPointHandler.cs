@@ -42,6 +42,7 @@ public class SpawnPointHandler : MonoBehaviour {
 	#region Special Balls
 	public int m_LelBreak;
 	private int m_LelRunning;
+	private bool m_FirstTime;
 	#endregion
 
 	//List<GameObject> m_SpawnPoints;
@@ -115,6 +116,8 @@ public class SpawnPointHandler : MonoBehaviour {
 		EventManager.IncreaaseDiffCallback += OnDifferentLevel;
 		EventManager.CanGenerateHyperDamCallback += CanGenerateHyperDam;
 		EventManager.UpdateHyperDamCallback += UpdateHyperDam;
+
+		m_FirstTime = true;
 	}
 
 	void OnDisable()
@@ -204,9 +207,17 @@ public class SpawnPointHandler : MonoBehaviour {
 		}
 
 		//Check for should generate special balls
-		if (m_LelRunning >= m_LelBreak) {
-			EventManager.GenerateSpecialBall ();
-			m_LelRunning = 0;
+		if (m_FirstTime) {
+			if (m_LelRunning >= m_LelBreak + 2) {
+				EventManager.GenerateSpecialBall ();
+				m_LelRunning = 0;
+				m_FirstTime = false;
+			}
+		} else {
+			if (m_LelRunning >= m_LelBreak) {
+				EventManager.GenerateSpecialBall ();
+				m_LelRunning = 0;
+			}
 		}
 
 		m_CanSpawn = true;
