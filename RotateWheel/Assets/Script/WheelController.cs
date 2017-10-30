@@ -63,9 +63,10 @@ public class WheelController : MonoBehaviour {
 		if (gameObject.transform == identity) {
 			//In protection mode
 			if (m_Type == PlayerController.BallType.Damage
-			    && EventManager.IsInProtection ())
+			    && EventManager.IsInProtection ()) {
 				EventManager.ReduceProtection ();
 				return;
+			}
 
 			//Receive dam or heal
 			if (m_Type == PlayerController.BallType.Damage ||
