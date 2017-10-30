@@ -158,9 +158,15 @@ public class SpawnPointHandler : MonoBehaviour {
 			newlevel = Random.Range (0, m_TotalEasyPools + m_TotalMediumPools);
 			m_RunningMediumPools++;
 			//Debug.Log (newlevel);
+		} else if (m_RunningMediumPools < (m_MediumPools +10)) {
+			EventManager.StartHardDifficulty ();
+			newlevel = Random.Range (3, m_TotalLevels);
+			m_RunningMediumPools++;
+			//Debug.Log (newlevel);
 		} else {
 			EventManager.StartHardDifficulty ();
-			newlevel = Random.Range (0, m_TotalLevels);
+			EventManager.StartVeryHardDifficulty ();
+			newlevel = Random.Range (5, m_TotalLevels);
 		}
 
 		m_CurrentLevel = newlevel;

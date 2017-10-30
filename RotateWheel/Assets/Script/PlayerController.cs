@@ -71,8 +71,12 @@ public class PlayerController : MonoBehaviour {
 		//Damage balls
 		if (m_MaxDamage == 0)
 			m_MaxDamage = -10;
-		if (m_PercentDamage == 0)
-			m_PercentDamage = 0.1f;
+		if (m_PercentDamage == 0) {
+			if (EventManager.CheckStartVeryHard())
+				m_PercentDamage = 0.4f;
+			else
+				m_PercentDamage = 0.1f;
+		}
 		if (m_RangeDam == 0)
 			m_RangeDam = 16;
 		m_ProbDam = new float[m_RangeDam];
@@ -259,8 +263,14 @@ public class PlayerController : MonoBehaviour {
 					prob -= m_ProbDam [i];
 				}
 			}
-			if (m_CurrentAmount > 0)
-				m_CurrentAmount = 0 - m_CurrentAmount;
+			if (m_CurrentAmount > 0) {
+				if (EventManager.CheckStartVeryHard() == false) {
+					m_CurrentAmount = 0 - Mathf.Round ((m_CurrentAmount / 1.6f));
+				}
+				if (EventManager.CheckStartVeryHard()) {
+					m_CurrentAmount = 0 - Mathf.Round ((m_CurrentAmount / 1.2f));
+				}
+			}
 
 			if (m_TextAmount != null) {
 				string stramount = m_CurrentAmount.ToString ();

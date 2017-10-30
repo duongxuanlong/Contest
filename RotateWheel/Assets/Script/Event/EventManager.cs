@@ -62,6 +62,8 @@ public class EventManager{
 
 	private static bool m_StartHard = false;
 
+	private static bool m_StartVeryHard = false;
+
 
 	public static void SendInfoCallback (Transform identity, float amount, PlayerController.BallType type)
 	{
@@ -201,5 +203,15 @@ public class EventManager{
 	{
 		if (ReduceProtectionCallback != null)
 			ReduceProtectionCallback ();
+	}
+
+	public static bool CheckStartVeryHard()
+	{
+		return m_StartVeryHard;
+	}
+
+	public static void StartVeryHardDifficulty()
+	{
+		m_StartVeryHard = true;
 	}
 }
