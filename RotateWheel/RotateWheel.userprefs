@@ -6,23 +6,23 @@
       <File FileName="Assets\Script\SingleRotate.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\SampleScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Spinning.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\PlayerController.cs" Line="270" Column="45" />
+      <File FileName="Assets\Script\PlayerController.cs" Line="172" Column="33" />
       <File FileName="Assets\Script\Constant.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\CircleController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\SpawnPointController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\SpawnPointHandler.cs" Line="203" Column="28" />
+      <File FileName="Assets\Script\SpawnPointController.cs" Line="25" Column="17" />
+      <File FileName="Assets\Script\SpawnPointHandler.cs" Line="45" Column="6" />
       <File FileName="Assets\Script\WheelController.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\CanvasController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Event\EventManager.cs" Line="190" Column="28" />
+      <File FileName="Assets\Script\Event\EventManager.cs" Line="58" Column="72" />
       <File FileName="Assets\Script\Explode.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\GameController.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\EndController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\PlayerGenerator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\PlayerGenerator.cs" Line="45" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="D:\Unity\ContestGit\Contest\RotateWheel\Assets\Script\PlayerController.cs" line="145" column="1" />
+      <Breakpoint file="D:\Unity\ContestGit\Contest\RotateWheel\Assets\Script\PlayerController.cs" line="149" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

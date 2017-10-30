@@ -29,6 +29,7 @@ public class EventManager{
 	public delegate void DelSendBallType (PlayerController.BallType type);
 	public delegate bool DelIsInProtection ();
 	public delegate void DelReduceProtection ();
+	public delegate void DelGenerateSpecialBall ();
 
 	//public static DelSendHP SendHPCallback;
 	public static event DelReceiveHP ReceiveHPCallback;
@@ -54,6 +55,7 @@ public class EventManager{
 	public static event DelSendBallType SendBallTypeCallback;
 	public static event DelIsInProtection IsInProtectionCallback;
 	public static event DelReduceProtection ReduceProtectionCallback;
+	public static event DelGenerateSpecialBall GenerateSpecialBallCallback;
 
 
 	private static bool m_AllGreens = true;
@@ -213,5 +215,11 @@ public class EventManager{
 	public static void StartVeryHardDifficulty()
 	{
 		m_StartVeryHard = true;
+	}
+
+	public static void GenerateSpecialBall()
+	{
+		if (GenerateSpecialBallCallback != null)
+			GenerateSpecialBallCallback ();
 	}
 }

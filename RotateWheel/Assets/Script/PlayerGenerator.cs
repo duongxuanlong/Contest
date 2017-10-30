@@ -11,16 +11,20 @@ public class PlayerGenerator : MonoBehaviour {
 
 	public int m_Total;
 
+	public float m_EffectTime;
+
 	void OnEnable()
 	{
 		EventManager.GetAvailableCallback += GetAvailablePlayer;
 		EventManager.SendBallTypeCallback += ReceiveBallType;
+		EventManager.GenerateSpecialBallCallback += GenerateSpecialBalls;
 	}
 
 	void OnDisable()
 	{
 		EventManager.GetAvailableCallback -= GetAvailablePlayer;
 		EventManager.SendBallTypeCallback -= ReceiveBallType;
+		EventManager.GenerateSpecialBallCallback -= GenerateSpecialBalls;
 	}
 
 	void ReceiveBallType (PlayerController.BallType type)
@@ -31,6 +35,19 @@ public class PlayerGenerator : MonoBehaviour {
 		}
 	}
 
+	void GenerateSpecialBalls ()
+	{
+		GameObject obj = GetAvailablePlayer ();
+		if (obj != null) {
+			obj.transform.position = new Vector2 (0, 0);
+			PlayerController ctrl = obj.GetComponent<PlayerController> ();
+			if (ctrl != null) {
+				ctrl.GenerateSpecialBall ();
+			}
+			obj.SetActive (true);
+		}
+	}
+
 	IEnumerator DeActiveDamBalls()
 	{
 		for (int i = 0; i < m_Total; ++i) {
@@ -38,7 +55,7 @@ public class PlayerGenerator : MonoBehaviour {
 				PlayerController ctrl = m_Objects [i].GetComponent<PlayerController> ();
 				if (ctrl.GetBallType () == PlayerController.BallType.Damage) {
 					m_Objects [i].SetActive (false);
-					yield return new WaitForSeconds (2f);
+					yield return new WaitForSeconds (m_EffectTime);
 				}
 			}
 		}
@@ -48,6 +65,9 @@ public class PlayerGenerator : MonoBehaviour {
 	void Awake () {
 		if (m_Total == 0)
 			m_Total = 50;
+
+		if (m_EffectTime == 0)
+			m_EffectTime = 1f;
 
 		if (m_Objects == null)
 			m_Objects = new List<GameObject> ();

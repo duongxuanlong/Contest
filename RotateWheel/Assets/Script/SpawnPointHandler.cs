@@ -39,6 +39,11 @@ public class SpawnPointHandler : MonoBehaviour {
 	public AnimationCurve m_Curve;
 	#endregion
 
+	#region Special Balls
+	public int m_LelBreak;
+	private int m_LelRunning;
+	#endregion
+
 	//List<GameObject> m_SpawnPoints;
 	float m_RunningTime;
 	bool m_CanRun;
@@ -88,6 +93,10 @@ public class SpawnPointHandler : MonoBehaviour {
 		if (m_MaxHyperDam == 0)
 			m_MaxHyperDam = 2;
 		m_CurrentHyperDam = 0;
+
+		if (m_LelBreak == 0)
+			m_LelBreak = 1;
+		m_LelRunning = 0;
 
 //		for (int i = 0; i < m_TotalSpawnPoints; i++) {
 //			Vector2 pos = Vector2.zero;
@@ -146,6 +155,7 @@ public class SpawnPointHandler : MonoBehaviour {
 	{
 		m_CanSpawn = false;
 		int newlevel = 0;
+		m_LelRunning++;
 		if (m_RunningEasyPools < m_EasyPools) {
 			EventManager.StartGenerateAllGreen ();
 			newlevel = Random.Range (0, m_TotalEasyPools);
@@ -193,7 +203,16 @@ public class SpawnPointHandler : MonoBehaviour {
 		//}
 		}
 
+		//Check for should generate special balls
+		if (m_LelRunning >= m_LelBreak) {
+			EventManager.GenerateSpecialBall ();
+			m_LelRunning = 0;
+		}
+
 		m_CanSpawn = true;
+
+		//if (m_LevRunning >= m_LelBreak)
+			
 
 //		if (EventManager.ShouldGenerateAllGreen ())
 //			EventManager.StopGenerateAllGcreen ();

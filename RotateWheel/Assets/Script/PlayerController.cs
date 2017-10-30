@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour {
 	public float m_PercentDamage;
 	public float m_PercentDestroy;
 	public float m_PercentProtect;
+	public float m_SpecialProb;
 
 	public float m_DeltaScale;
 	public float m_OriginalScale;
@@ -87,11 +88,14 @@ public class PlayerController : MonoBehaviour {
 
 		//Destroy balls
 		if (m_PercentDestroy == 0)
-			m_PercentDestroy = 0.05f;
+			m_PercentDestroy = 0f;
 
 		//Protect balls
 		if (m_PercentProtect == 0)
-			m_PercentProtect = 0.05f;
+			m_PercentProtect = 0f;
+
+		if (m_SpecialProb == 0)
+			m_SpecialProb = 0.5f;
 
 		m_CanRun = true;
 
@@ -165,6 +169,16 @@ public class PlayerController : MonoBehaviour {
 		m_CanRun = run;
 	}
 
+	public void GenerateSpecialBall()
+	{
+		float prob = Random.value;
+		//Debug.Log ("Special balls prob: " + prob);
+		if (prob <= m_SpecialProb)
+			SetObjectType (BallType.Destroy);
+		else
+			SetObjectType(BallType.Protect);
+	}
+
 	public void GenerateObjectType()
 	{
 		count = EventManager.CheckRedBallCount ();
@@ -236,8 +250,10 @@ public class PlayerController : MonoBehaviour {
 
 		switch (type) {
 		case BallType.Damage: // damage blue ball
-			if (m_Renderer != null)
+			if (m_Renderer != null) {
+				//m_Renderer.color = Color.white; //Temporary option
 				m_Renderer.sprite = Resources.Load (Constant.DAMAGE, typeof(Sprite)) as Sprite;
+			}
 			int hp = Mathf.RoundToInt (EventManager.GetStatus ());
 			int current = hp - m_RangeDam;
 
@@ -286,8 +302,10 @@ public class PlayerController : MonoBehaviour {
 			break;
 		case BallType.Heal: // heal pink ball
 			red = false;
-			if (m_Renderer)
+			if (m_Renderer) {
+				//m_Renderer.color = Color.white; //Temporary optionv
 				m_Renderer.sprite = Resources.Load (Constant.HEAL, typeof(Sprite)) as Sprite;
+			}
 			int greenhp = Mathf.RoundToInt (EventManager.GetStatus ());
 			m_CurrentAmount = Random.Range (1, (greenhp/4));
 			if (m_TextAmount != null) {
@@ -305,7 +323,7 @@ public class PlayerController : MonoBehaviour {
 		case BallType.Destroy: //Destroy ball
 			if (m_Renderer) {
 				m_Renderer.sprite = Resources.Load (Constant.DESTROY, typeof(Sprite)) as Sprite;
-				m_Renderer.color = Color.gray;
+				//m_Renderer.color = Color.gray;
 			}
 			m_CurrentAmount = 0;
 
@@ -315,8 +333,8 @@ public class PlayerController : MonoBehaviour {
 			break;
 		case BallType.Protect: //Protect ball
 			if (m_Renderer) {
-				m_Renderer.sprite = Resources.Load (Constant.DESTROY, typeof(Sprite)) as Sprite;
-				m_Renderer.color = Color.yellow;
+				m_Renderer.sprite = Resources.Load (Constant.PROTECT, typeof(Sprite)) as Sprite;
+				//m_Renderer.color = Color.yellow;
 			}
 
 			m_CurrentAmount = 0;
