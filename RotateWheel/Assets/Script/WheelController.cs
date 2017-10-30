@@ -17,6 +17,9 @@ public class WheelController : MonoBehaviour {
 	public AudioClip green;
 	public AudioClip red;
 
+
+	SpriteRenderer m_Renderer;
+
 	AudioSource audiosource;
 
 	PlayerController.BallType m_Type;
@@ -65,6 +68,13 @@ public class WheelController : MonoBehaviour {
 			if (m_Type == PlayerController.BallType.Damage
 			    && EventManager.IsInProtection ()) {
 				EventManager.ReduceProtection ();
+				/*this.GetComponent<Animator> ().enabled = false;
+				if (left) {
+					m_Renderer.sprite = Resources.Load (Constant.PADLEFT, typeof(Sprite)) as Sprite;
+				}
+				if (right) {
+					m_Renderer.sprite = Resources.Load (Constant.PADRIGHT, typeof(Sprite)) as Sprite;
+				}*/
 				return;
 			}
 
@@ -92,6 +102,16 @@ public class WheelController : MonoBehaviour {
 
 			gameObject.transform.position = new Vector3 (x, y, objpos.z);
 			gameObject.transform.Rotate (rotation);
+		}
+	}
+
+	public void UpdateAnimation()
+	{
+		if (EventManager.IsInProtection ()) {
+			Debug.Log ("fdf");
+			this.GetComponent<Animator> ().enabled = true;
+		} else {
+			this.GetComponent<Animator> ().enabled = false;
 		}
 	}
 

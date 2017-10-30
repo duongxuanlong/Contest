@@ -152,11 +152,25 @@ public class CircleController : MonoBehaviour {
 				if (m_LeftController != null) {
 					//RotateObject (ref m_Left, position, delta);
 					m_LeftController.UpdateWheel (position, delta);
+					m_LeftController.UpdateAnimation ();
+					/*if (EventManager.IsInProtection ()) {
+						Debug.Log ("fdf");
+						m_LeftPreb.GetComponent<Animator> ().enabled = true;
+					} else {
+						m_LeftPreb.GetComponent<Animator> ().enabled = false;
+					}*/
 				}
 
 				if (m_RightController != null) {
 					//RotateObject (ref m_Right, position, delta);
 					m_RightController.UpdateWheel (position, delta);
+					m_RightController.UpdateAnimation ();
+					/*if (EventManager.IsInProtection ()) {
+						Debug.Log ("fdf");
+						m_RightPreb.GetComponent<Animator> ().enabled = true;
+					} else {
+						m_RightPreb.GetComponent<Animator> ().enabled = false;
+					}*/
 				}
 			}
 

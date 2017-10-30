@@ -11,6 +11,10 @@ public class Constant {
 
 	public const string DESTROY = "destroy";
 
+	public const string PADLEFT = "pad_L";
+
+	public const string PADRIGHT = "pad_R";
+
 	public const float HOUR_PER_SECONDS = 3600f;
 
 	public static bool RECALCULATE = true;

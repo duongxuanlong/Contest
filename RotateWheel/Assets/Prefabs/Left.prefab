@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 114125151950172802}
   - component: {fileID: 68091624578919970}
   - component: {fileID: 82463471656188332}
+  - component: {fileID: 95006216438636940}
   m_Layer: 8
   m_Name: Left
   m_TagString: Wheel
@@ -175,6 +176,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!95 &95006216438636940
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1822569627412894}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3bf0318c2e823084ab8c410e43ddb81b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114125151950172802
 MonoBehaviour:
   m_ObjectHideFlags: 1

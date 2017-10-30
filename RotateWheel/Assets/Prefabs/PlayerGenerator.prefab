@@ -53,3 +53,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Player: {fileID: 1187217852543888, guid: 5e844c6555a1b4c448e9610c15fa3051, type: 2}
   m_Total: 50
+  m_EffectTime: 0.1
