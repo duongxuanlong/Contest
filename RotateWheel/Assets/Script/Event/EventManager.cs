@@ -66,6 +66,8 @@ public class EventManager{
 
 	private static bool m_StartVeryHard = false;
 
+	private static bool m_IsNotDestroying = true;
+
 
 	public static void SendInfoCallback (Transform identity, float amount, PlayerController.BallType type)
 	{
@@ -221,5 +223,15 @@ public class EventManager{
 	{
 		if (GenerateSpecialBallCallback != null)
 			GenerateSpecialBallCallback ();
+	}
+
+	public static bool IsNotDesotroying ()
+	{
+		return m_IsNotDestroying;
+	}
+
+	public static void DontDestroy(bool status)
+	{
+		m_IsNotDestroying = status;
 	}
 }

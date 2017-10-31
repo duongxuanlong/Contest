@@ -375,7 +375,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (m_CanRun) {
+		if (m_CanRun && EventManager.IsNotDesotroying()) {
 			float speed = m_Acceleration * Time.deltaTime + m_Speed;
 			if (speed >= m_MaxSpeed)
 				speed = m_MaxSpeed;

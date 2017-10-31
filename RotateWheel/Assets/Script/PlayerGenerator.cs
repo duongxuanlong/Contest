@@ -31,6 +31,7 @@ public class PlayerGenerator : MonoBehaviour {
 	{
 		if (type == PlayerController.BallType.Destroy) {
 			EventManager.CanRun (false);
+			EventManager.DontDestroy (false);
 			StartCoroutine (DeActiveDamBalls());
 		}
 	}
@@ -60,6 +61,7 @@ public class PlayerGenerator : MonoBehaviour {
 			}
 		}
 		EventManager.CanRun (true);
+		EventManager.DontDestroy (true);
 	}
 
 	void Awake () {
