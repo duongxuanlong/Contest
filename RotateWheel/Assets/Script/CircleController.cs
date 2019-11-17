@@ -137,7 +137,21 @@ public class CircleController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (m_CanRun) {
-			float direction = Input.GetAxis ("Horizontal");
+			float direction = 0;
+			
+			#if UNITY_EDITOR || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || (!(UNITY_IOS || UNITY_ANDROID) && UNITY_WEBGL)
+				direction = Input.GetAxis ("Horizontal");
+			#elif (UNITY_IOS || UNITY_ANDROID)
+				if (Input.touchCount > 0)
+				{
+					Vector2 pos = Input.GetTouch(0).position;
+					float half_screen_width = Screen.width / 2;
+					if (pos.x > half_screen_width)
+						direction = 1;
+					else
+						direction = -1;
+				}
+			#endif
 
 			if (direction != 0)
 				EventManager.ModifyPhase ();
