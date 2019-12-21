@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Constant {
-	public const string DAMAGE = "red_ball";
+	public const string DAMAGE = "Official/red_ball";
 
-	public const string HEAL = "green_ball";
+	public const string HEAL = "Official/green_ball";
 
-	public const string PROTECT = "protection";
+	public const string PROTECT = "Official/protection";
 
 	public const string DESTROY = "destroy";
 
-	public const string PADLEFT = "pad_L";
+	public const string PADLEFT = "Official/pad_L";
 
-	public const string PADRIGHT = "pad_R";
+	public const string PADRIGHT = "Official/pad_R";
 
 	public const float HOUR_PER_SECONDS = 3600f;
 
