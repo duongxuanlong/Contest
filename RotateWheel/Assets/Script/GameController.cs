@@ -15,8 +15,10 @@ public class GameController : MonoBehaviour {
 
 	public static GameController m_Instance;
 
+	#region particle prefabs
+	public GameObject PreHitExplosion;
 
-
+	#endregion
 
 
 	public bool IsReady ()
@@ -63,6 +65,23 @@ public class GameController : MonoBehaviour {
 			DontDestroyOnLoad (gameObject);
 		} else if (m_Instance != this){
 			Destroy (gameObject);
+		}
+	}
+
+	private void Start() {
+		if (PreHitExplosion != null)
+		{
+			InitHitExplosion();
+		}
+	}
+
+	void InitHitExplosion ()
+	{
+		for (int i = 0; i < 20; ++i)
+		{
+			GameObject obj = Instantiate(PreHitExplosion);
+			obj.transform.SetParent(transform);
+			ParticleMgr.SInstance.InitParticle(obj, ParticleMgr.ParticleType.HitExplosion);
 		}
 	}
 

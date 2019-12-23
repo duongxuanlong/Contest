@@ -1859,6 +1859,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d11f245396445408605232102fa85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PreHitExplosion: {fileID: 4586469089311722659, guid: 1b9c96f5970ac75439c50d05a5568788,
+    type: 3}
 --- !u!4 &1887398726
 Transform:
   m_ObjectHideFlags: 0
@@ -1880,7 +1882,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887398724}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}

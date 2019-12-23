@@ -350,6 +350,9 @@ public class PlayerController : MonoBehaviour {
 
 		if (obj.tag == Constant.TAG_WHEEL) {
 			EventManager.SendInfoCallback (other.transform, this.m_CurrentAmount, m_Type);
+
+			if (m_Type == BallType.Heal)
+				ParticleMgr.SInstance.PlayParticle(ParticleMgr.ParticleType.HitExplosion, transform.position);
 			//Destroy (gameObject);
 			gameObject.SetActive(false);
 		}
