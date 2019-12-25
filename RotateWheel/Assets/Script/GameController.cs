@@ -16,7 +16,9 @@ public class GameController : MonoBehaviour {
 	public static GameController m_Instance;
 
 	#region particle prefabs
-	public GameObject PreHitExplosion;
+	// public GameObject PreHitExplosion;
+	// public GameObject PreHitExplosionDam;
+	public GameObject[] PreExplosion;
 
 	#endregion
 
@@ -69,19 +71,27 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void Start() {
-		if (PreHitExplosion != null)
-		{
-			InitHitExplosion();
-		}
+		
+		StartCoroutine(InitHitExplosion());
 	}
 
-	void InitHitExplosion ()
+	IEnumerator InitHitExplosion()
+	{
+		for (ParticleMgr.ParticleType temp = ParticleMgr.ParticleType.HitExplosion;
+			temp <= ParticleMgr.ParticleType.HitExplosionDam; ++temp)
+			{
+				InitHitExplosion(PreExplosion[(int)temp], temp);
+				yield return null;
+			}
+	}
+
+	void InitHitExplosion (GameObject pre, ParticleMgr.ParticleType part)
 	{
 		for (int i = 0; i < 20; ++i)
 		{
-			GameObject obj = Instantiate(PreHitExplosion);
+			GameObject obj = Instantiate(pre);
 			obj.transform.SetParent(transform);
-			ParticleMgr.SInstance.InitParticle(obj, ParticleMgr.ParticleType.HitExplosion);
+			ParticleMgr.SInstance.InitParticle(obj, part);
 		}
 	}
 

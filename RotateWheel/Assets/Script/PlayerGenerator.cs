@@ -76,6 +76,7 @@ public class PlayerGenerator : MonoBehaviour {
 
 		for (int i = 0; i < m_Total; i++) {
 			GameObject obj = Instantiate (m_Player) as GameObject;
+			obj.transform.SetParent(transform);
 			obj.SetActive (false);
 			m_Objects.Add (obj);
 		}

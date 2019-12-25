@@ -59,6 +59,7 @@
      <Compile Include="Assets\Script\CanvasController.cs" />
      <Compile Include="Assets\Script\CircleController.cs" />
      <Compile Include="Assets\Script\Constant.cs" />
+     <Compile Include="Assets\Script\DamageFlash.cs" />
      <Compile Include="Assets\Script\EndController.cs" />
      <Compile Include="Assets\Script\Event\EventManager.cs" />
      <Compile Include="Assets\Script\Explode.cs" />
