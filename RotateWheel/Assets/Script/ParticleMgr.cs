@@ -109,6 +109,7 @@ public class ParticleMgr
             {
                 ParticleObject pa = obj.GetComponent<ParticleObject>();
                 pa.InitParticleObject();
+                mHitExplosionDam.Add(pa);
                 break;
             }
         }
