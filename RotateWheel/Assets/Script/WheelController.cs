@@ -10,6 +10,12 @@ public class WheelController : MonoBehaviour {
 	public float m_HP = 50f;
 	#endregion
 
+	#region reference game object
+	public GameObject Ref_Protection;
+	#endregion
+
+	AnimatorCtrl mProtectionCtrl;
+	const string STR_PROTECTION = "protect";
 	private Text m_HPText;
 	public float m_CurrentHP;
 	bool m_CanRun;
@@ -33,6 +39,11 @@ public class WheelController : MonoBehaviour {
 		if (m_Renderer != null)
 			m_OriginalSprite = m_Renderer.sprite;
 		m_CanRun = true;
+
+		GameObject obj = Instantiate(Ref_Protection);
+		obj.transform.SetParent(transform);
+		mProtectionCtrl = obj.GetComponent<AnimatorCtrl>();
+		mProtectionCtrl.SetActive(false);
 	}
 
 	void Start ()
@@ -59,6 +70,12 @@ public class WheelController : MonoBehaviour {
 	void ReceiveBallType (PlayerController.BallType type)
 	{
 		m_Type = type;
+
+		if (m_Type == PlayerController.BallType.Protect)
+		{
+			mProtectionCtrl.SetActive(true);
+			mProtectionCtrl.PlayAnim(STR_PROTECTION, transform.position);
+		}
 	}
 
 	void CanRun (bool run)

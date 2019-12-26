@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour {
 	BallType m_Type; //type of ball
 	float[] m_ProbBall; //prob for balls
 
+	float mProtectionTime;
 
 	void Awake()
 	{
@@ -351,6 +352,9 @@ public class PlayerController : MonoBehaviour {
 		if (obj.tag == Constant.TAG_WHEEL) {
 			EventManager.SendInfoCallback (other.transform, this.m_CurrentAmount, m_Type);
 
+			if (m_Type == BallType.Protect)
+				StartCoroutine(WaitForProtectionRun());
+				
 			ParticleMgr.SInstance.PlayParticle(m_Type, transform.position);
 			//Destroy (gameObject);
 			gameObject.SetActive(false);
@@ -373,6 +377,11 @@ public class PlayerController : MonoBehaviour {
 			m_Direction.Normalize ();
 
 		}
+	}
+
+	IEnumerator WaitForProtectionRun ()
+	{
+		yield return new WaitForSeconds(mProtectionTime);
 	}
 	
 	// Update is called once per frame
