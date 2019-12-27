@@ -7,15 +7,14 @@ public class AnimatorCtrl : MonoBehaviour
     #region params
     Animator mAnimCtrl;
     #endregion
-    // Start is called before the first frame update
-    void Awake()
+
+    // Update is called once per frame
+    #region public methods
+    public void InitAnimCtrl ()
     {
         mAnimCtrl = GetComponent<Animator>();
         mAnimCtrl.keepAnimatorControllerStateOnDisable = true;
     }
-
-    // Update is called once per frame
-    #region public methods
     public void PlayAnim (string name, Vector3 pos)
     {
         this.mAnimCtrl.Play(name, -1, 0);
@@ -25,6 +24,7 @@ public class AnimatorCtrl : MonoBehaviour
     public void SetActive (bool isactive)
     {
         gameObject.SetActive(isactive);
+        // this.mAnimCtrl.enabled = isactive;
     }
     #endregion
 }

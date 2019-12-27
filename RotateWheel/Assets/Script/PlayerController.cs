@@ -178,6 +178,8 @@ public class PlayerController : MonoBehaviour {
 			SetObjectType (BallType.Destroy);
 		else
 			SetObjectType(BallType.Protect);
+
+		// SetObjectType(BallType.Protect);
 	}
 
 	public void GenerateObjectType()

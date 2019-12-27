@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 05cf0a339ad761b479cd05d0de2d4364
+guid: 1c48ee96f92f6254297d51ed1c283ea7
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -11,7 +11,8 @@ TrueTypeFontImporter:
   fontName: Alien Encounters
   fontNames:
   - Alien Encounters
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 05cf0a339ad761b479cd05d0de2d4364, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

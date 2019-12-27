@@ -98,7 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HP: 20
-  Ref_Protection: {fileID: 4689499482388913431}
+  Ref_Protection: {fileID: 0}
+  Ref_AnimCtrl: {fileID: 4357365720692587946}
   m_CurrentHP: 0
   green: {fileID: 8300000, guid: 8ee9fb662f7892e45a50c2fbef770a3b, type: 3}
   red: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
@@ -313,7 +314,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: a4d3e2bf1ec4bb04ebc1bf39b99d0e27, type: 3}
+    m_Font: {fileID: 12800000, guid: e615a0863852adf4e9fd6acdd5caac82, type: 3}
     m_FontSize: 5
     m_FontStyle: 0
     m_BestFit: 0
@@ -438,15 +439,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22d089d271f1810408fe86f57988951f, type: 3}
---- !u!1 &4689499482388913431 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 601778723419501145, guid: 22d089d271f1810408fe86f57988951f,
-    type: 3}
-  m_PrefabInstance: {fileID: 5282019093768433486}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5414009446341089830 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 175618984838755688, guid: 22d089d271f1810408fe86f57988951f,
     type: 3}
   m_PrefabInstance: {fileID: 5282019093768433486}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4357365720692587946 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8445930901388235492, guid: 22d089d271f1810408fe86f57988951f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5282019093768433486}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f10f36be709ed064e9a45e871944f4b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -12,6 +12,7 @@ public class WheelController : MonoBehaviour {
 
 	#region reference game object
 	public GameObject Ref_Protection;
+	public AnimatorCtrl Ref_AnimCtrl;
 	#endregion
 
 	AnimatorCtrl mProtectionCtrl;
@@ -40,10 +41,13 @@ public class WheelController : MonoBehaviour {
 			m_OriginalSprite = m_Renderer.sprite;
 		m_CanRun = true;
 
-		GameObject obj = Instantiate(Ref_Protection);
-		obj.transform.SetParent(transform);
-		mProtectionCtrl = obj.GetComponent<AnimatorCtrl>();
-		mProtectionCtrl.SetActive(false);
+		// GameObject obj = Instantiate(Ref_Protection);
+		// obj.transform.SetParent(transform);
+		// mProtectionCtrl = obj.GetComponent<AnimatorCtrl>();
+		// mProtectionCtrl.SetActive(false);
+
+		Ref_AnimCtrl.InitAnimCtrl();
+		Ref_AnimCtrl.SetActive(false);
 	}
 
 	void Start ()
@@ -73,8 +77,10 @@ public class WheelController : MonoBehaviour {
 
 		if (m_Type == PlayerController.BallType.Protect)
 		{
-			mProtectionCtrl.SetActive(true);
-			mProtectionCtrl.PlayAnim(STR_PROTECTION, transform.position);
+			// mProtectionCtrl.SetActive(true);
+			// mProtectionCtrl.PlayAnim(STR_PROTECTION, transform.position);
+			Ref_AnimCtrl.SetActive(true);
+			Ref_AnimCtrl.PlayAnim(STR_PROTECTION, transform.position);
 		}
 	}
 
