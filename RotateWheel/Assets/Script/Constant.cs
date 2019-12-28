@@ -36,6 +36,10 @@ public class Constant {
 
 	public const float CAMERA_HALF_HEIGHT = 6;
 	public static float CAMERA_HALF_WIDTH = 0;
+	public static float CAMERA_UP_BOUND = 0;
+	public static float CAMERA_DOWN_BOUND = 0;
+	public static float CAMERA_LEFT_BOUND = 0;
+	public static float CAMERA_RIGHT_BOUND = 0;
 
 	//Game tutorial phase
 	public const int TUTORIAL_PHASE_0 = 0;

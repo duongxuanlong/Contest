@@ -14,11 +14,6 @@ public class ParticleMgr
     }
     #endregion
 
-    #region delegate - events
-    public delegate void BroadCastCacllback ();
-    public static event BroadCastCacllback EvtDamageFlash;
-    #endregion
-
     #region  private variables
     static ParticleMgr mInstance;
     List<ParticleObject> mHitExplosion;

@@ -85,7 +85,7 @@ public class PlayerGenerator : MonoBehaviour {
 	private GameObject GetAvailablePlayer ()
 	{
 		for (int i = 0; i < m_Total; i++)
-			if (!m_Objects [i].activeInHierarchy)
+			if (!m_Objects [i].activeSelf)
 				return m_Objects [i];
 
 		if (m_IsGrowth) {

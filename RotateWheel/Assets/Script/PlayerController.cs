@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour {
 	BallType m_Type; //type of ball
 	float[] m_ProbBall; //prob for balls
 
-	float mProtectionTime;
+	float mProtectionTime = 0.5f;
 
 	void Awake()
 	{
@@ -117,6 +117,7 @@ public class PlayerController : MonoBehaviour {
 		m_Renderer = GetComponent<SpriteRenderer> ();
 		m_TextAmount = GetComponentInChildren<Text> ();
 
+		// mVisible = true;
 		//Set object type
 		GenerateObjectType ();
 	}
@@ -142,12 +143,17 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void OnBecameInvisible ()
-	{
-		//Destroy (gameObject);
-		gameObject.SetActive(false);
-		//Debug.Log ("Pos: " + gameObject.transform.position);
-	}
+	// void OnBecameInvisible ()
+	// {
+	// 	//Destroy (gameObject);
+	// 	// gameObject.SetActive(false);
+	// 	//Debug.Log ("Pos: " + gameObject.transform.position);
+	// 	mVisible = false;
+	// }
+
+	// private void OnBecameVisible() {
+	// 	mVisible = true;	
+	// }
 
 	void OnEnable()
 	{
@@ -168,6 +174,23 @@ public class PlayerController : MonoBehaviour {
 	void CanRun (bool run)
 	{
 		m_CanRun = run;
+	}
+
+	bool CheckIsOutOfCamera ()
+	{
+		Vector3 pos = transform.position;
+
+		bool result = false;
+		if (pos.y >= Constant.CAMERA_UP_BOUND || 
+			pos.y <= Constant.CAMERA_DOWN_BOUND ||
+			pos.x >= Constant.CAMERA_RIGHT_BOUND ||
+			pos.x <= Constant.CAMERA_LEFT_BOUND)
+			{
+				result = true;
+				gameObject.SetActive(false);
+			}
+
+		return result;
 	}
 
 	public void GenerateSpecialBall()
@@ -388,6 +411,11 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// if (!mVisible)
+		// 	gameObject.SetActive(false);
+		if (this.CheckIsOutOfCamera())
+			return;
+			
 		if (m_CanRun && EventManager.IsNotDesotroying()) {
 			float speed = m_Acceleration * Time.deltaTime + m_Speed;
 			if (speed >= m_MaxSpeed)

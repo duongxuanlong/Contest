@@ -9,7 +9,6 @@ public class DamageFlash : MonoBehaviour
     Image mFlash;
     // Color mFlashColor;
     bool mActive; 
-    float mInitialAlpha;
     float mTargetAlpha;
     float mPeriod;
     float mRunningTime;
@@ -53,7 +52,6 @@ public class DamageFlash : MonoBehaviour
     void SetupInitialParams ()
     {
         mActive = false;
-        mInitialAlpha = 0.8f;
         mTargetAlpha = 0.2f;
         mPeriod = 0.2f;
         mTotalTimes = 3;
