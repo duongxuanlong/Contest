@@ -140,6 +140,10 @@ public class GameController : MonoBehaviour {
 		f.Close ();
 	}
 
+	private void OnApplicationPause(bool pauseStatus) {
+		EventManager.CanRun(!pauseStatus);
+	}
+
 }
 
 [Serializable]
