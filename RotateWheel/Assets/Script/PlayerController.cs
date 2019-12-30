@@ -197,12 +197,12 @@ public class PlayerController : MonoBehaviour {
 	{
 		float prob = Random.value;
 		//Debug.Log ("Special balls prob: " + prob);
-		// if (prob <= m_SpecialProb)
-		// 	SetObjectType (BallType.Destroy);
-		// else
-		// 	SetObjectType(BallType.Protect);
+		if (prob <= m_SpecialProb)
+			SetObjectType (BallType.Destroy);
+		else
+			SetObjectType(BallType.Protect);
 
-		SetObjectType(BallType.Destroy);
+		// SetObjectType(BallType.Destroy);
 	}
 
 	public void GenerateObjectType()
