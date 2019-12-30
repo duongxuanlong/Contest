@@ -13,6 +13,11 @@ public class PlayerGenerator : MonoBehaviour {
 
 	public float m_EffectTime;
 
+	#region reference for Destruction Effect
+	public AnimatorCtrl mDestructionEffect;
+	const string DESTRUCTION_ANIM = "destruction";
+	#endregion
+
 	void OnEnable()
 	{
 		EventManager.GetAvailableCallback += GetAvailablePlayer;
@@ -32,7 +37,8 @@ public class PlayerGenerator : MonoBehaviour {
 		if (type == PlayerController.BallType.Destroy) {
 			EventManager.CanRun (false);
 			EventManager.DontDestroy (false);
-			StartCoroutine (DeActiveDamBalls());
+			// StartCoroutine (DeActiveDamBalls());
+			StartCoroutine(StartDestruction());
 		}
 	}
 
@@ -49,6 +55,19 @@ public class PlayerGenerator : MonoBehaviour {
 		}
 	}
 
+	IEnumerator StartDestruction()
+	{
+		if (mDestructionEffect != null)
+		{
+			mDestructionEffect.SetActive(true);
+			mDestructionEffect.PlayAnim(DESTRUCTION_ANIM, Vector3.zero);
+		}
+		
+		yield return new WaitForSeconds(0.7f);
+
+		yield return StartCoroutine(DeActiveDamBalls());
+	}
+
 	IEnumerator DeActiveDamBalls()
 	{
 		for (int i = 0; i < m_Total; ++i) {
@@ -56,6 +75,7 @@ public class PlayerGenerator : MonoBehaviour {
 				PlayerController ctrl = m_Objects [i].GetComponent<PlayerController> ();
 				if (ctrl.GetBallType () == PlayerController.BallType.Damage) {
 					m_Objects [i].SetActive (false);
+					ParticleMgr.SInstance.PlayParticle(PlayerController.BallType.Damage, m_Objects[i].transform.position);
 					yield return new WaitForSeconds (m_EffectTime);
 				}
 			}
@@ -79,6 +99,12 @@ public class PlayerGenerator : MonoBehaviour {
 			obj.transform.SetParent(transform);
 			obj.SetActive (false);
 			m_Objects.Add (obj);
+		}
+
+		if (mDestructionEffect != null)
+		{
+			mDestructionEffect.InitAnimCtrl();
+			mDestructionEffect.SetActive(false);
 		}
 	}
 	

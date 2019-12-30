@@ -197,12 +197,12 @@ public class PlayerController : MonoBehaviour {
 	{
 		float prob = Random.value;
 		//Debug.Log ("Special balls prob: " + prob);
-		if (prob <= m_SpecialProb)
-			SetObjectType (BallType.Destroy);
-		else
-			SetObjectType(BallType.Protect);
+		// if (prob <= m_SpecialProb)
+		// 	SetObjectType (BallType.Destroy);
+		// else
+		// 	SetObjectType(BallType.Protect);
 
-		// SetObjectType(BallType.Protect);
+		SetObjectType(BallType.Destroy);
 	}
 
 	public void GenerateObjectType()
@@ -380,7 +380,7 @@ public class PlayerController : MonoBehaviour {
 			if (m_Type == BallType.Protect)
 				StartCoroutine(WaitForProtectionRun());
 				
-			ParticleMgr.SInstance.PlayParticle(m_Type, transform.position);
+			ParticleMgr.SInstance.PlayParticle(m_Type, transform.position, (m_Type == BallType.Damage) ? true : false);
 			//Destroy (gameObject);
 			gameObject.SetActive(false);
 		}

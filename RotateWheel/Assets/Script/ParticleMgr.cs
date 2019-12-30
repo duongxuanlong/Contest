@@ -110,7 +110,7 @@ public class ParticleMgr
         }
     }
 
-    public void PlayParticle(PlayerController.BallType ball, Vector3 pos)
+    public void PlayParticle(PlayerController.BallType ball, Vector3 pos, bool playFlash = false)
     {
         switch (ball)
         {
@@ -124,7 +124,8 @@ public class ParticleMgr
             {
                 PlayParticle(ParticleType.HitExplosionDam, pos);
 
-                this.mDamageFlash.PlayDamageFlash();
+                if (playFlash)
+                    this.mDamageFlash.PlayDamageFlash();
                 break;
             }
         }
