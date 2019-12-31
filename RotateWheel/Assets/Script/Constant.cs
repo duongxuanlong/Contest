@@ -48,6 +48,7 @@ public class Constant {
 
 	//save game
 	public const string SAVE_GAME = "/GameInfo.dat";
+	public const string SCENE_LOADING = "Loading";
 
 	public const string SCENE_MAIN = "Main";
 
