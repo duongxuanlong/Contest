@@ -11,6 +11,8 @@ public class CanvasController : MonoBehaviour {
 	//This file is unused
 	public Text m_Score;
 	public Text m_Best;
+	public GameObject mPress;
+	public GameObject mTouch;
 	public GameObject m_Tutorial;
 	//public Text m_Tutorial;
 
@@ -131,8 +133,17 @@ public class CanvasController : MonoBehaviour {
 
 		if (m_Tutorial != null)
 		if (GameController.m_Instance.GetTutorialPhase () == Constant.TUTORIAL_PHASE_0)
+		{
 			m_Tutorial.SetActive (true);
+			#if UNITY_EDITOR || UNITY_EDITOR_WIN || UNITY_STANDALONE || UNITY_WEBGL
+				mPress.SetActive(true);
+			#elif UNITY_IOS || UNITY_ANDROID
+				mTouch.SetActive(true);
+			#endif
+		}
 		else
+		{
 			m_Tutorial.SetActive (false);
+		}
 	}
 }
