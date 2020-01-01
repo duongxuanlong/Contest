@@ -14,7 +14,8 @@ public class PlayerGenerator : MonoBehaviour {
 	public float m_EffectTime;
 
 	#region reference for Destruction Effect
-	public AnimatorCtrl mDestructionEffect;
+	// public AnimatorCtrl mDestructionEffect;
+	public ParticleObject mDamExplosion;
 	const string DESTRUCTION_ANIM = "destruction";
 	#endregion
 
@@ -57,10 +58,15 @@ public class PlayerGenerator : MonoBehaviour {
 
 	IEnumerator StartDestruction()
 	{
-		if (mDestructionEffect != null)
+		// if (mDestructionEffect != null)
+		// {
+		// 	mDestructionEffect.SetActive(true);
+		// 	mDestructionEffect.PlayAnim(DESTRUCTION_ANIM, Vector3.zero);
+		// }
+
+		if (mDamExplosion != null)
 		{
-			mDestructionEffect.SetActive(true);
-			mDestructionEffect.PlayAnim(DESTRUCTION_ANIM, Vector3.zero);
+			mDamExplosion.PlayParticle(Vector3.zero);
 		}
 		
 		yield return new WaitForSeconds(0.7f);
@@ -101,10 +107,15 @@ public class PlayerGenerator : MonoBehaviour {
 			m_Objects.Add (obj);
 		}
 
-		if (mDestructionEffect != null)
+		// if (mDestructionEffect != null)
+		// {
+		// 	mDestructionEffect.InitAnimCtrl();
+		// 	mDestructionEffect.SetActive(false);
+		// }
+
+		if (mDamExplosion != null)
 		{
-			mDestructionEffect.InitAnimCtrl();
-			mDestructionEffect.SetActive(false);
+			mDamExplosion.InitParticleObject();
 		}
 	}
 	
