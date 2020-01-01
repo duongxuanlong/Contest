@@ -24,6 +24,7 @@ public class EndController : MonoBehaviour {
 
 	public void Replay()
 	{
-		SceneManager.LoadScene (Constant.SCENE_MAIN);	
+		// SceneManager.LoadScene (Constant.SCENE_MAIN);	
+		SceneManager.LoadScene(Constant.SCENE_LOADING);
 	}
 }

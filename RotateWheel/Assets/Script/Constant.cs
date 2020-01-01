@@ -10,7 +10,9 @@ public class Constant {
 
 	public const string HEAL = "new/green_ball";
 
-	public const string PROTECT = "Official/protection";
+	public const string PROTECT = "new/shield_ball";
+
+	// public const string PROTECT = "Official/protection";
 
 	public const string DESTROY = "Official/destroy";
 
@@ -32,7 +34,7 @@ public class Constant {
 
 	public static Color RED = new Color (0.933f,0.106f,0.141f);
 
-	public static Color GREEN = new Color (0.137f,0.694f,0.302f);
+	public static Color GREEN = new Color (0.811f, 1f, 0f);
 
 	public const float CAMERA_HALF_HEIGHT = 6;
 	public static float CAMERA_HALF_WIDTH = 0;

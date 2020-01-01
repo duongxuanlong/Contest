@@ -10,7 +10,7 @@ public class LoadingScene : MonoBehaviour
     // AsyncOperation mLoadMain;
 
     float mLoadingTime;
-    const float LIMIT_LOADING_TIME = 2f;
+    const float LIMIT_LOADING_TIME = 1f;
 
     #endregion
 
