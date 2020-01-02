@@ -92,6 +92,8 @@ public class EventManager{
 		if (EndGameCallback != null)
 			EndGameCallback ();	
 		CanRun (false);
+
+		// check watch ads enough
 		SceneManager.LoadScene (Constant.SCENE_END);
 	}
 

@@ -18,8 +18,6 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
     #endregion
 
     #region Incentivize ads params
-    // [SerializeField]
-    // IncentAds mIncentAds;
     const string INCENTIVIZE_PLACEMENT_ID = "rewardedVideo";
     #endregion
 
@@ -28,15 +26,13 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
     {
         if (!mIsInit)
         {
+            #if UNITY_IOS || UNITY_ANDROID
             Advertisement.Initialize(GameID, IsTestMode);
             Advertisement.AddListener(this);
+            #endif
+
             DontDestroyOnLoad(gameObject);
             mIsInit = true;
-
-            // if (mIncentAds != null)
-            // {
-            //     mIncentAds.InitIncentAds();
-            // }
         }
     }
 
