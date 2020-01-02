@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: hyperfun
-  productName: RotateWheel
+  productName: MineGrab
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -160,7 +160,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.hyperfun.rotatewheel
+    Android: com.hyperfun.minegrab
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
@@ -707,10 +707,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 0c32b806-55fd-42ff-b35f-8ddea3586728
+  cloudProjectId: 44f324ac-48e6-4d5b-bf5e-7f7d1e98bceb
   framebufferDepthMemorylessMode: 0
-  projectName: RotateWheel
-  organizationId: tinnguyengl
+  projectName: MineGrab
+  organizationId: hyperfun8888
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

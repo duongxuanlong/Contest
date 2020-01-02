@@ -43,6 +43,9 @@ public class Constant {
 	public static float CAMERA_LEFT_BOUND = 0;
 	public static float CAMERA_RIGHT_BOUND = 0;
 
+	public static int WATCH_ADS_COUNT = 0;
+	public const int WATCH_ADS_LIMIT = 2;
+
 	//Game tutorial phase
 	public const int TUTORIAL_PHASE_0 = 0;
 	public const int TUTORIAL_PHASE_1 = 1;

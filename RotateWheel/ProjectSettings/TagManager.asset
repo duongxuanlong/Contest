@@ -20,7 +20,7 @@ TagManager:
   - Obstacle
   - Player
   - Particle
-  - 
+  - MyUI
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Particle
     uniqueID: 1569269595
+    locked: 0
+  - name: MyUI
+    uniqueID: 1214221801
     locked: 0

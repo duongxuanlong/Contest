@@ -55,6 +55,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\AdsManager\AdsManager.cs" />
+     <Compile Include="Assets\Script\AdsManager\AdsSceneCtrl.cs" />
+     <Compile Include="Assets\Script\AdsManager\IncentAds.cs" />
      <Compile Include="Assets\Script\Ball\PlayerController.cs" />
      <Compile Include="Assets\Script\Ball\PlayerGenerator.cs" />
      <Compile Include="Assets\Script\CameraController.cs" />
@@ -75,6 +78,7 @@
      <Compile Include="Assets\Script\WheelController\CircleController.cs" />
      <Compile Include="Assets\Script\WheelController\WheelController.cs" />
      <Compile Include="Assets\Spinning.cs" />
+     <None Include="Assets\UnityAds\link.xml" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/Long/prj/RotateWheel/RotateWheel/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
@@ -269,6 +273,12 @@
  </Reference>
  <Reference Include="nunit.framework">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.14f1/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Advertisements.Editor">
+ <HintPath>D:/Long/prj/RotateWheel/RotateWheel/Assets/UnityAds/UnityEngine.Advertisements.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Monetization.Editor">
+ <HintPath>D:/Long/prj/RotateWheel/RotateWheel/Assets/UnityAds/UnityEngine.Monetization.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Editor">
  <HintPath>D:/Long/prj/RotateWheel/RotateWheel/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
