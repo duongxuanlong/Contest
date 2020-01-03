@@ -102,10 +102,16 @@ public class AdsSceneCtrl : MonoBehaviour
         if (mAdsManager.GetAdsState() > AdsManager.AdsState.None)
         {
             if (mAdsManager.GetAdsState() == AdsManager.AdsState.Finish_Complete)
+            {
+                mReviveObject.SetActive(false);
                 SceneManager.LoadScene(Constant.SCENE_LOADING);
+            }
             else if ((mAdsManager.GetAdsState() == AdsManager.AdsState.Finish_Error ||
                       mAdsManager.GetAdsState() == AdsManager.AdsState.Error))
-                    SceneManager.LoadScene(Constant.SCENE_END);
+                      {
+                          mReviveObject.SetActive(false);
+                          SceneManager.LoadScene(Constant.SCENE_END);
+                      }
         }
     }
 
