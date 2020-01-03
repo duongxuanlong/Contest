@@ -57,6 +57,8 @@ public class EventManager{
 	public static event DelReduceProtection ReduceProtectionCallback;
 	public static event DelGenerateSpecialBall GenerateSpecialBallCallback;
 
+	public delegate void DelEnableIncentAds (bool isactive);
+	public static event DelEnableIncentAds EnableIncentAds;
 
 	private static bool m_AllGreens = true;
 
@@ -87,14 +89,31 @@ public class EventManager{
 			ReducePartCallback ();
 	}
 
+	private static bool CanPlayIncentAds ()
+	{
+		if (Constant.WATCH_ADS_COUNT < Constant.WATCH_ADS_LIMIT)
+		{
+			Constant.WATCH_ADS_COUNT++;
+			return true;
+		}
+		return false;
+	}
+
 	public static void TriggerEndGame ()
 	{
 		if (EndGameCallback != null)
 			EndGameCallback ();	
 		CanRun (false);
 
-		// check watch ads enough
-		SceneManager.LoadScene (Constant.SCENE_END);
+		if (CanPlayIncentAds())
+		{
+			EnableIncentAds(true);
+		}
+		else
+		{
+			SceneManager.LoadScene (Constant.SCENE_END);
+		}
+		
 	}
 
 	public static void IncreaseDiff()

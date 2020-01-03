@@ -41,7 +41,8 @@ public class CanvasController : MonoBehaviour {
 
 		if (m_Score != null) {
 			m_Score.color = Color.white;
-			m_Score.text = "" + m_CurrentPoints;
+			// m_Score.text = "" + m_CurrentPoints;
+			m_Score.text = "" + GameController.m_Instance.GetScore();
 		}
 
 		m_Init = false;

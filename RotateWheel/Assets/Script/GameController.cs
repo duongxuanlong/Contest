@@ -113,6 +113,7 @@ public class GameController : MonoBehaviour {
 			m_TutorialPhase = info.TutorialPhase;
 			//m_TutorialPhase = Constant.TUTORIAL_PHASE_0;
 			m_BestScore = info.BestScore;
+			m_Score = info.Score;
 		} else {
 			m_TutorialPhase = Constant.TUTORIAL_PHASE_0;
 			m_BestScore = 0f;
@@ -136,6 +137,10 @@ public class GameController : MonoBehaviour {
 		GameInfo info = new GameInfo ();
 		info.TutorialPhase = m_TutorialPhase;
 		info.BestScore = m_BestScore;
+		if (Constant.WATCH_ADS_COUNT > 0)
+			info.Score = m_Score;
+		else 
+			info.Score = 0;
 		bif.Serialize (f, info);
 		f.Close ();
 	}
@@ -151,4 +156,5 @@ class GameInfo
 {
 	public int TutorialPhase;
 	public float BestScore;
+	public float Score;
 }

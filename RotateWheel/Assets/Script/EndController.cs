@@ -22,6 +22,12 @@ public class EndController : MonoBehaviour {
 		}
 	}
 
+	void Start ()
+	{
+		// reset watch ads count
+		Constant.WATCH_ADS_COUNT = 0;
+	}
+
 	public void Replay()
 	{
 		// SceneManager.LoadScene (Constant.SCENE_MAIN);	

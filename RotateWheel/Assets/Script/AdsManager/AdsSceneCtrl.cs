@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Advertisements;
 
 public class AdsSceneCtrl : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class AdsSceneCtrl : MonoBehaviour
     float mRunningTime;
     int mIndex = 5;
     bool mIsCountDown = false;
-    bool mdone = false;
+    // bool mIsWatchAds = false;
     Color mPlayColor;
     Color mUnPlayColor;
     #endregion
@@ -52,6 +53,8 @@ public class AdsSceneCtrl : MonoBehaviour
             mPlayColor = new Color(1, 1, 1, 1);
         if (mUnPlayColor == Color.clear)
             mUnPlayColor = new Color(0.177f, 0.177f, 0.177f, 1);
+        
+        // mIsWatchAds = false;
 
         ResetCountDown();
     }
@@ -84,10 +87,26 @@ public class AdsSceneCtrl : MonoBehaviour
         if (mRunningTime >= COUNT_DOWN_TIME)
         {
             mIsCountDown = false;
-            mReviveObject.SetActive(false);
-            SceneManager.LoadScene(Constant.SCENE_END);
+
+            if (mAdsManager.GetAdsState() == AdsManager.AdsState.None)
+            {
+                mReviveObject.SetActive(false);
+                SceneManager.LoadScene(Constant.SCENE_END);
+            }
         }
             
+    }
+
+    void CheckAdsState ()
+    {
+        if (mAdsManager.GetAdsState() > AdsManager.AdsState.None)
+        {
+            if (mAdsManager.GetAdsState() == AdsManager.AdsState.Finish_Complete)
+                SceneManager.LoadScene(Constant.SCENE_LOADING);
+            else if ((mAdsManager.GetAdsState() == AdsManager.AdsState.Finish_Error ||
+                      mAdsManager.GetAdsState() == AdsManager.AdsState.Error))
+                    SceneManager.LoadScene(Constant.SCENE_END);
+        }
     }
 
     private void Update() {
@@ -99,24 +118,41 @@ public class AdsSceneCtrl : MonoBehaviour
 
             mRunningTime+= Time.deltaTime;
         }
+
+        CheckAdsState();
     }
 
     void EnableIncentAds (bool isActive)
     {
-        mIsCountDown = isActive;
+        // if (!mIsWatchAds)
+        // if (mAdsManager.GetAdsState() == AdsManager.AdsState.None)
+        if (!mIsCountDown)
+        {
+            mIsCountDown = isActive;
 
-        if (mIsCountDown)
-            ResetCountDown();
+            if (mIsCountDown)
+            {
+                // mIsWatchAds = true;
+                // mAdsManager.SetWatchAds();
+                mReviveObject.SetActive(true);
+                mBtnImage.color = mPlayColor;
+                ResetCountDown();
+            }
+        }
     }
 
     private void OnEnable() {
-        
+        EventManager.EnableIncentAds += EnableIncentAds;
     }
 
     private void OnDisable() {
-        
+        EventManager.EnableIncentAds -= EnableIncentAds;
     }
 
-    // public void EnableAdsButton ()
+    public void ShowRewardVideo ()
+    {
+        mAdsManager.SetWatchAds();
+        Advertisement.Show(AdsManager.INCENTIVIZE_PLACEMENT_ID);
+    }
 
 }
