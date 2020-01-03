@@ -20,6 +20,7 @@ public class CanvasController : MonoBehaviour {
 	//Button m_Reset;
 	private float m_CurrentPoints;
 	bool m_Init;
+	bool mFirstInit;
 	PlayerController.BallType m_Type;
 
 	void Awake()
@@ -41,8 +42,8 @@ public class CanvasController : MonoBehaviour {
 
 		if (m_Score != null) {
 			m_Score.color = Color.white;
-			// m_Score.text = "" + m_CurrentPoints;
-			m_Score.text = "" + GameController.m_Instance.GetScore();
+			m_Score.text = "" + m_CurrentPoints;
+			// m_Score.text = "" + GameController.m_Instance.GetScore();
 		}
 
 		m_Init = false;
@@ -63,6 +64,10 @@ public class CanvasController : MonoBehaviour {
 
 //		if (m_EndGame != null)
 //			m_EndGame.enabled = false;
+	}
+
+	private void Start() {
+		mFirstInit = false;
 	}
 
 	void OnEnable()
@@ -124,6 +129,16 @@ public class CanvasController : MonoBehaviour {
 		if (GameController.m_Instance == null ||
 		    !GameController.m_Instance.IsReady ())
 			return;
+
+		if (!mFirstInit)
+		{
+			mFirstInit = true;
+			float temp = 0;
+			temp = GameController.m_Instance.GetScore();
+			m_Score.text = "" + temp;
+			temp = GameController.m_Instance.GetBestScore();
+			m_Best.text = "" + temp;
+		}
 
 		if (!m_Init) {
 			m_Init = true;
