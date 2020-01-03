@@ -56,6 +56,11 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
         this.mAdsState = AdsState.Watch;
     }
 
+    public void ResetAds ()
+    {
+        this.mAdsState = AdsState.None;
+    }
+
     public AdsState GetAdsState ()
     {
         return this.mAdsState;
@@ -72,7 +77,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
 
     void IUnityAdsListener.OnUnityAdsDidStart(string placementId)
     {
-        // Debug.Log("Unity ads start: " + placementId);
+        Debug.Log("Unity ads start: " + placementId);
         
         if (placementId == INCENTIVIZE_PLACEMENT_ID)
             this.mAdsState = AdsState.Start;
@@ -80,13 +85,13 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
 
     void IUnityAdsListener.OnUnityAdsDidError(string message)
     {
-        // Debug.Log("Uniy ads error: " + message);
+        Debug.Log("Uniy ads error: " + message);
         this.mAdsState = AdsState.Error;
     }
 
     void IUnityAdsListener.OnUnityAdsDidFinish(string placementId, ShowResult showResult)
     {
-        //  Debug.Log("Ads finished with placementID: " + placementId + " and result: " + showResult);
+         Debug.Log("Ads finished with placementID: " + placementId + " and result: " + showResult);
         if (placementId == INCENTIVIZE_PLACEMENT_ID)
         {
             // 0: fail 1: finish 2: skip
