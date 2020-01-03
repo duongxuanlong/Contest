@@ -39,9 +39,9 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
     {
         if (!mIsInit)
         {
-            // #if UNITY_IOS || UNITY_ANDROID
+            #if UNITY_IOS || UNITY_ANDROID
             Advertisement.Initialize(GameID, IsTestMode);
-            // #endif
+            #endif
 
             Advertisement.AddListener(this);
             DontDestroyOnLoad(gameObject);
