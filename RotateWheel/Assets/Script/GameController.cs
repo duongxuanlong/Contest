@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour {
 	private float m_Score;
 
 	private bool m_IsReady = false;
+	private bool mIsInitExplosion = false;
 
 	public static GameController m_Instance;
 
@@ -71,8 +72,12 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void Start() {
-		
-		StartCoroutine(InitHitExplosion());
+		if (!mIsInitExplosion)
+		{
+			// Debug.Log("Game Controller Start");
+			mIsInitExplosion = true;
+			StartCoroutine(InitHitExplosion());
+		}
 	}
 
 	IEnumerator InitHitExplosion()

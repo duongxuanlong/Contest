@@ -39,6 +39,7 @@ public class LoadingScene : MonoBehaviour
         mIsLoadMain = false;
         // mLoadMain = null;
         mLoadingTime = 0;
+        // Debug.Log("Loading Scene Start");
     }
 
     // Update is called once per frame
@@ -47,6 +48,7 @@ public class LoadingScene : MonoBehaviour
         if (!mIsLoadMain)
         {
             mIsLoadMain = true;
+            mLoadingTime = 0;
             StartCoroutine(LoadMainScene());
         }
         else
