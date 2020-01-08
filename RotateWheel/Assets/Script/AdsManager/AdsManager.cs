@@ -14,7 +14,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
         string GameID = "1234567";
     #endif
     bool IsTestMode = true;
-    bool mIsInit = false;
+    static bool sIsInit = false;
     AdsState mAdsState;
     #endregion
 
@@ -34,10 +34,11 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
     }
     #endregion
 
+    
     // Start is called before the first frame update
     void Start()
     {
-        if (!mIsInit)
+        if (!sIsInit)
         {
             #if UNITY_IOS || UNITY_ANDROID
             Advertisement.Initialize(GameID, IsTestMode);
@@ -45,7 +46,8 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
 
             Advertisement.AddListener(this);
             DontDestroyOnLoad(gameObject);
-            mIsInit = true;
+            sIsInit = true;
+            // Debug.Log("Init AdsManager");
         }
         this.mAdsState = AdsState.None;
     }
@@ -54,6 +56,11 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
     public void SetWatchAds ()
     {
         this.mAdsState = AdsState.Watch;
+    }
+
+    public void ResetAds ()
+    {
+        this.mAdsState = AdsState.None;
     }
 
     public AdsState GetAdsState ()
@@ -73,14 +80,14 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
     void IUnityAdsListener.OnUnityAdsDidStart(string placementId)
     {
         // Debug.Log("Unity ads start: " + placementId);
-        
-        if (placementId == INCENTIVIZE_PLACEMENT_ID)
+    
+        if (placementId == INCENTIVIZE_PLACEMENT_ID)// && this.mAdsState == AdsState.Watch)
             this.mAdsState = AdsState.Start;
     }
 
     void IUnityAdsListener.OnUnityAdsDidError(string message)
     {
-        // Debug.Log("Uniy ads error: " + message);
+        Debug.Log("Uniy ads error: " + message);
         this.mAdsState = AdsState.Error;
     }
 
@@ -95,19 +102,22 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
             {
                 case ShowResult.Failed:
                 {
-                    this.mAdsState = AdsState.Finish_Error;
+                    // if (this.mAdsState > AdsState.Watch)
+                        this.mAdsState = AdsState.Finish_Error;
                     break;
                 }
 
                 case ShowResult.Skipped:
                 {
-                    this.mAdsState = AdsState.Finish_Error;
+                    // if (this.mAdsState > AdsState.Watch)
+                        this.mAdsState = AdsState.Finish_Error;
                     break;
                 }
 
                 case ShowResult.Finished:
                 {
-                    this.mAdsState = AdsState.Finish_Complete;
+                    // if (this.mAdsState > AdsState.Watch)
+                        this.mAdsState = AdsState.Finish_Complete;
                     break;
                 }
             }

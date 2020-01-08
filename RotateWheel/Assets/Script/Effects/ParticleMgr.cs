@@ -108,6 +108,9 @@ public class ParticleMgr
                 break;
             }
         }
+
+        // Debug.Log("Hit explosion: " + mHitExplosion.Count);
+        // Debug.Log("Hit explosion dam: " + mHitExplosionDam.Count);
     }
 
     public void PlayParticle(PlayerController.BallType ball, Vector3 pos, bool playFlash = false)

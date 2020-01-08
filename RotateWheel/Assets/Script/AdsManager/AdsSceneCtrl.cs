@@ -103,13 +103,17 @@ public class AdsSceneCtrl : MonoBehaviour
         {
             if (mAdsManager.GetAdsState() == AdsManager.AdsState.Finish_Complete)
             {
+                mIsCountDown = false;
                 mReviveObject.SetActive(false);
+                mAdsManager.ResetAds();
                 SceneManager.LoadScene(Constant.SCENE_LOADING);
             }
             else if ((mAdsManager.GetAdsState() == AdsManager.AdsState.Finish_Error ||
                       mAdsManager.GetAdsState() == AdsManager.AdsState.Error))
                       {
+                          mIsCountDown = false;
                           mReviveObject.SetActive(false);
+                          mAdsManager.ResetAds();
                           SceneManager.LoadScene(Constant.SCENE_END);
                       }
         }
@@ -157,8 +161,12 @@ public class AdsSceneCtrl : MonoBehaviour
 
     public void ShowRewardVideo ()
     {
-        mAdsManager.SetWatchAds();
-        Advertisement.Show(AdsManager.INCENTIVIZE_PLACEMENT_ID);
+        if (mAdsManager.GetAdsState() == AdsManager.AdsState.None)
+        {
+            // Debug.Log("Show ShowRewardVideo");
+            mAdsManager.SetWatchAds();
+            Advertisement.Show(AdsManager.INCENTIVIZE_PLACEMENT_ID);
+        }
     }
 
 }
