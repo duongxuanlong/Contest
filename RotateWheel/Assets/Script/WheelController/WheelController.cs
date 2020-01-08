@@ -21,9 +21,14 @@ public class WheelController : MonoBehaviour {
 	public float m_CurrentHP;
 	bool m_CanRun;
 
-	public AudioClip green;
-	public AudioClip red;
+	#region audio clip reference
+	public AudioClip Ref_Audio_Green;
+	public AudioClip Ref_Audio_Red;
 
+	public AudioClip Ref_Audio_Protection;
+
+	public AudioClip Ref_Audio_Explosion;
+	#endregion
 
 	SpriteRenderer m_Renderer;
 	Sprite m_OriginalSprite;
@@ -149,10 +154,40 @@ public class WheelController : MonoBehaviour {
 		GameObject obj = other.gameObject;
 
 		if (obj.tag == "Player") {
-			if(obj.GetComponent<PlayerController>().red)
-				audiosource.PlayOneShot (red);
-			else
-				audiosource.PlayOneShot (green);
+			// if(obj.GetComponent<PlayerController>().red)
+			// 	audiosource.PlayOneShot (Ref_Audio_Red);
+			// else
+			// 	audiosource.PlayOneShot (Ref_Audio_Green);
+			PlayerController ctrl = obj.GetComponent<PlayerController>();
+			if (ctrl != null)
+			{
+				switch(ctrl.GetBallType())
+				{
+					case PlayerController.BallType.Heal:
+					{
+						audiosource.PlayOneShot(Ref_Audio_Green);
+						break;
+					}
+
+					case PlayerController.BallType.Damage:
+					{
+						audiosource.PlayOneShot(Ref_Audio_Red);
+						break;
+					}
+
+					case PlayerController.BallType.Protect:
+					{
+						audiosource.PlayOneShot(Ref_Audio_Protection);
+						break;
+					}
+
+					case PlayerController.BallType.Destroy:
+					{
+						audiosource.PlayOneShot(Ref_Audio_Explosion);
+						break;
+					}
+				}
+			}
 		}
 	}
 }
