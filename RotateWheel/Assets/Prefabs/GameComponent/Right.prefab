@@ -101,8 +101,11 @@ MonoBehaviour:
   Ref_Protection: {fileID: 0}
   Ref_AnimCtrl: {fileID: 4357365720692587946}
   m_CurrentHP: 0
-  green: {fileID: 8300000, guid: 8ee9fb662f7892e45a50c2fbef770a3b, type: 3}
-  red: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
+  Ref_Audio_Green: {fileID: 8300000, guid: 8ee9fb662f7892e45a50c2fbef770a3b, type: 3}
+  Ref_Audio_Red: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
+  Ref_Audio_Protection: {fileID: 8300000, guid: 966379f1d9bf71044be45926b7cab642,
+    type: 3}
+  Ref_Audio_Explosion: {fileID: 8300000, guid: c447fc0be41f4264e998c1ef3b6073b9, type: 3}
 --- !u!68 &68367882562395430
 EdgeCollider2D:
   m_ObjectHideFlags: 0
