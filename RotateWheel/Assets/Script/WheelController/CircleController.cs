@@ -7,11 +7,15 @@ public class CircleController : MonoBehaviour {
 	#region reference
 	public GameObject m_LeftPreb;
 	public GameObject m_RightPreb;
+	public AudioClip Ref_Audio_IBM;
+	public AudioClip Ref_Audio_EndGame;
 
 	//Add top down
 	//public GameObject m_Top;
 	//public GameObject m_Down;
 	//public GameObject m_Player;
+
+	AudioSource m_AudioSource;
 
 	private GameObject m_Left;
 	private GameObject m_Right;
@@ -54,6 +58,17 @@ public class CircleController : MonoBehaviour {
 			m_MaxProtect = 1;
 		if (m_CurProtect == 0)
 			m_CurProtect = 0;
+
+		if (m_AudioSource == null)
+			m_AudioSource = GetComponent<AudioSource>();
+
+		if (Ref_Audio_IBM != null)
+		{
+			m_AudioSource.Stop();
+			m_AudioSource.clip = Ref_Audio_IBM;
+			m_AudioSource.loop = true;
+			m_AudioSource.Play();
+		}
 	}
 
 	// Use this for initialization
@@ -131,6 +146,14 @@ public class CircleController : MonoBehaviour {
 //			EventManager.TriggerEndGame ();
 //		else
 //			EventManager.IncreaseDiff ();
+		if (m_AudioSource != null)
+		{
+			m_AudioSource.Stop();
+			m_AudioSource.loop = false;
+
+			if (Ref_Audio_EndGame != null)
+				m_AudioSource.PlayOneShot(Ref_Audio_EndGame);
+		}
 		EventManager.TriggerEndGame();
 	}
 
