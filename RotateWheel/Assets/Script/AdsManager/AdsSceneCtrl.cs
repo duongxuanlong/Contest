@@ -164,6 +164,7 @@ public class AdsSceneCtrl : MonoBehaviour
         if (mAdsManager.GetAdsState() == AdsManager.AdsState.None)
         {
             // Debug.Log("Show ShowRewardVideo");
+            Constant.WATCH_ADS_COUNT++;
             mAdsManager.SetWatchAds();
             Advertisement.Show(AdsManager.INCENTIVIZE_PLACEMENT_ID);
         }

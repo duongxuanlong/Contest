@@ -15,6 +15,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
     #endif
     bool IsTestMode = true;
     static bool sIsInit = false;
+    static AdsManager sThis = null;
     AdsState mAdsState;
     #endregion
 
@@ -47,8 +48,14 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
             Advertisement.AddListener(this);
             DontDestroyOnLoad(gameObject);
             sIsInit = true;
+            sThis = this;
             // Debug.Log("Init AdsManager");
         }
+        else if (sThis != this)
+        {
+            Destroy(gameObject);
+        }
+
         this.mAdsState = AdsState.None;
     }
 

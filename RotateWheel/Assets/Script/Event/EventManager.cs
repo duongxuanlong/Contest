@@ -93,7 +93,7 @@ public class EventManager{
 	{
 		if (Constant.WATCH_ADS_COUNT < Constant.WATCH_ADS_LIMIT)
 		{
-			Constant.WATCH_ADS_COUNT++;
+			// Constant.WATCH_ADS_COUNT++;
 			return true;
 		}
 		return false;
@@ -103,6 +103,7 @@ public class EventManager{
 	{
 		if (EndGameCallback != null)
 			EndGameCallback ();	
+		GameController.m_Instance.OnSaveGame();
 		CanRun (false);
 
 		if (CanPlayIncentAds())

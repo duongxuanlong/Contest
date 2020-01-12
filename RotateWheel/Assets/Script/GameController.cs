@@ -64,11 +64,15 @@ public class GameController : MonoBehaviour {
 	void Awake()
 	{
 		if (m_Instance == null) {
+			// Debug.Log("Game Controller awake instance == null");
 			m_Instance = this;
 			DontDestroyOnLoad (gameObject);
 		} else if (m_Instance != this){
+			// Debug.Log("Game Controller awake instance != null");
 			Destroy (gameObject);
 		}
+
+		GameController.m_Instance.OnLoadFromsave();
 	}
 
 	private void Start() {
@@ -104,10 +108,36 @@ public class GameController : MonoBehaviour {
 	{
 		EventManager.ModifyPhaseCallback += SetTutorialPhase;
 		EventManager.ScoreBestCallback += SetBestScore;
+		
+		m_IsReady = true;
+	}
 
+	void OnDisable()
+	{
+		EventManager.ModifyPhaseCallback -= SetTutorialPhase;
+		EventManager.ScoreBestCallback -= SetBestScore;
+	}
+
+	public void OnSaveGame ()
+	{
 		BinaryFormatter bif = new BinaryFormatter ();
 		string path = Application.persistentDataPath + Constant.SAVE_GAME;
-		Debug.Log ("Path: " + path);
+		FileStream f = File.Open (path, FileMode.OpenOrCreate);
+
+		GameInfo info = new GameInfo ();
+		info.TutorialPhase = m_TutorialPhase;
+		info.BestScore = m_BestScore;
+		info.Score = m_Score;
+		
+		bif.Serialize (f, info);
+		f.Close ();
+	}
+
+	void OnLoadFromsave ()
+	{
+		BinaryFormatter bif = new BinaryFormatter ();
+		string path = Application.persistentDataPath + Constant.SAVE_GAME;
+		// Debug.Log ("Path: " + path);
 		if (File.Exists(path))
 		{
 			FileStream f = File.Open (Application.persistentDataPath + Constant.SAVE_GAME, FileMode.Open);
@@ -118,40 +148,21 @@ public class GameController : MonoBehaviour {
 			m_TutorialPhase = info.TutorialPhase;
 			//m_TutorialPhase = Constant.TUTORIAL_PHASE_0;
 			m_BestScore = info.BestScore;
-			m_Score = info.Score;
+			if (Constant.WATCH_ADS_COUNT > 0)
+				m_Score = info.Score;
+			else
+				m_Score = 0;
 		} else {
 			m_TutorialPhase = Constant.TUTORIAL_PHASE_0;
 			m_BestScore = 0f;
 		}
 
-//		if (m_TutorialPhase == Constant.TUTORIAL_PHASE_0)
-//			EventManager.GenerateGreenBalls ();
-		
-		m_IsReady = true;
-	}
-
-	void OnDisable()
-	{
-		EventManager.ModifyPhaseCallback -= SetTutorialPhase;
-		EventManager.ScoreBestCallback -= SetBestScore;
-
-		BinaryFormatter bif = new BinaryFormatter ();
-		string path = Application.persistentDataPath + Constant.SAVE_GAME;
-		FileStream f = File.Open (path, FileMode.OpenOrCreate);
-
-		GameInfo info = new GameInfo ();
-		info.TutorialPhase = m_TutorialPhase;
-		info.BestScore = m_BestScore;
-		if (Constant.WATCH_ADS_COUNT > 0)
-			info.Score = m_Score;
-		else 
-			info.Score = 0;
-		bif.Serialize (f, info);
-		f.Close ();
 	}
 
 	private void OnApplicationPause(bool pauseStatus) {
 		EventManager.CanRun(!pauseStatus);
+		if (pauseStatus)
+			OnSaveGame();
 	}
 
 }

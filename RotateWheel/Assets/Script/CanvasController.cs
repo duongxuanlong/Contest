@@ -135,8 +135,9 @@ public class CanvasController : MonoBehaviour {
 			mFirstInit = true;
 			float temp = 0;
 			temp = GameController.m_Instance.GetScore();
+			// Debug.Log("Score point at canvas ctrl: " + temp);
 			m_CurrentPoints = temp;
-			m_Score.text = "" + temp;
+			m_Score.text = "" + m_CurrentPoints;
 			temp = GameController.m_Instance.GetBestScore();
 			m_Best.text = "" + temp;
 		}
