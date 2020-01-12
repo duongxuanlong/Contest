@@ -4874,7 +4874,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5624,7 +5624,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 15
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9737,8 +9737,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.6435836, g: 0.9433962, b: 0.04004982, a: 1}
-        key1: {r: 0.38685048, g: 1, b: 0, a: 1}
+        key0: {r: 0.18212414, g: 0, b: 1, a: 1}
+        key1: {r: 1, g: 0.802825, b: 0, a: 0.19607843}
         key2: {r: 1, g: 1, b: 1, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -9766,8 +9766,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
-        key0: {r: 0, g: 1, b: 0.92019224, a: 1}
-        key1: {r: 0, g: 0.6233468, b: 1, a: 1}
+        key0: {r: 1, g: 0, b: 0.19257641, a: 1}
+        key1: {r: 0.6548095, g: 0, b: 1, a: 0.19607843}
         key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -13522,8 +13522,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.09904432, g: 0, b: 1, a: 0.5882353}
-        key1: {r: 0.48581886, g: 1, b: 0, a: 0.39215687}
+        key0: {r: 1, g: 0.94471586, b: 0, a: 0.5882353}
+        key1: {r: 1, g: 0, b: 0.30874825, a: 0.39215687}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -13551,8 +13551,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 0.20779672, b: 0, a: 0.5882353}
-        key1: {r: 0.9529412, g: 0.050980363, b: 0.84432405, a: 0.39215687}
+        key0: {r: 1, g: 0, b: 0.7601948, a: 0.5882353}
+        key1: {r: 0.050980363, g: 0.9078877, b: 0.9529412, a: 0.39215687}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
