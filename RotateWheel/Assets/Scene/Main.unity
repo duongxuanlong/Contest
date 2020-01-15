@@ -1892,12 +1892,12 @@ MonoBehaviour:
   mCountDown: {fileID: 1299110473}
   mBtnRevive: {fileID: 240266603}
   mNumbers:
-  - {fileID: 21300000, guid: 448dadf00dcf91a43a573ec6bd82bbfa, type: 3}
-  - {fileID: 21300000, guid: 0ff953c83527ddf4dbf9a85e3e4298ef, type: 3}
-  - {fileID: 21300000, guid: 9fea273c0af8f6448a4732794c67253e, type: 3}
-  - {fileID: 21300000, guid: 8641fe864720f984281c5e5b19cdd524, type: 3}
-  - {fileID: 21300000, guid: b6beae61ae265204099e1b7486eebcf5, type: 3}
-  - {fileID: 21300000, guid: ac5138b45bdd3314abc364f26f63b7d5, type: 3}
+  - {fileID: 21300000, guid: b0ec0368ec9be1844878ab1601831fe1, type: 3}
+  - {fileID: 21300000, guid: c69b32c0d1dd06544a9153f307406399, type: 3}
+  - {fileID: 21300000, guid: 7f6e5b0fec55d104886889f8b4be12c9, type: 3}
+  - {fileID: 21300000, guid: 20de2cbe23fefaa4fb1e4e2a001dee88, type: 3}
+  - {fileID: 21300000, guid: 5b918577f9097f449a2945fd897e1b7b, type: 3}
+  - {fileID: 21300000, guid: bab8e2635164df3469510e3e39948020, type: 3}
 --- !u!1 &1546787213
 GameObject:
   m_ObjectHideFlags: 0

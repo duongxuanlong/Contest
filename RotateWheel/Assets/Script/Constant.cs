@@ -6,19 +6,19 @@ public class Constant {
 	// public const string DAMAGE = "Official/red_ball";
 
 	// public const string HEAL = "Official/green_ball";
-	public const string DAMAGE = "new/red_ball";
+	public const string DAMAGE = "new/game_objects/red_ball";
 
-	public const string HEAL = "new/green_ball";
+	public const string HEAL = "new/game_objects/green_ball";
 
-	public const string PROTECT = "new/shield_ball";
+	public const string PROTECT = "new/game_objects/shield_ball";
 
 	// public const string PROTECT = "Official/protection";
 
 	public const string DESTROY = "Official/destroy";
 
-	public const string PADLEFT = "new/pad_L";
+	public const string PADLEFT = "new/game_objects/pad_L";
 
-	public const string PADRIGHT = "new/pad_R";
+	public const string PADRIGHT = "new/game_objects/pad_R";
 
 	public const float HOUR_PER_SECONDS = 3600f;
 
