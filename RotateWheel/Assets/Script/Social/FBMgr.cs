@@ -36,8 +36,10 @@ public class FBMgr : MonoBehaviour
             // https://script.google.com/macros/s/AKfycbyIsxIcGu1Lvp0KgCag0-QQGcbA4own68W3P7zyCvBrtq7SLY4/exec?BestScore=100&Score=10
             // FB.FeedShare(link: new System.Uri("https://www.google.com/"),
             //             linkName: "MineGrab Score: " + GameController.m_Instance.GetScore());
-            FB.FeedShare(link: new System.Uri(@"https://script.google.com/macros/s/AKfycbyIsxIcGu1Lvp0KgCag0-QQGcbA4own68W3P7zyCvBrtq7SLY4/exec?
-                                            BestScore=" + GameController.m_Instance.GetBestScore() + "&Score=" + GameController.m_Instance.GetScore()));
+            // FB.FeedShare(link: new System.Uri(@"https://script.google.com/macros/s/AKfycbyIsxIcGu1Lvp0KgCag0-QQGcbA4own68W3P7zyCvBrtq7SLY4/exec
+            //                                 BestScore=" + GameController.m_Instance.GetBestScore() + "&Score=" + GameController.m_Instance.GetScore()));
+            FB.FeedShare(link: new System.Uri(@"https://www.facebook.com/MineGrab-106643407548635/"),
+                        linkName: "Your Score: " + GameController.m_Instance.GetScore());
         }
     }
 
