@@ -32,19 +32,19 @@ public class IncentAds : MonoBehaviour, IUnityAdsListener
     }
     void  IUnityAdsListener.OnUnityAdsReady(string placementId)
     {
-        if (placementId == PLACEMENT_ID)
-            Debug.Log(placementId + " is ready");
+        // if (placementId == PLACEMENT_ID)
+        //     Debug.Log(placementId + " is ready");
     }
 
     void IUnityAdsListener.OnUnityAdsDidStart(string placementId)
     {
-        if (placementId == PLACEMENT_ID)
-            Debug.Log(placementId + " start");
+        // if (placementId == PLACEMENT_ID)
+        //     Debug.Log(placementId + " start");
     }
 
     void IUnityAdsListener.OnUnityAdsDidError(string message)
     {
-        Debug.Log("Uniy ads error: " + message);
+        // Debug.Log("Uniy ads error: " + message);
     }
 
     void IUnityAdsListener.OnUnityAdsDidFinish(string placementId, ShowResult showResult)
@@ -52,7 +52,7 @@ public class IncentAds : MonoBehaviour, IUnityAdsListener
         if (placementId == PLACEMENT_ID)
         {
             // 0: fail 1: finish 2: skip
-            Debug.Log("Ads finished: " + showResult);
+            // Debug.Log("Ads finished: " + showResult);
         }
     }
     #endregion

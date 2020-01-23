@@ -13,7 +13,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
     #else 
         string GameID = "1234567";
     #endif
-    bool IsTestMode = true;
+    bool IsTestMode = false;
     static bool sIsInit = false;
     static AdsManager sThis = null;
     AdsState mAdsState;
@@ -94,7 +94,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
 
     void IUnityAdsListener.OnUnityAdsDidError(string message)
     {
-        Debug.Log("Uniy ads error: " + message);
+        Debug.Log("ads error: " + message);
         this.mAdsState = AdsState.Error;
     }
 
