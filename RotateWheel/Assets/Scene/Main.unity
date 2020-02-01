@@ -745,7 +745,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 4.21, y: -3.4799995}
+  m_AnchoredPosition: {x: 5.25, y: -3.4799995}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &739550751
@@ -781,7 +781,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: RED
+  m_Text: VIRUS
 --- !u!222 &739550752
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1166,7 +1166,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Ref_Audio_IBM
       value: 
-      objectReference: {fileID: 8300000, guid: 8c227a0f538d2034bbd28a6a709baaa2, type: 3}
+      objectReference: {fileID: 8300000, guid: 7e35ebae1bdfc3f49a2859e196ca25da, type: 3}
     - target: {fileID: 114020702568885124, guid: 48d1cc7c2288e2e47a82dce6f0cc0f33,
         type: 3}
       propertyPath: Ref_Audio_EndGame
@@ -1786,7 +1786,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -3.48}
+  m_AnchoredPosition: {x: 0.39, y: -3.48}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1469993380
@@ -1822,7 +1822,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: COLLECT              BALL AND AVOID         BALL
+  m_Text: 'COLLECT                   AND AVOID         '
 --- !u!222 &1469993381
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1922,7 +1922,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1546787213}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.69, z: 0}
+  m_LocalPosition: {x: -0.64, y: -0.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1469993379}
@@ -2068,7 +2068,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -2.75, y: -3.4799995}
+  m_AnchoredPosition: {x: -0.65, y: -3.4799995}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1721494011
@@ -2104,7 +2104,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: GREEN
+  m_Text: VACCINE
 --- !u!222 &1721494012
 CanvasRenderer:
   m_ObjectHideFlags: 0
