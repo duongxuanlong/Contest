@@ -71,6 +71,7 @@
      <Compile Include="Assets\Script\AdsManager\IncentAds.cs" />
      <Compile Include="Assets\Script\Ball\PlayerController.cs" />
      <Compile Include="Assets\Script\Ball\PlayerGenerator.cs" />
+     <Compile Include="Assets\Script\Ball\PlayerRotate.cs" />
      <Compile Include="Assets\Script\CameraController.cs" />
      <Compile Include="Assets\Script\CanvasController.cs" />
      <Compile Include="Assets\Script\Constant.cs" />
