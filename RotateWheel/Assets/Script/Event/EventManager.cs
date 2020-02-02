@@ -29,7 +29,7 @@ public class EventManager{
 	public delegate void DelSendBallType (PlayerController.BallType type);
 	public delegate bool DelIsInProtection ();
 	public delegate void DelReduceProtection ();
-	public delegate void DelGenerateSpecialBall ();
+	public delegate GameObject DelGenerateSpecialBall ();
 
 	//public static DelSendHP SendHPCallback;
 	public static event DelReceiveHP ReceiveHPCallback;

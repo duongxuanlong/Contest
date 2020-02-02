@@ -19,9 +19,9 @@ public class SpawnPointController : MonoBehaviour {
 		if (obj != null) {
 			obj.transform.position = gameObject.transform.position;
 			obj.transform.rotation = gameObject.transform.rotation;
-			PlayerController ctrl = (PlayerController)obj.GetComponent<PlayerController> ();
-			if (ctrl != null)
-				ctrl.GenerateObjectType ();
+			// PlayerController ctrl = (PlayerController)obj.GetComponent<PlayerController> ();
+			// if (ctrl != null)
+			// 	ctrl.GenerateObjectType ();
 			obj.SetActive (true);
 		}
 	}
