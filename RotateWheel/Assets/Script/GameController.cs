@@ -63,6 +63,8 @@ public class GameController : MonoBehaviour {
 
 	void Awake()
 	{
+		Application.targetFrameRate = 60;
+		
 		if (m_Instance == null) {
 			// Debug.Log("Game Controller awake instance == null");
 			m_Instance = this;
