@@ -5873,6 +5873,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Medicine
       objectReference: {fileID: 0}
+    - target: {fileID: 4317995995560324389, guid: e327eebe6939d584b8de6108948c7ac2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4104194453028946303, guid: e327eebe6939d584b8de6108948c7ac2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5991,11 +5996,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_Virus
-      objectReference: {fileID: 0}
-    - target: {fileID: 4233915559860548374, guid: be3be8e5e5451c148aa43153a374d6ff,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4168220690043461452, guid: be3be8e5e5451c148aa43153a374d6ff,
         type: 3}

@@ -7,7 +7,7 @@ public class CircleController : MonoBehaviour {
 	#region reference
 	public GameObject m_LeftPreb;
 	public GameObject m_RightPreb;
-	public AudioClip Ref_Audio_IBM;
+	public AudioClip[] Ref_Audios_BGM;
 	public AudioClip Ref_Audio_EndGame;
 
 	//Add top down
@@ -62,10 +62,10 @@ public class CircleController : MonoBehaviour {
 		if (m_AudioSource == null)
 			m_AudioSource = GetComponent<AudioSource>();
 
-		if (Ref_Audio_IBM != null)
+		if (Ref_Audios_BGM != null)
 		{
 			m_AudioSource.Stop();
-			m_AudioSource.clip = Ref_Audio_IBM;
+			m_AudioSource.clip = Ref_Audios_BGM[Random.Range(0, Ref_Audios_BGM.Length)];
 			m_AudioSource.loop = true;
 			m_AudioSource.Play();
 		}

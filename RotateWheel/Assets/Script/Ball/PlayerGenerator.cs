@@ -10,7 +10,7 @@ public class PlayerGenerator : MonoBehaviour {
 	public GameObject Pre_Protection;
 	public GameObject Pre_Destruction;
 
-	private List<GameObject> m_Objects;
+	// private List<GameObject> m_Objects;
 
 	private bool m_IsGrowth = true;
 
@@ -27,6 +27,13 @@ public class PlayerGenerator : MonoBehaviour {
 	#region params
 	Dictionary<PlayerController.BallType, List<GameObject>> dt_Balls;
 	#endregion
+
+	#region Sounds
+	[Header("Sounds for destroying Virus")]
+	public AudioClip Ref_Audio_Destroy_Virus;
+	AudioSource m_AudioSource;
+	#endregion
+	
 
 	#region  params for generate probability random
 	[Header("Probability for random ball generation")]
@@ -106,22 +113,14 @@ public class PlayerGenerator : MonoBehaviour {
 
 	IEnumerator DeActiveDamBalls()
 	{
-		// for (int i = 0; i < m_Total; ++i) {
-		// 	if (m_Objects [i].activeInHierarchy) {
-		// 		PlayerController ctrl = m_Objects [i].GetComponent<PlayerController> ();
-		// 		if (ctrl.GetBallType () == PlayerController.BallType.Damage) {
-		// 			m_Objects [i].SetActive (false);
-		// 			ParticleMgr.SInstance.PlayParticle(PlayerController.BallType.Damage, m_Objects[i].transform.position);
-		// 			yield return new WaitForSeconds (m_EffectTime);
-		// 		}
-		// 	}
-		// }
 		var ls = dt_Balls[PlayerController.BallType.Damage];
 		foreach (var temp in ls)
 		{
 			if (temp.activeInHierarchy)
 			{
 				ParticleMgr.SInstance.PlayParticle(PlayerController.BallType.Damage, temp.transform.position);
+				if (Ref_Audio_Destroy_Virus != null)
+					m_AudioSource.PlayOneShot(Ref_Audio_Destroy_Virus);
 				temp.SetActive(false);
 				yield return new WaitForSeconds(m_EffectTime);
 			}
@@ -269,24 +268,14 @@ public class PlayerGenerator : MonoBehaviour {
 		if (m_EffectTime == 0)
 			m_EffectTime = 1f;
 
-		if (m_Objects == null)
-			m_Objects = new List<GameObject> ();
+		// if (m_Objects == null)
+		// 	m_Objects = new List<GameObject> ();
+
+		if (m_AudioSource == null)
+			m_AudioSource = GetComponent<AudioSource>();
 
 
 		CreateAllBalls();
-		
-		// for (int i = 0; i < m_Total; i++) {
-		// 	GameObject obj = Instantiate (m_Player) as GameObject;
-		// 	obj.transform.SetParent(transform);
-		// 	obj.SetActive (false);
-		// 	m_Objects.Add (obj);
-		// }
-
-		// if (mDestructionEffect != null)
-		// {
-		// 	mDestructionEffect.InitAnimCtrl();
-		// 	mDestructionEffect.SetActive(false);
-		// }
 
 		if (mDamExplosion != null)
 		{
@@ -294,21 +283,21 @@ public class PlayerGenerator : MonoBehaviour {
 		}
 	}
 	
-	private GameObject GetAvailablePlayer ()
-	{
-		for (int i = 0; i < m_Total; i++)
-			if (!m_Objects [i].activeSelf)
-				return m_Objects [i];
+	// private GameObject GetAvailablePlayer ()
+	// {
+	// 	for (int i = 0; i < m_Total; i++)
+	// 		if (!m_Objects [i].activeSelf)
+	// 			return m_Objects [i];
 
-		if (m_IsGrowth) {
-			GameObject obj = Instantiate (m_Player) as GameObject;
-			m_Objects.Add (obj);
-			m_Total++;
-			return obj;
-		}
+	// 	if (m_IsGrowth) {
+	// 		GameObject obj = Instantiate (m_Player) as GameObject;
+	// 		m_Objects.Add (obj);
+	// 		m_Total++;
+	// 		return obj;
+	// 	}
 
-		return null;
-	}
+	// 	return null;
+	// }
 
 	GameObject GetBall (PlayerController.BallType type)
 	{
