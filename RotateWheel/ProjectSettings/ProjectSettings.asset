@@ -162,7 +162,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.hyperfun8888.minegrab
   buildNumber: {}
-  AndroidBundleVersionCode: 5
+  AndroidBundleVersionCode: 6
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
