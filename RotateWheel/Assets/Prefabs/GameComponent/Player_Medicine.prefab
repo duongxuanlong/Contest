@@ -126,7 +126,7 @@ RectTransform:
   m_GameObject: {fileID: 4317995995560324389}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children:
   - {fileID: 788180414446911619}
   m_Father: {fileID: 0}
@@ -175,6 +175,7 @@ MonoBehaviour:
   m_MaxSpeed: 3
   m_DeltaScale: 0.019
   m_OriginalScale: 0
+  m_RotateFactor: 0
   Ref_Rotate: {fileID: 3305348716141526609}
   red: 0
 --- !u!70 &3220510156030822988
