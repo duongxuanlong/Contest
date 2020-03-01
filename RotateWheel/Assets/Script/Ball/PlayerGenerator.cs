@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerGenerator : MonoBehaviour {
 	public GameObject m_Player;
 
-	public GameObject Pre_Medicine;
-	public GameObject Pre_Virus;
+	public GameObject Pre_Circle;
+	public GameObject Pre_Monster;
 	public GameObject Pre_Protection;
 	public GameObject Pre_Destruction;
 
@@ -206,7 +206,7 @@ public class PlayerGenerator : MonoBehaviour {
 		{
 			// medicine
 			{
-				GameObject obj = Instantiate(Pre_Medicine) as GameObject;
+				GameObject obj = Instantiate(Pre_Circle) as GameObject;
 				obj.transform.SetParent (transform);
 				obj.SetActive(false);
 				var ctrl = obj.GetComponent<PlayerController>();
@@ -216,7 +216,7 @@ public class PlayerGenerator : MonoBehaviour {
 
 			// virus
 			{
-				GameObject obj = Instantiate(Pre_Virus) as GameObject;
+				GameObject obj = Instantiate(Pre_Monster) as GameObject;
 				obj.transform.SetParent(transform);
 				obj.SetActive(false);
 				PlayerController ctrl = obj.GetComponent<PlayerController>();
@@ -327,13 +327,13 @@ public class PlayerGenerator : MonoBehaviour {
 		{
 			case PlayerController.BallType.Heal:
 			{
-				pre = Pre_Medicine;
+				pre = Pre_Circle;
 				break;
 			}
 
 			case PlayerController.BallType.Damage:
 			{
-				pre = Pre_Virus;
+				pre = Pre_Monster;
 				break;
 			}
 

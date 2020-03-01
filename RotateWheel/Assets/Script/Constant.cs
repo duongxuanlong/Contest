@@ -6,6 +6,16 @@ public class Constant {
 	// public const string DAMAGE = "Official/red_ball";
 
 	// public const string HEAL = "Official/green_ball";
+	#region tracking
+	public static bool TRACKING_IS_FIRST_LAUNCH = true;
+	public const string TRACKING_START_GAME = "START_GAME";
+	public const string TRACKING_GAME_OVER 	= "GAME_OVER";
+	public const string TRACKING_REPLAY		= "GAME_REPLAY";
+
+	public const string PARAM_SESSION_ID	= "SESSION_ID";
+	public const string PARAM_SCORE			= "GAME_SCORE";
+	public const string PARAM_BEST_SCORE 	= "GAME_BEST_SCORE";
+	#endregion
 	public const string DAMAGE = "new/game_objects/red_ball";
 
 	public const string HEAL = "new/game_objects/green_ball";

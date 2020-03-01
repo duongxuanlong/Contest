@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 7196d7c1dab4660409fb92bc64d17473, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d54ce8eda8dc17041b5d06ce35f307ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,9 +109,9 @@ GameObject:
   - component: {fileID: 4104194453028946303}
   - component: {fileID: 4276822880508654325}
   - component: {fileID: 4214625000288054771}
-  - component: {fileID: 3220510156030822988}
+  - component: {fileID: 7364014500367605339}
   m_Layer: 10
-  m_Name: Player_Medicine
+  m_Name: Player_Circle
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,8 +178,8 @@ MonoBehaviour:
   m_RotateFactor: 0
   Ref_Rotate: {fileID: 3305348716141526609}
   red: 0
---- !u!70 &3220510156030822988
-CapsuleCollider2D:
+--- !u!58 &7364014500367605339
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -191,9 +191,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0103094205, y: -0.010466774}
-  m_Size: {x: 1.2537445, y: 0.57507694}
-  m_Direction: 1
+  m_Offset: {x: -0.010780691, y: -0.006110964}
+  serializedVersion: 2
+  m_Radius: 0.42538205
 --- !u!1 &4318198366059657355
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,8 +230,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -89.7, y: -95.7}
+  m_AnchoredPosition: {x: -0.0125, y: -0.0171}
+  m_SizeDelta: {x: -90.1762, y: -90.7929}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4103073549624659815
 Canvas:

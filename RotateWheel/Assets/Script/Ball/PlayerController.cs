@@ -179,13 +179,14 @@ public class PlayerController : MonoBehaviour {
 		
 			gameObject.transform.Translate (m_Direction * speed * Time.deltaTime);
 
-			if (m_Type == BallType.Heal)
-			{
-				if (Ref_Rotate != null)
-				{
-					Ref_Rotate.UpdateRotate(m_RotateDirection * speed * Time.deltaTime * m_RotateFactor);
-				}
-			}
+			// no need to rotate
+			// if (m_Type == BallType.Heal)
+			// {
+			// 	if (Ref_Rotate != null)
+			// 	{
+			// 		Ref_Rotate.UpdateRotate(m_RotateDirection * speed * Time.deltaTime * m_RotateFactor);
+			// 	}
+			// }
 
 			
 			//GetComponent<Rigidbody2D>().MovePosition(m_Direction * speed * Time.deltaTime);

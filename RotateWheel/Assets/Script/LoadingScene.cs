@@ -1,6 +1,8 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Analytics;
 
 public class LoadingScene : MonoBehaviour
 {
@@ -40,6 +42,14 @@ public class LoadingScene : MonoBehaviour
         // mLoadMain = null;
         mLoadingTime = 0;
         // Debug.Log("Loading Scene Start");
+        if (Constant.TRACKING_IS_FIRST_LAUNCH)
+        {
+            Constant.TRACKING_IS_FIRST_LAUNCH = false;
+            Analytics.CustomEvent(Constant.TRACKING_START_GAME, new Dictionary<string, object> 
+            {
+                { Constant.PARAM_SESSION_ID, AnalyticsSessionInfo.sessionId.ToString()}
+            });
+        }
     }
 
     // Update is called once per frame

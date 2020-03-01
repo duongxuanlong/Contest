@@ -7,9 +7,9 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
 {
     #region Unity ads params
     #if UNITY_IOS
-        string GameID = "3417710";
+        string GameID = "3466282";
     #elif UNITY_ANDROID
-        string GameID = "3417711";
+        string GameID = "3466283";
     #else 
         string GameID = "1234567";
     #endif

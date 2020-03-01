@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Analytics;
 
 public class EndController : MonoBehaviour {
 
@@ -20,6 +21,12 @@ public class EndController : MonoBehaviour {
 				m_Best.color = Constant.GREEN;
 			m_Best.text = "" + GameController.m_Instance.GetBestScore ();
 		}
+
+		Analytics.CustomEvent(Constant.TRACKING_GAME_OVER, new Dictionary<string, object> {
+			{ Constant.PARAM_SESSION_ID, AnalyticsSessionInfo.sessionId.ToString()},
+			{ Constant.PARAM_SCORE, GameController.m_Instance.GetScore().ToString()},
+			{ Constant.PARAM_BEST_SCORE, GameController.m_Instance.GetBestScore().ToString()}
+		});
 	}
 
 	void Start ()
@@ -31,6 +38,9 @@ public class EndController : MonoBehaviour {
 	public void Replay()
 	{
 		// SceneManager.LoadScene (Constant.SCENE_MAIN);	
+		Analytics.CustomEvent(Constant.TRACKING_REPLAY, new Dictionary<string, object>{
+			{ Constant.PARAM_SESSION_ID, AnalyticsSessionInfo.sessionId.ToString()}
+		});
 		SceneManager.LoadScene(Constant.SCENE_LOADING);
 	}
 }
