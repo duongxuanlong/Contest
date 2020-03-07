@@ -127,9 +127,9 @@ public class GameController : MonoBehaviour {
 		FileStream f = File.Open (path, FileMode.OpenOrCreate);
 
 		GameInfo info = new GameInfo ();
-		info.TutorialPhase = m_TutorialPhase;
-		info.BestScore = m_BestScore;
-		info.Score = m_Score;
+		info.tutorialphase = m_TutorialPhase;
+		info.bestscore = m_BestScore;
+		info.score = m_Score;
 		
 		bif.Serialize (f, info);
 		f.Close ();
@@ -147,11 +147,11 @@ public class GameController : MonoBehaviour {
 			info = (GameInfo)bif.Deserialize (f);
 			f.Close ();
 
-			m_TutorialPhase = info.TutorialPhase;
+			m_TutorialPhase = info.tutorialphase;
 			//m_TutorialPhase = Constant.TUTORIAL_PHASE_0;
-			m_BestScore = info.BestScore;
+			m_BestScore = info.bestscore;
 			if (Constant.WATCH_ADS_COUNT > 0)
-				m_Score = info.Score;
+				m_Score = info.score;
 			else
 				m_Score = 0;
 		} else {
@@ -172,7 +172,8 @@ public class GameController : MonoBehaviour {
 [Serializable]
 class GameInfo
 {
-	public int TutorialPhase;
-	public float BestScore;
-	public float Score;
+	public int tutorialphase;
+	public float bestscore;
+	public float score;
+	public string username;
 }

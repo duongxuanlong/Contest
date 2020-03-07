@@ -50,6 +50,9 @@ public class LoadingScene : MonoBehaviour
                 { Constant.PARAM_SESSION_ID, AnalyticsSessionInfo.sessionId.ToString()}
             });
         }
+
+        FBMgr.Instance.InitFB();
+        // FireBaseMg
     }
 
     // Update is called once per frame

@@ -55,17 +55,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\ConsoleBase.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\LogView.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\MenuBase.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\AccessTokenMenu.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\AppEvents.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\AppLinks.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\AppRequests.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\DialogShare.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\GraphRequest.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\MainMenu.cs" />
-     <Compile Include="Assets\FacebookSDK\Examples\Scripts\SubMenus\Pay.cs" />
      <Compile Include="Assets\Script\AdsManager\AdsManager.cs" />
      <Compile Include="Assets\Script\AdsManager\AdsSceneCtrl.cs" />
      <Compile Include="Assets\Script\AdsManager\IncentAds.cs" />
@@ -86,13 +75,29 @@
      <Compile Include="Assets\Script\LoadingScene.cs" />
      <Compile Include="Assets\Script\SampleScript.cs" />
      <Compile Include="Assets\Script\Social\FBMgr.cs" />
+     <Compile Include="Assets\Script\Social\FireBaseMgr.cs" />
+     <Compile Include="Assets\Script\Social\LeaderBoardEntry.cs" />
      <Compile Include="Assets\Script\SpawnPoint\SpawnPointController.cs" />
      <Compile Include="Assets\Script\SpawnPoint\SpawnPointHandler.cs" />
      <Compile Include="Assets\Script\WheelController\CircleController.cs" />
      <Compile Include="Assets\Script\WheelController\WheelController.cs" />
      <Compile Include="Assets\Spinning.cs" />
-     <None Include="Assets\UnityAds\link.xml" />
-     <None Include="Assets\FacebookSDK\link.xml" />
+     <Compile Include="Assets\ThirdPartySDK\FacebookSDK\Examples\Scripts\ConsoleBase.cs" />
+     <Compile Include="Assets\ThirdPartySDK\FacebookSDK\Examples\Scripts\LogView.cs" />
+     <Compile Include="Assets\ThirdPartySDK\FacebookSDK\Examples\Scripts\MenuBase.cs" />
+     <Compile Include="Assets\ThirdPartySDK\FacebookSDK\Examples\Scripts\SubMenus\AccessTokenMenu.cs" />
+     <Compile Include="Assets\ThirdPartySDK\FacebookSDK\Examples\Scripts\SubMenus\AppEvents.cs" />
+     <Compile Include="Assets\ThirdPartySDK\FacebookSDK\Examples\Scripts\SubMenus\AppLinks.cs" />
+     <Compile Include="Assets\ThirdPartySDK\FacebookSDK\Examples\Scripts\SubMenus\AppRequests.cs" />
+     <Compile Include="Assets\ThirdPartySDK\FacebookSDK\Examples\Scripts\SubMenus\DialogShare.cs" />
+     <Compile Include="Assets\ThirdPartySDK\FacebookSDK\Examples\Scripts\SubMenus\GraphRequest.cs" />
+     <Compile Include="Assets\ThirdPartySDK\FacebookSDK\Examples\Scripts\SubMenus\MainMenu.cs" />
+     <Compile Include="Assets\ThirdPartySDK\FacebookSDK\Examples\Scripts\SubMenus\Pay.cs" />
+     <None Include="Assets\ThirdPartySDK\FireBase\Firebase\m2repository\com\google\firebase\firebase-app-unity\maven-metadata.xml" />
+     <None Include="Assets\Firebase\m2repository\com\google\firebase\firebase-database-unity\maven-metadata.xml" />
+     <None Include="Assets\ThirdPartySDK\UnityAds\link.xml" />
+     <None Include="Assets\ThirdPartySDK\FacebookSDK\link.xml" />
+     <None Include="Assets\ThirdPartySDK\FireBase\Firebase\m2repository\com\google\firebase\firebase-auth-unity\maven-metadata.xml" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/gameproject/RotateWheel/RotateWheel/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
@@ -288,23 +293,47 @@
  <Reference Include="nunit.framework">
  <HintPath>C:/Program Files/2019.1.14f1/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
+ <Reference Include="Firebase.Database">
+ <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/Firebase/Plugins/Firebase.Database.dll</HintPath>
+ </Reference>
  <Reference Include="Facebook.Unity">
- <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/FacebookSDK/Plugins/Facebook.Unity.dll</HintPath>
+ <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/ThirdPartySDK/FacebookSDK/Plugins/Facebook.Unity.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity.Gameroom">
- <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/FacebookSDK/Plugins/Gameroom/Facebook.Unity.Gameroom.dll</HintPath>
+ <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/ThirdPartySDK/FacebookSDK/Plugins/Gameroom/Facebook.Unity.Gameroom.dll</HintPath>
  </Reference>
  <Reference Include="FacebookNamedPipeClient">
- <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/FacebookSDK/Plugins/Gameroom/FacebookNamedPipeClient.dll</HintPath>
+ <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/ThirdPartySDK/FacebookSDK/Plugins/Gameroom/FacebookNamedPipeClient.dll</HintPath>
  </Reference>
  <Reference Include="Facebook.Unity.Settings">
- <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll</HintPath>
+ <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/ThirdPartySDK/FacebookSDK/Plugins/Settings/Facebook.Unity.Settings.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.App">
+ <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/ThirdPartySDK/FireBase/Firebase/Plugins/Firebase.App.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.Auth">
+ <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/ThirdPartySDK/FireBase/Firebase/Plugins/Firebase.Auth.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.Platform">
+ <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/ThirdPartySDK/FireBase/Firebase/Plugins/Firebase.Platform.dll</HintPath>
+ </Reference>
+ <Reference Include="Firebase.TaskExtension">
+ <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/ThirdPartySDK/FireBase/Firebase/Plugins/Firebase.TaskExtension.dll</HintPath>
+ </Reference>
+ <Reference Include="Google.MiniJson">
+ <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/ThirdPartySDK/FireBase/Firebase/Plugins/Google.MiniJson.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Compat">
+ <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/ThirdPartySDK/FireBase/Parse/Plugins/dotNet45/Unity.Compat.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Tasks">
+ <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/ThirdPartySDK/FireBase/Parse/Plugins/dotNet45/Unity.Tasks.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Advertisements.Editor">
- <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/UnityAds/UnityEngine.Advertisements.Editor.dll</HintPath>
+ <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/ThirdPartySDK/UnityAds/UnityEngine.Advertisements.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Monetization.Editor">
- <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/UnityAds/UnityEngine.Monetization.Editor.dll</HintPath>
+ <HintPath>D:/gameproject/RotateWheel/RotateWheel/Assets/ThirdPartySDK/UnityAds/UnityEngine.Monetization.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Editor">
  <HintPath>D:/gameproject/RotateWheel/RotateWheel/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
